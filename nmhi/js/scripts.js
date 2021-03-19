@@ -7,6 +7,7 @@ class Forecast{
     }
   }
   
+  // HEJ RASMUS!!!!! :D
   
   let wheatherKey1 = "7ed18cf6-8726-11eb-9f69-0242ac130002-7ed18d64-8726-11eb-9f69-0242ac130002";
   let wheatherKey2 = "c211895a-871f-11eb-8ad5-0242ac130002-c2118a86-871f-11eb-8ad5-0242ac130002";
