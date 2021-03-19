@@ -1,0 +1,158 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;1,600&display=swap');
+$titleColor: rgb(248, 248, 248);
+$bgColor: linear-gradient(15deg, #00ccff 30%, #36d7ff);
+$bgColor2: linear-gradient(10deg,  #16334b 30%,#336a83);
+$bgLinear: linear-gradient(200deg, #f7f7f7 30%, #dfdfdf);
+$bgTransparent: rgba(255, 255, 255, 0);
+$buttonColor: linear-gradient(15deg, #d4d4d4 30%, #bebebe);
+$buttonActiveColor: linear-gradient(15deg, rgb(197, 197, 197) 30%, #bebebe);
+*{
+    line-height: 0;
+    font-family: 'Oswald', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+}
+body {
+    background: $bgLinear;
+}
+.container {
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+}
+.nav-bar {
+    font-size: 110%;
+    font-style: italic;
+    position: absolute;
+    top:0;
+    right: 0;
+    left: 0;
+    background: $bgTransparent;
+    padding: 1rem;
+    color: white
+}
+.widget-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 15rem;
+    font-size: 125%;
+    flex-wrap: wrap;
+}
+.widget {
+    margin: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 20rem;
+    min-width: 16rem;
+    border-radius: 1rem;
+    background: $bgColor;
+    color: $titleColor;
+    .degrees {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+.main {
+
+}
+.search-container {
+    background: $bgColor2;
+    margin-top: 5rem;
+    padding-bottom: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+    .search-input-container {
+        display: flex;
+        justify-content: center;
+        min-width: 10rem !important;
+        h1 {
+            color: $titleColor;
+            font-size: 3rem;
+        }
+        input:focus {
+            outline: none;
+        }
+        .search-input {
+            margin-top: 4rem;
+            height: 4.2rem;
+            min-width: 10rem !important;
+            padding-left: 2rem;
+            padding-right: 3rem;
+            border: none;
+            border-radius: 2.1rem;
+            font-size: 200%;
+            background: $bgLinear;
+            
+        }  
+        .search-button {
+            width: 3.8rem;
+            height: 3.8rem;
+            border-radius: 2rem;
+            border: none;
+            margin-top: 5.1em;
+            margin-left: -4.15rem;
+            display: flex;
+            align-content: center;
+            background: $buttonColor;
+        }
+        .search-button:focus {
+            outline: none;
+        }
+        .search-button:active {
+            background: $buttonActiveColor;
+            outline: none;
+        }
+    }
+    .search-result-container {
+        margin-top: 1rem;
+        margin-left: .25rem;
+        width: 28rem;
+        padding-left: .5rem;
+        padding-right: .5rem;
+        padding-bottom: .5rem;
+        border-radius: 2rem;
+        display: flex;
+        justify-content: center;
+        flex-direction: column; 
+        background: $bgLinear;
+        .search-result {
+            height: 3rem;
+            margin-top: .5rem;
+            display: flex;
+            justify-content: center;
+            border-radius: 1.5rem;
+            border: none;
+            background: $buttonColor;
+            h3{
+                font-size: 125%;
+                margin-top: 1.5rem;
+            }
+        }
+        .search-result:focus {
+            outline: none;
+        }
+        .search-result:active {
+            background: $buttonActiveColor;
+            outline: none;
+        }
+    }
+}
+.footer {
+    padding-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    .footer-column {
+        display: flex;
+        justify-content: center;
+        flex: 1;
+        min-width: 20rem;
+        height: 5rem;
+    }
+}
+

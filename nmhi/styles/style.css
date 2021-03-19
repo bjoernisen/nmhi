@@ -1,0 +1,210 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;1,600&display=swap");
+* {
+  line-height: 0;
+  font-family: 'Oswald', sans-serif;
+  font-family: 'Roboto Mono', monospace;
+}
+
+body {
+  background: linear-gradient(200deg, #f7f7f7 30%, #dfdfdf);
+}
+
+.container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.nav-bar {
+  font-size: 110%;
+  font-style: italic;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0);
+  padding: 1rem;
+  color: white;
+}
+
+.widget-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 15rem;
+  font-size: 125%;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.widget {
+  margin: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 20rem;
+  min-width: 16rem;
+  border-radius: 1rem;
+  background: linear-gradient(15deg, #00ccff 30%, #36d7ff);
+  color: #f8f8f8;
+}
+
+.widget .degrees {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.search-container {
+  background: linear-gradient(10deg, #16334b 30%, #336a83);
+  margin-top: 5rem;
+  padding-bottom: 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.search-container .search-input-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  min-width: 10rem !important;
+}
+
+.search-container .search-input-container h1 {
+  color: #f8f8f8;
+  font-size: 3rem;
+}
+
+.search-container .search-input-container input:focus {
+  outline: none;
+}
+
+.search-container .search-input-container .search-input {
+  margin-top: 4rem;
+  height: 4.2rem;
+  min-width: 10rem !important;
+  padding-left: 2rem;
+  padding-right: 3rem;
+  border: none;
+  border-radius: 2.1rem;
+  font-size: 200%;
+  background: linear-gradient(200deg, #f7f7f7 30%, #dfdfdf);
+}
+
+.search-container .search-input-container .search-button {
+  width: 3.8rem;
+  height: 3.8rem;
+  border-radius: 2rem;
+  border: none;
+  margin-top: 5.1em;
+  margin-left: -4.15rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  background: linear-gradient(15deg, #d4d4d4 30%, #bebebe);
+}
+
+.search-container .search-input-container .search-button:focus {
+  outline: none;
+}
+
+.search-container .search-input-container .search-button:active {
+  background: linear-gradient(15deg, #c5c5c5 30%, #bebebe);
+  outline: none;
+}
+
+.search-container .search-result-container {
+  margin-top: 1rem;
+  margin-left: .25rem;
+  width: 28rem;
+  padding-left: .5rem;
+  padding-right: .5rem;
+  padding-bottom: .5rem;
+  border-radius: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: linear-gradient(200deg, #f7f7f7 30%, #dfdfdf);
+}
+
+.search-container .search-result-container .search-result {
+  height: 3rem;
+  margin-top: .5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 1.5rem;
+  border: none;
+  background: linear-gradient(15deg, #d4d4d4 30%, #bebebe);
+}
+
+.search-container .search-result-container .search-result h3 {
+  font-size: 125%;
+  margin-top: 1.5rem;
+}
+
+.search-container .search-result-container .search-result:focus {
+  outline: none;
+}
+
+.search-container .search-result-container .search-result:active {
+  background: linear-gradient(15deg, #c5c5c5 30%, #bebebe);
+  outline: none;
+}
+
+.footer {
+  padding-top: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.footer .footer-column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  min-width: 20rem;
+  height: 5rem;
+}
+/*# sourceMappingURL=style.css.map */
