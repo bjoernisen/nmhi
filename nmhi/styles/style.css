@@ -1,16 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;1,600&display=swap");
 * {
   line-height: 0;
-  font-family: 'Oswald', sans-serif;
-  font-family: 'Roboto Mono', monospace;
+  font-family: "Oswald", sans-serif;
+  font-family: "Roboto Mono", monospace;
 }
 
-/*
-h1, h2, h3, h4, h5, p {
-    padding: 0;
-    margin: 0;
-} 
-*/
 body {
   background: linear-gradient(200deg, #f7f7f7 30%, #dfdfdf);
 }
@@ -92,12 +86,12 @@ body {
       align-self: flex-end;
   text-align: left;
   width: 9rem;
-  margin-top: .2rem;
+  margin-top: 0.2rem;
   font-size: 105%;
 }
 
 .widget .upper-wideget .city h5 {
-  margin-left: -.35rem;
+  margin-left: -0.35rem;
 }
 
 .widget .upper-wideget .wind-speed {
@@ -137,7 +131,7 @@ body {
       align-self: flex-start;
   font-size: 135%;
   display: none;
-  margin-top: -.5rem;
+  margin-top: -0.5rem;
   margin-left: -3rem;
   height: 2rem;
 }
@@ -182,7 +176,7 @@ body {
         align-self: flex-start;
     font-size: 150%;
     display: none;
-    margin-top: -.5rem;
+    margin-top: -0.5rem;
     margin-left: -2.6rem;
     height: 2rem;
   }
@@ -199,15 +193,21 @@ body {
           justify-content: space-between;
   font-size: 56%;
   text-align: center;
+  margin-top: -0.5rem;
+}
+
+.widget .lower-widget p {
+  padding-top: 0.5rem;
+  border-top: white 1px solid;
 }
 
 .widget .lower-widget * {
   opacity: 85%;
-  margin-top: -.1rem;
+  margin-top: -0.1rem;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  line-height: .25rem;
+  line-height: 0.25rem;
 }
 
 @media (max-width: 510px) {
@@ -322,11 +322,11 @@ body {
   -webkit-box-shadow: 0px 3px 8px -4px rgba(0, 0, 0, 0.5);
           box-shadow: 0px 3px 8px -4px rgba(0, 0, 0, 0.5);
   margin-top: 1rem;
-  margin-left: .25rem;
+  margin-left: 0.25rem;
   width: 28rem;
-  padding-left: .5rem;
-  padding-right: .5rem;
-  padding-bottom: .5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
   border-radius: 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -343,7 +343,7 @@ body {
 
 .search-container .search-result-container .search-result {
   height: 3rem;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
