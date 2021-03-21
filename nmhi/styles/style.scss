@@ -7,11 +7,18 @@ $bgLinear: linear-gradient(200deg, #f7f7f7 30%, #dfdfdf);
 $bgTransparent: rgba(255, 255, 255, 0);
 $buttonColor: linear-gradient(15deg, #d4d4d4 30%, #bebebe);
 $buttonActiveColor: linear-gradient(15deg, rgb(197, 197, 197) 30%, #bebebe);
+$smallShadow: 0px 3px 8px -4px rgba(0,0,0,0.50);
 *{
     line-height: 0;
     font-family: 'Oswald', sans-serif;
     font-family: 'Roboto Mono', monospace;
 }
+/*
+h1, h2, h3, h4, h5, p {
+    padding: 0;
+    margin: 0;
+} 
+*/
 body {
     background: $bgLinear;
 }
@@ -35,30 +42,156 @@ body {
     padding: 1rem;
     color: white
 }
+.jumbotron {
+    min-height: 15rem;
+    .jumbotron-item {
+        
+    }
+}
 .widget-container {
     display: flex;
     justify-content: center;
-    margin-top: 15rem;
+    justify-items: center;
     font-size: 125%;
     flex-wrap: wrap;
 }
 .widget {
+    text-shadow:1px 1px 2px rgba(0,0,0,0.33);
+    box-shadow: $smallShadow;
     margin: 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 0 1rem 0 1rem;
     width: 20rem;
-    min-width: 16rem;
+    height: 90px;
+    display: flex;
+    flex-wrap: wrap;
+    align-self: center;
     border-radius: 1rem;
-    background: $bgColor;
-    color: $titleColor;
-    .degrees {
+    color: $titleColor; 
+    .upper-wideget{
+        p{
+            padding: 0;
+            margin: 0;
+            margin-top: 1rem;
+            font-size: 65%;
+        }
+        height: 6rem;
         display: flex;
-        justify-content: flex-end;
+        text-align: center;
+        .city {
+            text-shadow:1px 1px 2px rgba(0, 0, 0, 0.432);
+            align-self: flex-end;
+            text-align: left;
+            width: 9rem;
+            margin-top: .2rem;
+            font-size: 105%;
+            h5 {
+                margin-left: -.35rem;
+            }
+        }
+        .wind-speed {
+            align-self: center;
+            width: 3rem;
+            margin-top: 1rem;
+        }
+        .humidity {
+            align-self: center;
+            width: 3rem;
+            margin-top: 1rem;
+        }
+        .rain {
+            align-self: center;
+            width: 3rem;
+            margin-top: 1rem;
+        }
+        .cloud {
+            align-self: center;
+            width: 3rem;
+            margin-top: 1rem;
+        }
+        .temp {
+            align-self: flex-start;
+            font-size: 135%;
+            display: none;
+            margin-top: -.5rem;
+            margin-left: -3rem;
+            height: 2rem;
+        }
+        @media (max-width: 510px) { 
+            .city {
+                align-self: flex-end;
+                text-align: left;
+                width: 7rem;
+            }
+            .wind-speed {
+                align-self: center;
+                width: 2.4rem;
+                margin-top: 1rem;
+            }
+            .humidity {
+                align-self: center;
+                width: 2.4rem;
+                margin-top: 1rem;
+            }
+            .rain {
+                align-self: center;
+                width: 2.4rem;
+                margin-top: 1rem;
+            }
+            .cloud {
+                align-self: center;
+                width: 2.4rem;
+                margin-top: 1rem;
+            }
+            .temp {
+                align-self: flex-start;
+                font-size: 150%;
+                display: none;
+                margin-top: -.5rem;
+                margin-left: -2.6rem;
+                height: 2rem;
+            }
+        }
     }
+    .lower-widget {
+        text-shadow:1px 1px 2px rgba(0, 0, 0, 0.438);
+        width: 20rem;
+        display: flex;
+        justify-content: space-between;
+        font-size: 56%;
+        text-align: center;
+        * {
+            opacity: 85%;
+            margin-top: -.1rem;
+            flex: 1;
+            line-height: .25rem;
+        }
+    }
+ 
 }
-.main {
+
+@media (max-width: 510px) {
+    .widget {
+        width: 16rem;
+    }  
 
 }
+.widget:hover{
+    cursor: pointer;
+}
+.day-clear {
+    background-image: url("images/day-clear.png");
+    
+}    
+.day-cloudy {
+    background-image: url("images/day-cloudy.png"); 
+}   
+.day-cloudy-rainy {
+    background-image: url("images/day-cloudy-rainy.png"); 
+}   
+.day-cloudy-snowy {
+    background-image: url("images/day-cloudy-snowy.png"); 
+}
+
 .search-container {
     background: $bgColor2;
     margin-top: 5rem;
@@ -70,25 +203,24 @@ body {
     .search-input-container {
         display: flex;
         justify-content: center;
-        min-width: 10rem !important;
         h1 {
             color: $titleColor;
             font-size: 3rem;
         }
         input:focus {
             outline: none;
+            box-shadow: 0 0 0 8px rgba(0, 0, 0, 0.247);
         }
         .search-input {
+            box-shadow: $smallShadow;
             margin-top: 4rem;
             height: 4.2rem;
-            min-width: 10rem !important;
             padding-left: 2rem;
             padding-right: 3rem;
             border: none;
             border-radius: 2.1rem;
             font-size: 200%;
             background: $bgLinear;
-            
         }  
         .search-button {
             width: 3.8rem;
@@ -108,8 +240,16 @@ body {
             background: $buttonActiveColor;
             outline: none;
         }
+        @media (max-width: 510px) {
+            .search-input {
+                width: 14rem;
+            }  
+        }
+        
     }
+
     .search-result-container {
+        box-shadow: $smallShadow;
         margin-top: 1rem;
         margin-left: .25rem;
         width: 28rem;
@@ -121,6 +261,7 @@ body {
         justify-content: center;
         flex-direction: column; 
         background: $bgLinear;
+        
         .search-result {
             height: 3rem;
             margin-top: .5rem;
@@ -141,6 +282,12 @@ body {
             background: $buttonActiveColor;
             outline: none;
         }
+
+    }
+    @media (max-width: 510px) {
+        .search-result-container {
+            width: 18rem;
+        }  
     }
 }
 .footer {
@@ -155,4 +302,3 @@ body {
         height: 5rem;
     }
 }
-
