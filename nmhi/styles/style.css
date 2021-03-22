@@ -69,11 +69,25 @@ body {
 }
 
 .widget .upper-wideget {
-  height: 6rem;
+  height: 90px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   text-align: center;
+}
+
+.widget .upper-wideget .city {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.432);
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  text-align: left;
+  width: 9rem;
+  font-size: 105%;
+}
+
+.widget .upper-wideget .city h5 {
+  margin-bottom: 1.3rem;
+  margin-left: -0.35rem;
 }
 
 .widget .upper-wideget p {
@@ -83,26 +97,12 @@ body {
   font-size: 65%;
 }
 
-.widget .upper-wideget .city {
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.432);
-  -ms-flex-item-align: end;
-      align-self: flex-end;
-  text-align: left;
-  width: 9rem;
-  margin-top: 0.2rem;
-  font-size: 105%;
-}
-
-.widget .upper-wideget .city h5 {
-  margin-left: -0.35rem;
-}
-
 .widget .upper-wideget .wind-speed {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
   width: 3rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .widget .upper-wideget .humidity {
@@ -110,7 +110,7 @@ body {
       -ms-grid-row-align: center;
       align-self: center;
   width: 3rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .widget .upper-wideget .rain {
@@ -118,7 +118,7 @@ body {
       -ms-grid-row-align: center;
       align-self: center;
   width: 3rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .widget .upper-wideget .cloud {
@@ -126,7 +126,7 @@ body {
       -ms-grid-row-align: center;
       align-self: center;
   width: 3rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .widget .upper-wideget .temp {
@@ -203,7 +203,7 @@ body {
           justify-content: space-between;
   font-size: 56%;
   text-align: center;
-  margin-top: -0.5rem;
+  margin-top: -0.1rem;
 }
 
 .widget .lower-widget p {
