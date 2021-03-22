@@ -105,9 +105,14 @@ body {
     .temp {
       align-self: flex-start;
       font-size: 135%;
+      display: flex;
+      * {
+        margin-left: auto;
+      }
       margin-top: -0.5rem;
-      margin-left: -3rem;
-      height: 2rem;
+      margin-left: -5.5rem;
+      height: 4rem;
+      width: 5rem;
     }
     @media (max-width: 510px) {
       .city {
