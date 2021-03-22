@@ -184,11 +184,17 @@ body {
   .widget .upper-wideget .temp {
     -ms-flex-item-align: start;
         align-self: flex-start;
-    font-size: 150%;
-    display: none;
+    font-size: 135%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
     margin-top: -0.5rem;
-    margin-left: -2.6rem;
-    height: 2rem;
+    margin-left: -5.5rem;
+    height: 4rem;
+    width: 5rem;
+  }
+  .widget .upper-wideget .temp * {
+    margin-left: auto;
   }
 }
 
