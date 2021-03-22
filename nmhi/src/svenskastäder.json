@@ -1,0 +1,1182 @@
+{
+    "blekinge": [
+      "Blekinge",
+      {
+        "name": "Karlshamn",
+        "slug": "karlshamn"
+      },
+      {
+        "name": "Karlskrona",
+        "slug": "karlskrona"
+      },
+      {
+        "name": "Olofström",
+        "slug": "olofstrom"
+      },
+      {
+        "name": "Ronneby",
+        "slug": "ronneby"
+      },
+      {
+        "name": "Sölvesborg",
+        "slug": "solvesborg"
+      }
+    ],
+    "dalarna": [
+      "Dalarna",
+      {
+        "name": "Avesta",
+        "slug": "avesta"
+      },
+      {
+        "name": "Borlänge",
+        "slug": "borlange"
+      },
+      {
+        "name": "Falun",
+        "slug": "falun"
+      },
+      {
+        "name": "Gagnef",
+        "slug": "gagnef"
+      },
+      {
+        "name": "Hedemora",
+        "slug": "hedemora"
+      },
+      {
+        "name": "Leksand",
+        "slug": "leksand"
+      },
+      {
+        "name": "Ludvika",
+        "slug": "ludvika"
+      },
+      {
+        "name": "Malung",
+        "slug": "malung"
+      },
+      {
+        "name": "Mora",
+        "slug": "mora"
+      },
+      {
+        "name": "Orsa",
+        "slug": "orsa"
+      },
+      {
+        "name": "Rättvik",
+        "slug": "rattvik"
+      },
+      {
+        "name": "Smedjebacken",
+        "slug": "smedjebacken"
+      },
+      {
+        "name": "Säter",
+        "slug": "sater"
+      },
+      {
+        "name": "Vansbro",
+        "slug": "vansbro"
+      },
+      {
+        "name": "Älvdalen",
+        "slug": "alvdalen"
+      }
+    ],
+    "gotland": [
+      "Gotland",
+      {
+        "name": "Gotland",
+        "slug": "gotland"
+      }
+    ],
+    "gavleborg": [
+      "Gävleborg",
+      {
+        "name": "Bollnäs",
+        "slug": "bollnas"
+      },
+      {
+        "name": "Gävle",
+        "slug": "gavle"
+      },
+      {
+        "name": "Hofors",
+        "slug": "hofors"
+      },
+      {
+        "name": "Hudiksvall",
+        "slug": "hudiksvall"
+      },
+      {
+        "name": "Ljusdal",
+        "slug": "ljusdal"
+      },
+      {
+        "name": "Nordanstig",
+        "slug": "nordanstig"
+      },
+      {
+        "name": "Ockelbo",
+        "slug": "ockelbo"
+      },
+      {
+        "name": "Ovanåker",
+        "slug": "ovanker"
+      },
+      {
+        "name": "Sandviken",
+        "slug": "sandviken"
+      },
+      {
+        "name": "Söderhamn",
+        "slug": "soderhamn"
+      }
+    ],
+    "halland": [
+      "Halland",
+      {
+        "name": "Falkenberg",
+        "slug": "falkenberg"
+      },
+      {
+        "name": "Halmstad",
+        "slug": "halmstad"
+      },
+      {
+        "name": "Hylte",
+        "slug": "hylte"
+      },
+      {
+        "name": "Kungsbacka",
+        "slug": "kungsbacka"
+      },
+      {
+        "name": "Laholm",
+        "slug": "laholm"
+      },
+      {
+        "name": "Varberg",
+        "slug": "varberg"
+      }
+    ],
+    "jamtland": [
+      "Jämtland",
+      {
+        "name": "Berg",
+        "slug": "berg"
+      },
+      {
+        "name": "Bräcke",
+        "slug": "bracke"
+      },
+      {
+        "name": "Härjedalen",
+        "slug": "harjedalen"
+      },
+      {
+        "name": "Krokom",
+        "slug": "krokom"
+      },
+      {
+        "name": "Ragunda",
+        "slug": "ragunda"
+      },
+      {
+        "name": "Strömsund",
+        "slug": "stromsund"
+      },
+      {
+        "name": "Åre",
+        "slug": "re"
+      },
+      {
+        "name": "Östersund",
+        "slug": "ostersund"
+      }
+    ],
+    "jonkoping": [
+      "Jönköping",
+      {
+        "name": "Aneby",
+        "slug": "aneby"
+      },
+      {
+        "name": "Eksjö",
+        "slug": "eksjo"
+      },
+      {
+        "name": "Gislaved",
+        "slug": "gislaved"
+      },
+      {
+        "name": "Gnosjö",
+        "slug": "gnosjo"
+      },
+      {
+        "name": "Habo",
+        "slug": "habo"
+      },
+      {
+        "name": "Jönköping",
+        "slug": "jonkoping"
+      },
+      {
+        "name": "Mullsjö",
+        "slug": "mullsjo"
+      },
+      {
+        "name": "Nässjö",
+        "slug": "nassjo"
+      },
+      {
+        "name": "Sävsjö",
+        "slug": "savsjo"
+      },
+      {
+        "name": "Tranås",
+        "slug": "trans"
+      },
+      {
+        "name": "Vaggeryd",
+        "slug": "vaggeryd"
+      },
+      {
+        "name": "Vetlanda",
+        "slug": "vetlanda"
+      },
+      {
+        "name": "Värnamo",
+        "slug": "varnamo"
+      }
+    ],
+    "kalmar": [
+      "Kalmar",
+      {
+        "name": "Borgholm",
+        "slug": "borgholm"
+      },
+      {
+        "name": "Emmaboda",
+        "slug": "emmaboda"
+      },
+      {
+        "name": "Hultsfred",
+        "slug": "hultsfred"
+      },
+      {
+        "name": "Högsby",
+        "slug": "hogsby"
+      },
+      {
+        "name": "Kalmar",
+        "slug": "kalmar"
+      },
+      {
+        "name": "Mönsterås",
+        "slug": "monsters"
+      },
+      {
+        "name": "Mörbylånga",
+        "slug": "morbylnga"
+      },
+      {
+        "name": "Nybro",
+        "slug": "nybro"
+      },
+      {
+        "name": "Oskarshamn",
+        "slug": "oskarshamn"
+      },
+      {
+        "name": "Torsås",
+        "slug": "torss"
+      },
+      {
+        "name": "Vimmerby",
+        "slug": "vimmerby"
+      },
+      {
+        "name": "Västervik",
+        "slug": "vastervik"
+      }
+    ],
+    "kronoberg": [
+      "Kronoberg",
+      {
+        "name": "Alvesta",
+        "slug": "alvesta"
+      },
+      {
+        "name": "Lessebo",
+        "slug": "lessebo"
+      },
+      {
+        "name": "Ljungby",
+        "slug": "ljungby"
+      },
+      {
+        "name": "Markaryd",
+        "slug": "markaryd"
+      },
+      {
+        "name": "Tingsryd",
+        "slug": "tingsryd"
+      },
+      {
+        "name": "Uppvidinge",
+        "slug": "uppvidinge"
+      },
+      {
+        "name": "Växjö",
+        "slug": "vaxjo"
+      },
+      {
+        "name": "Älmhult",
+        "slug": "almhult"
+      }
+    ],
+    "norrbotten": [
+      "Norrbotten",
+      {
+        "name": "Arjeplog",
+        "slug": "arjeplog"
+      },
+      {
+        "name": "Arvidsjaur",
+        "slug": "arvidsjaur"
+      },
+      {
+        "name": "Boden",
+        "slug": "boden"
+      },
+      {
+        "name": "Gällivare",
+        "slug": "gallivare"
+      },
+      {
+        "name": "Haparanda",
+        "slug": "haparanda"
+      },
+      {
+        "name": "Jokkmokk",
+        "slug": "jokkmokk"
+      },
+      {
+        "name": "Kalix",
+        "slug": "kalix"
+      },
+      {
+        "name": "Kiruna",
+        "slug": "kiruna"
+      },
+      {
+        "name": "Luleå",
+        "slug": "lule"
+      },
+      {
+        "name": "Pajala",
+        "slug": "pajala"
+      },
+      {
+        "name": "Piteå",
+        "slug": "pite"
+      },
+      {
+        "name": "Älvsbyn",
+        "slug": "alvsbyn"
+      },
+      {
+        "name": "Överkalix",
+        "slug": "overkalix"
+      },
+      {
+        "name": "Övertorneå",
+        "slug": "overtorne"
+      }
+    ],
+    "skane": [
+      "Skåne",
+      {
+        "name": "Bjuv",
+        "slug": "bjuv"
+      },
+      {
+        "name": "Bromölla",
+        "slug": "bromolla"
+      },
+      {
+        "name": "Burlöv",
+        "slug": "burlov"
+      },
+      {
+        "name": "Båstad",
+        "slug": "bstad"
+      },
+      {
+        "name": "Eslöv",
+        "slug": "eslov"
+      },
+      {
+        "name": "Helsingborg",
+        "slug": "helsingborg"
+      },
+      {
+        "name": "Hässleholm",
+        "slug": "hassleholm"
+      },
+      {
+        "name": "Höganäs",
+        "slug": "hoganas"
+      },
+      {
+        "name": "Hörby",
+        "slug": "horby"
+      },
+      {
+        "name": "Höör",
+        "slug": "hoor"
+      },
+      {
+        "name": "Klippan",
+        "slug": "klippan"
+      },
+      {
+        "name": "Kristianstad",
+        "slug": "kristianstad"
+      },
+      {
+        "name": "Kävlinge",
+        "slug": "kavlinge"
+      },
+      {
+        "name": "Landskrona",
+        "slug": "landskrona"
+      },
+      {
+        "name": "Lomma",
+        "slug": "lomma"
+      },
+      {
+        "name": "Lund",
+        "slug": "lund"
+      },
+      {
+        "name": "Malmö",
+        "slug": "malmo"
+      },
+      {
+        "name": "Osby",
+        "slug": "osby"
+      },
+      {
+        "name": "Perstorp",
+        "slug": "perstorp"
+      },
+      {
+        "name": "Simrishamn",
+        "slug": "simrishamn"
+      },
+      {
+        "name": "Sjöbo",
+        "slug": "sjobo"
+      },
+      {
+        "name": "Skurup",
+        "slug": "skurup"
+      },
+      {
+        "name": "Staffanstorp",
+        "slug": "staffanstorp"
+      },
+      {
+        "name": "Svalöv",
+        "slug": "svalov"
+      },
+      {
+        "name": "Svedala",
+        "slug": "svedala"
+      },
+      {
+        "name": "Tomelilla",
+        "slug": "tomelilla"
+      },
+      {
+        "name": "Trelleborg",
+        "slug": "trelleborg"
+      },
+      {
+        "name": "Vellinge",
+        "slug": "vellinge"
+      },
+      {
+        "name": "Ystad",
+        "slug": "ystad"
+      },
+      {
+        "name": "Åstorp",
+        "slug": "storp"
+      },
+      {
+        "name": "Ängelholm",
+        "slug": "angelholm"
+      },
+      {
+        "name": "Örkelljunga",
+        "slug": "orkelljunga"
+      },
+      {
+        "name": "Östra Göinge",
+        "slug": "ostra-goinge"
+      }
+    ],
+    "stockholm": [
+      "Stockholm",
+      {
+        "name": "Botkyrka",
+        "slug": "botkyrka"
+      },
+      {
+        "name": "Danderyd",
+        "slug": "danderyd"
+      },
+      {
+        "name": "Ekerö",
+        "slug": "ekero"
+      },
+      {
+        "name": "Haninge",
+        "slug": "haninge"
+      },
+      {
+        "name": "Huddinge",
+        "slug": "huddinge"
+      },
+      {
+        "name": "Järfälla",
+        "slug": "jarfalla"
+      },
+      {
+        "name": "Lidingö",
+        "slug": "lidingo"
+      },
+      {
+        "name": "Nacka",
+        "slug": "nacka"
+      },
+      {
+        "name": "Norrtälje",
+        "slug": "norrtalje"
+      },
+      {
+        "name": "Nykvarn",
+        "slug": "nykvarn"
+      },
+      {
+        "name": "Nynäshamn",
+        "slug": "nynashamn"
+      },
+      {
+        "name": "Salem",
+        "slug": "salem"
+      },
+      {
+        "name": "Sigtuna",
+        "slug": "sigtuna"
+      },
+      {
+        "name": "Sollentuna",
+        "slug": "sollentuna"
+      },
+      {
+        "name": "Solna",
+        "slug": "solna"
+      },
+      {
+        "name": "Stockholm",
+        "slug": "stockholm"
+      },
+      {
+        "name": "Sundbyberg",
+        "slug": "sundbyberg"
+      },
+      {
+        "name": "Södertälje",
+        "slug": "sodertalje"
+      },
+      {
+        "name": "Tyresö",
+        "slug": "tyreso"
+      },
+      {
+        "name": "Täby",
+        "slug": "taby"
+      },
+      {
+        "name": "Upplands-Bro",
+        "slug": "upplands-bro"
+      },
+      {
+        "name": "Upplands Väsby",
+        "slug": "upplands-vasby"
+      },
+      {
+        "name": "Vallentuna",
+        "slug": "vallentuna"
+      },
+      {
+        "name": "Vaxholm",
+        "slug": "vaxholm"
+      },
+      {
+        "name": "Värmdö",
+        "slug": "varmdo"
+      },
+      {
+        "name": "Österåker",
+        "slug": "osterker"
+      }
+    ],
+    "sodermanland": [
+      "Södermanland",
+      {
+        "name": "Eskilstuna",
+        "slug": "eskilstuna"
+      },
+      {
+        "name": "Flen",
+        "slug": "flen"
+      },
+      {
+        "name": "Gnesta",
+        "slug": "gnesta"
+      },
+      {
+        "name": "Katrineholm",
+        "slug": "katrineholm"
+      },
+      {
+        "name": "Nyköping",
+        "slug": "nykoping"
+      },
+      {
+        "name": "Oxelösund",
+        "slug": "oxelosund"
+      },
+      {
+        "name": "Strängnäs",
+        "slug": "strangnas"
+      },
+      {
+        "name": "Trosa",
+        "slug": "trosa"
+      },
+      {
+        "name": "Vingåker",
+        "slug": "vingker"
+      }
+    ],
+    "uppsala": [
+      "Uppsala",
+      {
+        "name": "Enköping",
+        "slug": "enkoping"
+      },
+      {
+        "name": "Heby",
+        "slug": "heby"
+      },
+      {
+        "name": "Håbo",
+        "slug": "hbo"
+      },
+      {
+        "name": "Knivsta",
+        "slug": "knivsta"
+      },
+      {
+        "name": "Tierp",
+        "slug": "tierp"
+      },
+      {
+        "name": "Uppsala",
+        "slug": "uppsala"
+      },
+      {
+        "name": "Älvkarleby",
+        "slug": "alvkarleby"
+      },
+      {
+        "name": "Östhammar",
+        "slug": "osthammar"
+      }
+    ],
+    "varmland": [
+      "Värmland",
+      {
+        "name": "Arvika",
+        "slug": "arvika"
+      },
+      {
+        "name": "Eda",
+        "slug": "eda"
+      },
+      {
+        "name": "Filipstad",
+        "slug": "filipstad"
+      },
+      {
+        "name": "Forshaga",
+        "slug": "forshaga"
+      },
+      {
+        "name": "Grums",
+        "slug": "grums"
+      },
+      {
+        "name": "Hagfors",
+        "slug": "hagfors"
+      },
+      {
+        "name": "Hammarö",
+        "slug": "hammaro"
+      },
+      {
+        "name": "Karlstad",
+        "slug": "karlstad"
+      },
+      {
+        "name": "Kil",
+        "slug": "kil"
+      },
+      {
+        "name": "Kristinehamn",
+        "slug": "kristinehamn"
+      },
+      {
+        "name": "Munkfors",
+        "slug": "munkfors"
+      },
+      {
+        "name": "Storfors",
+        "slug": "storfors"
+      },
+      {
+        "name": "Sunne",
+        "slug": "sunne"
+      },
+      {
+        "name": "Säffle",
+        "slug": "saffle"
+      },
+      {
+        "name": "Torsby",
+        "slug": "torsby"
+      },
+      {
+        "name": "Årjäng",
+        "slug": "rjang"
+      }
+    ],
+    "vasterbotten": [
+      "Västerbotten",
+      {
+        "name": "Bjurholm",
+        "slug": "bjurholm"
+      },
+      {
+        "name": "Dorotea",
+        "slug": "dorotea"
+      },
+      {
+        "name": "Lycksele",
+        "slug": "lycksele"
+      },
+      {
+        "name": "Malå",
+        "slug": "mal"
+      },
+      {
+        "name": "Nordmaling",
+        "slug": "nordmaling"
+      },
+      {
+        "name": "Norsjö",
+        "slug": "norsjo"
+      },
+      {
+        "name": "Robertsfors",
+        "slug": "robertsfors"
+      },
+      {
+        "name": "Skellefteå",
+        "slug": "skellefte"
+      },
+      {
+        "name": "Sorsele",
+        "slug": "sorsele"
+      },
+      {
+        "name": "Storuman",
+        "slug": "storuman"
+      },
+      {
+        "name": "Umeå",
+        "slug": "ume"
+      },
+      {
+        "name": "Vilhelmina",
+        "slug": "vilhelmina"
+      },
+      {
+        "name": "Vindeln",
+        "slug": "vindeln"
+      },
+      {
+        "name": "Vännäs",
+        "slug": "vannas"
+      },
+      {
+        "name": "Åsele",
+        "slug": "sele"
+      }
+    ],
+    "vasternorrland": [
+      "Västernorrland",
+      {
+        "name": "Härnösand",
+        "slug": "harnosand"
+      },
+      {
+        "name": "Kramfors",
+        "slug": "kramfors"
+      },
+      {
+        "name": "Sollefteå",
+        "slug": "sollefte"
+      },
+      {
+        "name": "Sundsvall",
+        "slug": "sundsvall"
+      },
+      {
+        "name": "Timrå",
+        "slug": "timr"
+      },
+      {
+        "name": "Ånge",
+        "slug": "nge"
+      },
+      {
+        "name": "Örnsköldsvik",
+        "slug": "ornskoldsvik"
+      }
+    ],
+    "vastra-gotaland": [
+      "Västra Götaland",
+      {
+        "name": "Ale",
+        "slug": "ale"
+      },
+      {
+        "name": "Alingsås",
+        "slug": "alingss"
+      },
+      {
+        "name": "Bengtsfors",
+        "slug": "bengtsfors"
+      },
+      {
+        "name": "Bollebygd",
+        "slug": "bollebygd"
+      },
+      {
+        "name": "Borås",
+        "slug": "bors"
+      },
+      {
+        "name": "Dals-Ed",
+        "slug": "dals-ed"
+      },
+      {
+        "name": "Essunga",
+        "slug": "essunga"
+      },
+      {
+        "name": "Falköping",
+        "slug": "falkoping"
+      },
+      {
+        "name": "Färgelanda",
+        "slug": "fargelanda"
+      },
+      {
+        "name": "Grästorp",
+        "slug": "grastorp"
+      },
+      {
+        "name": "Gullspång",
+        "slug": "gullspng"
+      },
+      {
+        "name": "Göteborg",
+        "slug": "goteborg"
+      },
+      {
+        "name": "Götene",
+        "slug": "gotene"
+      },
+      {
+        "name": "Herrljunga",
+        "slug": "herrljunga"
+      },
+      {
+        "name": "Hjo",
+        "slug": "hjo"
+      },
+      {
+        "name": "Härryda",
+        "slug": "harryda"
+      },
+      {
+        "name": "Karlsborg",
+        "slug": "karlsborg"
+      },
+      {
+        "name": "Kungälv",
+        "slug": "kungalv"
+      },
+      {
+        "name": "Lerum",
+        "slug": "lerum"
+      },
+      {
+        "name": "Lidköping",
+        "slug": "lidkoping"
+      },
+      {
+        "name": "Lilla Edet",
+        "slug": "lilla-edet"
+      },
+      {
+        "name": "Lysekil",
+        "slug": "lysekil"
+      },
+      {
+        "name": "Mariestad",
+        "slug": "mariestad"
+      },
+      {
+        "name": "Mark",
+        "slug": "mark"
+      },
+      {
+        "name": "Mellerud",
+        "slug": "mellerud"
+      },
+      {
+        "name": "Munkedal",
+        "slug": "munkedal"
+      },
+      {
+        "name": "Mölndal",
+        "slug": "molndal"
+      },
+      {
+        "name": "Orust",
+        "slug": "orust"
+      },
+      {
+        "name": "Partille",
+        "slug": "partille"
+      },
+      {
+        "name": "Skara",
+        "slug": "skara"
+      },
+      {
+        "name": "Skövde",
+        "slug": "skovde"
+      },
+      {
+        "name": "Sotenäs",
+        "slug": "sotenas"
+      },
+      {
+        "name": "Stenungsund",
+        "slug": "stenungsund"
+      },
+      {
+        "name": "Strömstad",
+        "slug": "stromstad"
+      },
+      {
+        "name": "Svenljunga",
+        "slug": "svenljunga"
+      },
+      {
+        "name": "Tanum",
+        "slug": "tanum"
+      },
+      {
+        "name": "Tibro",
+        "slug": "tibro"
+      },
+      {
+        "name": "Tidaholm",
+        "slug": "tidaholm"
+      },
+      {
+        "name": "Tjörn",
+        "slug": "tjorn"
+      },
+      {
+        "name": "Tranemo",
+        "slug": "tranemo"
+      },
+      {
+        "name": "Trollhättan",
+        "slug": "trollhattan"
+      },
+      {
+        "name": "Töreboda",
+        "slug": "toreboda"
+      },
+      {
+        "name": "Uddevalla",
+        "slug": "uddevalla"
+      },
+      {
+        "name": "Ulricehamn",
+        "slug": "ulricehamn"
+      },
+      {
+        "name": "Vara",
+        "slug": "vara"
+      },
+      {
+        "name": "Vårgårda",
+        "slug": "vrgrda"
+      },
+      {
+        "name": "Vänersborg",
+        "slug": "vanersborg"
+      },
+      {
+        "name": "Åmål",
+        "slug": "ml"
+      },
+      {
+        "name": "Öckerö",
+        "slug": "ockero"
+      }
+    ],
+    "orebro": [
+      "Örebro",
+      {
+        "name": "Askersund",
+        "slug": "askersund"
+      },
+      {
+        "name": "Degerfors",
+        "slug": "degerfors"
+      },
+      {
+        "name": "Hallsberg",
+        "slug": "hallsberg"
+      },
+      {
+        "name": "Hällefors",
+        "slug": "hallefors"
+      },
+      {
+        "name": "Karlskoga",
+        "slug": "karlskoga"
+      },
+      {
+        "name": "Kumla",
+        "slug": "kumla"
+      },
+      {
+        "name": "Laxå",
+        "slug": "lax"
+      },
+      {
+        "name": "Lekeberg",
+        "slug": "lekeberg"
+      },
+      {
+        "name": "Lindesberg",
+        "slug": "lindesberg"
+      },
+      {
+        "name": "Ljusnarsberg",
+        "slug": "ljusnarsberg"
+      },
+      {
+        "name": "Nora",
+        "slug": "nora"
+      },
+      {
+        "name": "Örebro",
+        "slug": "orebro"
+      }
+    ],
+    "ostergotaland": [
+      "Östergötaland",
+      {
+        "name": "Boxholm",
+        "slug": "boxholm"
+      },
+      {
+        "name": "Finspång",
+        "slug": "finspng"
+      },
+      {
+        "name": "Kinda",
+        "slug": "kinda"
+      },
+      {
+        "name": "Linköping",
+        "slug": "linkoping"
+      },
+      {
+        "name": "Mjölby",
+        "slug": "mjolby"
+      },
+      {
+        "name": "Motala",
+        "slug": "motala"
+      },
+      {
+        "name": "Norrköping",
+        "slug": "norrkoping"
+      },
+      {
+        "name": "Söderköping",
+        "slug": "soderkoping"
+      },
+      {
+        "name": "Vadstena",
+        "slug": "vadstena"
+      },
+      {
+        "name": "Valdemarsvik",
+        "slug": "valdemarsvik"
+      },
+      {
+        "name": "Ydre",
+        "slug": "ydre"
+      },
+      {
+        "name": "Åtvidaberg",
+        "slug": "tvidaberg"
+      },
+      {
+        "name": "Ödeshög",
+        "slug": "odeshog"
+      }
+    ]
+  }

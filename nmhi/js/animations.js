@@ -2,8 +2,9 @@ $(".widget").fadeToggle(0);
 $(".widget").fadeToggle(2000);
 
 function updateWidgets(){
-        var boxHeight = $(".widget").height();
-        $(".widget").mouseenter(function(){
+    $(".lower-widget").children().fadeToggle(0);
+    let boxHeight = $(".widget").height();
+    $(".widget").mouseenter(function(){
             $(this)
             .stop(true, true)
             .animate({
@@ -28,7 +29,7 @@ function updateWidgets(){
             .fadeToggle(160, console.log("b"));
         });
         
-        $(".widget").click(function(){
-            $(this).find(".temp").fadeToggle(200);
-        });
+        // $(".widget").click(function(){
+        //     $(this).find(".temp").fadeToggle(200);
+        // });
     };
