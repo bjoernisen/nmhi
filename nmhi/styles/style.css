@@ -6,7 +6,10 @@
 }
 
 body {
-  background: linear-gradient(200deg, #f7f7f7 30%, #dfdfdf);
+  background-image: linear-gradient(200deg, #ffefe983 15%, #fcfcfce1), url("/styles/images/bg.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 .container {
