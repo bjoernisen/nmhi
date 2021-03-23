@@ -10,6 +10,7 @@ class Forecast {
 }
 
 window.addEventListener("load", getLocation);
+document.getElementById("search").addEventListener("keypress", loadCities);
 document.getElementById("searchBtn").addEventListener("click", searchCity);
 
 let wheatherKey1 =
@@ -43,6 +44,7 @@ function getLocation() {
 function showForecast(position) {
   let yourForecast = JSON.parse(localStorage.getItem("yourPos"));
   let date;
+  console.log(yourForecast);
 
   if (yourForecast == null) {
     date = new Date();
@@ -51,7 +53,7 @@ function showForecast(position) {
 
   let hour = date.getHours();
 
-  if (yourForecast == null || hour > 1) {
+  if (yourForecast == null) {
     console.log("<---- CALLING API STORM GLASS ---->");
     let forecast = new Forecast();
     forecast.lat = position.coords.latitude;
@@ -360,7 +362,33 @@ function getDayOfTheWeek(date) {
 }
 
 function loadCities(){
-  let cities = JSON.parse("../src/svenskastäder.json");
+  let cities = JSON.parse(localStorage.getItem("cities"));
+  if(cities == null){
+    console.log("SENDING XHR TO GET CITIES");
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "src/svenskastäder.json");
+    xhr.send();
+    xhr.onreadystatechange = () => {
+      if(xhr.readyState === 4 && xhr.status === 200){
+        let resp = xhr.response;
+        cities = JSON.parse(resp);
+        localStorage.setItem("cities", JSON.stringify(cities));
+        console.log(cities); // array
+      }
+    }
+  }
+  console.log("Returning cities from localstorage");
+  searchInCities(cities);
 }
+
+function searchInCities(cities){
+  let search = document.getElementById("search").value;
+
+  cities.foreach(city => {
+    
+  })
+}
+
+
 
 
