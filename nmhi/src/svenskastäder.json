@@ -1,6 +1,6 @@
 {
-    "blekinge": [
-      "Blekinge",
+    "cities": [
+      "cities",
       {
         "name": "Karlshamn",
         "slug": "karlshamn"
@@ -20,10 +20,7 @@
       {
         "name": "Sölvesborg",
         "slug": "solvesborg"
-      }
-    ],
-    "dalarna": [
-      "Dalarna",
+      },
       {
         "name": "Avesta",
         "slug": "avesta"
@@ -83,17 +80,11 @@
       {
         "name": "Älvdalen",
         "slug": "alvdalen"
-      }
-    ],
-    "gotland": [
-      "Gotland",
+      },
       {
         "name": "Gotland",
         "slug": "gotland"
-      }
-    ],
-    "gavleborg": [
-      "Gävleborg",
+      },
       {
         "name": "Bollnäs",
         "slug": "bollnas"
@@ -133,10 +124,7 @@
       {
         "name": "Söderhamn",
         "slug": "soderhamn"
-      }
-    ],
-    "halland": [
-      "Halland",
+      },
       {
         "name": "Falkenberg",
         "slug": "falkenberg"
@@ -160,10 +148,7 @@
       {
         "name": "Varberg",
         "slug": "varberg"
-      }
-    ],
-    "jamtland": [
-      "Jämtland",
+      },
       {
         "name": "Berg",
         "slug": "berg"
@@ -195,10 +180,7 @@
       {
         "name": "Östersund",
         "slug": "ostersund"
-      }
-    ],
-    "jonkoping": [
-      "Jönköping",
+      },
       {
         "name": "Aneby",
         "slug": "aneby"
@@ -250,10 +232,7 @@
       {
         "name": "Värnamo",
         "slug": "varnamo"
-      }
-    ],
-    "kalmar": [
-      "Kalmar",
+      },
       {
         "name": "Borgholm",
         "slug": "borgholm"
@@ -301,10 +280,7 @@
       {
         "name": "Västervik",
         "slug": "vastervik"
-      }
-    ],
-    "kronoberg": [
-      "Kronoberg",
+      },
       {
         "name": "Alvesta",
         "slug": "alvesta"
@@ -336,10 +312,7 @@
       {
         "name": "Älmhult",
         "slug": "almhult"
-      }
-    ],
-    "norrbotten": [
-      "Norrbotten",
+      },
       {
         "name": "Arjeplog",
         "slug": "arjeplog"
@@ -395,10 +368,7 @@
       {
         "name": "Övertorneå",
         "slug": "overtorne"
-      }
-    ],
-    "skane": [
-      "Skåne",
+      },
       {
         "name": "Bjuv",
         "slug": "bjuv"
@@ -530,10 +500,7 @@
       {
         "name": "Östra Göinge",
         "slug": "ostra-goinge"
-      }
-    ],
-    "stockholm": [
-      "Stockholm",
+      },
       {
         "name": "Botkyrka",
         "slug": "botkyrka"
@@ -637,10 +604,7 @@
       {
         "name": "Österåker",
         "slug": "osterker"
-      }
-    ],
-    "sodermanland": [
-      "Södermanland",
+      },
       {
         "name": "Eskilstuna",
         "slug": "eskilstuna"
@@ -676,10 +640,7 @@
       {
         "name": "Vingåker",
         "slug": "vingker"
-      }
-    ],
-    "uppsala": [
-      "Uppsala",
+      },
       {
         "name": "Enköping",
         "slug": "enkoping"
@@ -711,10 +672,7 @@
       {
         "name": "Östhammar",
         "slug": "osthammar"
-      }
-    ],
-    "varmland": [
-      "Värmland",
+      },
       {
         "name": "Arvika",
         "slug": "arvika"
@@ -778,10 +736,7 @@
       {
         "name": "Årjäng",
         "slug": "rjang"
-      }
-    ],
-    "vasterbotten": [
-      "Västerbotten",
+      },
       {
         "name": "Bjurholm",
         "slug": "bjurholm"
@@ -841,10 +796,7 @@
       {
         "name": "Åsele",
         "slug": "sele"
-      }
-    ],
-    "vasternorrland": [
-      "Västernorrland",
+      },
       {
         "name": "Härnösand",
         "slug": "harnosand"
@@ -872,10 +824,7 @@
       {
         "name": "Örnsköldsvik",
         "slug": "ornskoldsvik"
-      }
-    ],
-    "vastra-gotaland": [
-      "Västra Götaland",
+      },
       {
         "name": "Ale",
         "slug": "ale"
@@ -1071,10 +1020,7 @@
       {
         "name": "Öckerö",
         "slug": "ockero"
-      }
-    ],
-    "orebro": [
-      "Örebro",
+      },
       {
         "name": "Askersund",
         "slug": "askersund"
@@ -1122,10 +1068,7 @@
       {
         "name": "Örebro",
         "slug": "orebro"
-      }
-    ],
-    "ostergotaland": [
-      "Östergötaland",
+      },
       {
         "name": "Boxholm",
         "slug": "boxholm"
