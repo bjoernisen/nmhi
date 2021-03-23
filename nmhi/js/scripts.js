@@ -10,8 +10,10 @@ class Forecast {
 }
 
 window.addEventListener("load", getLocation);
-document.getElementById("search").addEventListener("keypress", loadCities);
+document.getElementById("search").addEventListener("keypress", searchInCities);
 document.getElementById("searchBtn").addEventListener("click", searchCity);
+
+let cities = [];
 
 let wheatherKey1 =
   "7ed18cf6-8726-11eb-9f69-0242ac130002-7ed18d64-8726-11eb-9f69-0242ac130002";
@@ -33,6 +35,7 @@ let latSearched = "";
 let lngSearched = "";
 
 function getLocation() {
+  loadCities();
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showForecast);
   } else {
@@ -362,11 +365,11 @@ function getDayOfTheWeek(date) {
 }
 
 function loadCities(){
-  let cities = JSON.parse(localStorage.getItem("cities"));
+  cities = JSON.parse(localStorage.getItem("cities"));
   if(cities == null){
     console.log("SENDING XHR TO GET CITIES");
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", "src/svenskastäder.json");
+    xhr.open("GET", "src/svenskastäderArr.json");
     xhr.send();
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4 && xhr.status === 200){
@@ -378,15 +381,26 @@ function loadCities(){
     }
   }
   console.log("Returning cities from localstorage");
-  searchInCities(cities);
 }
 
-function searchInCities(cities){
-  let search = document.getElementById("search").value;
+function searchInCities(event){
+  console.log(event);
 
-  cities.foreach(city => {
+  if(event.key == "Enter"){
+    let search = document.getElementById("search").value;
+    let searchArea = document.getElementById("searchArea");
+    console.log(cities);
+    console.log(search);
+    searchArea.innerHTML = "";
+    let searchResult = cities.filter(city => city.includes(search));
+    searchResult.forEach(city =>{
+      searchArea.innerHTML += `<button class="search-result">
+      <h3>${city}</h3>
+      </button>`
+      console.log(searchResult);
+    })
+  }
     
-  })
 }
 
 
