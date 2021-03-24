@@ -56,7 +56,7 @@ function showForecast(position) {
 
   let hour = date.getHours();
 
-  if (yourForecast == null) {
+  if (yourForecast != null) {
     console.log("<---- CALLING API STORM GLASS ---->");
     let forecast = new Forecast();
     forecast.lat = position.coords.latitude;
