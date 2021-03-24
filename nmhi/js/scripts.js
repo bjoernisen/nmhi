@@ -44,8 +44,6 @@ function showForecast(position) {
   }
   else date = new Date(yourForecast.searched);
 
-  let hour = date.getHours();
-
   if (yourForecast == null) {
     console.log("<---- CALLING API STORM GLASS ---->");
     let forecast = new Forecast();
@@ -178,11 +176,6 @@ function renderData(forecast) {
     .click(function () {
       showBigForecast(forecast);
     });
-
-  //updateWidgets();
-
-
-  // localStorage.setItem("wheatherOnYourPosition", JSON.stringify(forecast));
 }
 
 function searchCity() {
@@ -322,8 +315,6 @@ function renderSearchData(wheater, forecast) {
     .click(function () {
       showBigForecast(forecast);
     });
-
-    // console.log(forecast);
 
     let searchedForecast = JSON.parse(localStorage.getItem("searchedForecasts"));
     if(searchedForecast == null) {
@@ -545,8 +536,6 @@ function setSearchButtons(searchResult){
 }
 
 function setWheaterBackground(forecast){
-  console.log("SET WHEATER BACKGROUND")
-  // console.log(forecast);
   let background = "";
   let date = new Date(forecast.searched);
   let currentHour = date.getHours();
