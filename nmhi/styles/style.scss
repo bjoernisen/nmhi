@@ -13,36 +13,43 @@ $smallShadow: 0px 3px 8px -4px rgba(0, 0, 0, 0.5);
   font-family: "Roboto Mono", monospace;
 }
 body {
-  background-image: linear-gradient(to bottom, #008cff, #ffffff);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
+  // background-image: linear-gradient(to bottom, #008cff, #ffffff);
+  margin: 0;
+  padding: 0;
 }
 .container {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+@media (max-width: 760px) {
+  .nav-bar {
+    align-items: center;
+  }
 }
 .nav-bar {
   font-size: 110%;
   font-style: italic;
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
+
   background: $bgTransparent;
-  padding: 1rem;
   color: white;
+  width: 100%;
+  display: flex;
+  align-content: flex-start;
+
+  h1 {
+    text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.26);
+    font-size: 250%;
+    padding: 2rem;
+  }
 }
 
 .jumbotron {
   /* border-radius: 1rem; */
   color: white;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.555);
-  margin: 5rem auto 2rem auto;
+  margin: 3rem auto 5rem auto;
   min-height: 15rem; /*fixa media query som passaw widthen på alla widgets, mobil-versionen täcker hela sidan utan border på left right*/
   display: flex;
   flex-direction: column;
@@ -224,11 +231,11 @@ body {
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.432);
       align-self: flex-end;
       text-align: left;
-      width: 9rem;
-
+      width: 8.5rem;
+      margin-left: 0.3rem;
       font-size: 105%;
       h5 {
-        margin-bottom: 1.3rem;
+        margin-bottom: 1.1rem;
         margin-left: -0.35rem;
       }
     }
@@ -266,35 +273,35 @@ body {
         margin-left: auto;
         margin-top: 1.5rem;
       }
-      margin-left: -5.5rem;
+      margin-left: -5.3rem;
       height: 2.5rem;
       width: 5rem;
     }
-    @media (max-width: 510px) {
+    @media (max-width: 410px) {
       .city {
         align-self: flex-end;
         text-align: left;
-        width: 7rem;
+        width: 6.9rem;
       }
       .wind-speed {
         align-self: center;
         width: 2.4rem;
-        margin-top: 1rem;
+        margin-top: 1.3rem;
       }
       .humidity {
         align-self: center;
         width: 2.4rem;
-        margin-top: 1rem;
+        margin-top: 1.3rem;
       }
       .rain {
         align-self: center;
         width: 2.4rem;
-        margin-top: 1rem;
+        margin-top: 1.3rem;
       }
       .cloud {
         align-self: center;
         width: 2.4rem;
-        margin-top: 1rem;
+        margin-top: 1.3rem;
       }
       .temp {
         align-self: flex-start;
@@ -304,7 +311,7 @@ body {
           margin-left: auto;
           margin-top: 1.5rem;
         }
-        margin-left: -5.5rem;
+        margin-left: -5.3rem;
         height: 2.5rem;
         width: 5rem;
       }
@@ -330,7 +337,7 @@ body {
     }
   }
 }
-@media (max-width: 510px) {
+@media (max-width: 410px) {
   .widget {
     width: 16rem;
   }
@@ -354,6 +361,7 @@ body {
   background: $bgColor2;
   margin-top: 5rem;
   padding-bottom: 4rem;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
