@@ -13,8 +13,7 @@ $smallShadow: 0px 3px 8px -4px rgba(0, 0, 0, 0.5);
   font-family: "Roboto Mono", monospace;
 }
 body {
-  background-image: linear-gradient(200deg, #ffefe983 15%, #fcfcfce1),
-    url("/styles/images/bg.png");
+  background-image: url("/images/bg.png"), linear-gradient(200deg, #ffefe983 15%, #fcfcfce1);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;

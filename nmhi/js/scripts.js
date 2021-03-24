@@ -22,19 +22,9 @@ let wheatherKey2 =
 let wheaterParams =
   "airTemperature,cloudCover,gust,humidity,precipitation,windSpeed";
 let geocodeKey = "aAUORVN56nmMcGN5QmVuHjmELGIstOil";
-let lat = "";
-let lng = "";
-
-let apiFromCity = `http://www.mapquestapi.com/geocoding/v1/address?key=${geocodeKey}&location=Washington,DC`;
-let apiFromCoordinates = `http://www.mapquestapi.com/geocoding/v1/reverse?key=${geocodeKey}&location=${lat},${lng}&includeRoadMetadata=true&includeNearestIntersection=true`;
-
-let latitude = "59.858211";
-let longitude = "17.644494"; // STOCKHOLM
-
-let latSearched = "";
-let lngSearched = "";
 
 function getLocation() {
+  loadInForecasts();
   loadCities();
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showForecast);
@@ -47,7 +37,7 @@ function getLocation() {
 function showForecast(position) {
   let yourForecast = JSON.parse(localStorage.getItem("yourPos"));
   let date;
-  console.log(yourForecast);
+  // console.log(yourForecast);
 
   if (yourForecast == null) {
     date = new Date();
@@ -56,7 +46,7 @@ function showForecast(position) {
 
   let hour = date.getHours();
 
-  if (yourForecast != null) {
+  if (yourForecast == null) {
     console.log("<---- CALLING API STORM GLASS ---->");
     let forecast = new Forecast();
     forecast.lat = position.coords.latitude;
@@ -66,7 +56,7 @@ function showForecast(position) {
       `https://api.stormglass.io/v2/weather/point?lat=${forecast.lat}&lng=${forecast.lng}&params=${wheaterParams}`,
       {
         headers: {
-          Authorization: wheatherKey2,
+          Authorization: wheatherKey1,
         },
       }
     )
@@ -102,14 +92,14 @@ function setCityOnYourPosition(location, forecast) {
 
 
 function renderData(forecast) {
-  console.log(forecast);
+  // console.log(forecast);
 
   let date = new Date(forecast.searched);
   let currentHour = date.getHours();
 
   $(".widget-container")
-    .append(`
-    <div id="${forecast.name}-upper" class="widget day-clear">
+    .prepend(`
+    <div id="${forecast.name}-upper" class="widget ${setWheaterBackground(forecast)}">
                     <div class="upper-wideget">
                         <div class="city">
                             <h5>${forecast.city}</h5>
@@ -171,7 +161,7 @@ function renderData(forecast) {
       .find(`#${forecast.name}`)
       .children()
       .stop(true)
-      .fadeToggle(200, console.log("a"));
+      .fadeToggle(200);
   })
     .mouseleave(function () {
       $(this)
@@ -183,7 +173,10 @@ function renderData(forecast) {
         .find(`#${forecast.name}`)
         .children()
         .stop(true)
-        .fadeToggle(160, console.log("b"));
+        .fadeToggle(160);
+    })
+    .click(function () {
+      showBigForecast(forecast);
     });
 
   //updateWidgets();
@@ -195,6 +188,18 @@ function renderData(forecast) {
 function searchCity() {
   let cityName = document.getElementById("search").value;
   console.log(cityName);
+
+  fetch(
+    `http://www.mapquestapi.com/geocoding/v1/address?key=${geocodeKey}&location=${cityName}`
+  )
+    .then((response) => response.json())
+    .then((location) => getCityOnSearch(location));
+}
+
+function searchCityFromButton(cityName) {
+  console.log("SÖKER PÅ STAD FRÅN FÖRSLAG PÅ SÖKNING");
+  console.log(cityName);
+  document.getElementById("searchArea").innerHTML = "";
 
   fetch(
     `http://www.mapquestapi.com/geocoding/v1/address?key=${geocodeKey}&location=${cityName}`
@@ -222,7 +227,7 @@ function generateWheaterForSearchedPos(forecast) {
     `https://api.stormglass.io/v2/weather/point?lat=${forecast.lat}&lng=${forecast.lng}&params=${wheaterParams}`,
     {
       headers: {
-        Authorization: wheatherKey2,
+        Authorization: wheatherKey1,
       },
     }
   )
@@ -238,7 +243,7 @@ function renderSearchData(wheater, forecast) {
 
   $(".widget-container")
     .append(`
-        <div id="${forecast.name}-upper" class="widget day-clear">
+        <div id="${forecast.name}-upper" class="widget ${setWheaterBackground(forecast)}">
                         <div class="upper-wideget">
                             <div class="city">
                                 <h5>${forecast.city}</h5>
@@ -300,7 +305,7 @@ function renderSearchData(wheater, forecast) {
       .find(`#${forecast.name}`)
       .children()
       .stop(true)
-      .fadeToggle(200, console.log("a"));
+      .fadeToggle(200);
   })
     .mouseleave(function () {
       $(this)
@@ -312,34 +317,139 @@ function renderSearchData(wheater, forecast) {
         .find(`#${forecast.name}`)
         .children()
         .stop(true)
-        .fadeToggle(160, console.log("b"));
+        .fadeToggle(160);
+    })
+    .click(function () {
+      showBigForecast(forecast);
     });
 
-  //updateWidgets();
+    // console.log(forecast);
 
-  // let searchedWheater = JSON.parse(localStorage.getItem("searchedWheater"));
-  // if (searchedWheater == null) searchedWheater = [forecast];
-  // else searchedWheater.pop(forecast);
-  // localStorage.setItem("searchedWheater", JSON.stringify(searchedWheater));
+    let searchedForecast = JSON.parse(localStorage.getItem("searchedForecasts"));
+    if(searchedForecast == null) {
+      console.log("TOMT i sök, skapar ny array")
+      searchedForecast = [forecast];
+    }
+    else searchedForecast.push(forecast);
+    localStorage.setItem("searchedForecasts", JSON.stringify(searchedForecast));
 }
 
-// wheater.hours.forEach((hour, index) => {
-//   let date2 = new Date(hour.time);
-//   let day = getDayOfTheWeek(date2);
-//   // console.log("<-->")
-//   // console.log(`Dag:${day}`);
-//   // console.log(`Timme:${date2.getHours()}`);
-//   // console.log(`Temperatur:${hour.airTemperature.smhi}`);
-//   // console.log(hour.time);
-//   // console.log(`Index:${index}`);
-//   // console.log(">--<");
-//   if(index > date.getHours() && index == 0 || index == 6 || index == 12 || index == 18){
-//     console.log(`Dag:${day}`);
-//     console.log(`Index:${index}`);
-//     console.log(`Temperatur:${hour.airTemperature.smhi}`);
-//   }
+function loadInForecasts() {
+  let forecasts = JSON.parse(localStorage.getItem("searchedForecasts"));
+  if(forecasts != null){
 
-// });
+    forecasts.forEach(forecast => {
+      let date = new Date(forecast.searched);
+      let currentHour = date.getHours();
+      $(".widget-container")
+      .append(`
+      <div id="${forecast.name}-upper" class="widget ${setWheaterBackground(forecast)}">
+      <div class="upper-wideget">
+      <div class="city">
+      <h5>${forecast.city}</h5>
+      </div>
+      <div class="cloud">
+      <p>${forecast.wheater.hours[currentHour].cloudCover.smhi}</p>
+      <p>CLD</p> 
+      </div>
+      <div class="rain">
+      <p>${forecast.wheater.hours[currentHour].precipitation.smhi}</p>
+      <p>PPI</p> 
+      </div>
+      <div class="humidity">
+      <p>${forecast.wheater.hours[currentHour].humidity.smhi}</p> 
+      <p>HUM</p>
+      </div>
+      <div class="wind-speed">
+      <p>${forecast.wheater.hours[currentHour].windSpeed.smhi}</p> 
+      <p>WND</p> 
+      </div>
+      <div class="temp">
+      <h3>${Math.round(forecast.wheater.hours[currentHour].airTemperature.smhi)}&deg;</h3>
+      </div>
+      </div> 
+      <div id="${forecast.name}" class="lower-widget">
+      <div class="t1">
+      <p>${currentHour + 2}.00</p> 
+      <h4>${forecast.wheater.hours[currentHour + 2].airTemperature.smhi}&deg;</h4> 
+      </div>
+      <div class="t2">
+      <p>${currentHour + 4}.00</p> 
+      <h4>${forecast.wheater.hours[currentHour + 4].airTemperature.smhi}&deg;</h4>  
+      </div>
+      <div class="t3">
+      <p>${currentHour + 6}.00</p> 
+      <h4>${forecast.wheater.hours[currentHour + 6].airTemperature.smhi}&deg;</h4> 
+      </div>
+      <div class="t4">
+      <p>${currentHour + 8}.00</p> 
+      <h4>${forecast.wheater.hours[currentHour + 8].airTemperature.smhi}&deg;</h4> 
+      </div>
+      <div class="t5">
+      <p>${currentHour + 10}.00</p> 
+      <h4>${forecast.wheater.hours[currentHour + 10].airTemperature.smhi}&deg;</h4>  
+      </div>
+      </div>
+      </div>
+      `);
+      
+      $(`#${forecast.name}`).children().fadeToggle(0);
+      let boxHeight = $(`#${forecast.name}-upper`).height();
+      $(`#${forecast.name}-upper`).mouseenter(function () {
+        $(this)
+        .stop(true, false)
+        .animate({
+          height: "122",
+          margin: "0 16 0 16"
+        }, 120)
+        .find(`#${forecast.name}`)
+        .children()
+        .stop(true)
+        .fadeToggle(200);
+      })
+      .mouseleave(function () {
+        $(this)
+        .stop(true, false)
+        .animate({
+          height: boxHeight,
+          margin: "16 16 16 16"
+        }, 180)
+        .find(`#${forecast.name}`)
+        .children()
+        .stop(true)
+        .fadeToggle(160);
+
+      })
+      .click(function () {
+        showBigForecast(forecast);
+      });
+      
+    })
+  }
+}
+
+function showBigForecast(forecast){
+
+  console.log(forecast.city);
+  forecast.wheater.hours.forEach((hour, index) => {
+    let date2 = new Date(hour.time);
+    let day = getDayOfTheWeek(date2);
+    // console.log("<-->")
+    // console.log(`Dag:${day}`);
+    // console.log(`Timme:${date2.getHours()}`);
+    // console.log(`Temperatur:${hour.airTemperature.smhi}`);
+    // console.log(hour.time);
+    // console.log(`Index:${index}`);
+    // console.log(">--<");
+    if(index > date2.getHours() && index == 0 || index == 6 || index == 12 || index == 18){
+      console.log(`Dag:${day}`);
+      console.log(`Index:${index}`);
+      console.log(`Temperatur:${hour.airTemperature.smhi}`);
+    }
+  
+  });
+
+}
 
 function getDayOfTheWeek(date) {
   let day = "";
@@ -380,29 +490,84 @@ function loadCities(){
       }
     }
   }
+
   console.log("Returning cities from localstorage");
+  reduceCities();
+
+}
+
+// DENNA FUNKTION RENSAR ALLA STÄDER SOM BÖRJAR PÅ SMÅ BOKSTÄVER I VÅR JSON FIL. ALLA STÄDER STÅR DUBBELT I DEN...
+function reduceCities(){
+  let check = "";
+  for(i = 0; i < cities.length; i++){
+    check = cities[i];
+    if(/[A-ZÅÄÖ]/.test(check[0]) == false) cities.splice(i, 1);
+  }
+
+  for(i = 0; i < cities.length; i++){
+    check = cities[i];
+    let c = check.toUpperCase();
+    console.log(c)
+    cities[i] = c;
+  }
+
+  localStorage.setItem("cities", JSON.stringify(cities));
 }
 
 function searchInCities(event){
   console.log(event);
 
   if(event.key == "Enter"){
-    let search = document.getElementById("search").value;
+    let value = document.getElementById("search").value;
+    let search = value.toUpperCase();
+    console.log(search);
     let searchArea = document.getElementById("searchArea");
     console.log(cities);
     console.log(search);
     searchArea.innerHTML = "";
     let searchResult = cities.filter(city => city.includes(search));
-    searchResult.forEach(city =>{
-      searchArea.innerHTML += `<button class="search-result">
-      <h3>${city}</h3>
-      </button>`
-      console.log(searchResult);
-    })
+
+    searchResult.forEach((city,index) =>{
+      searchArea.innerHTML += `<button id="${index}-button" href="#" class="search-result">
+      <h3>${capitaliseString(city)}</h3>
+      </button>`;
+      document.getElementById("search").value = "";
+    });
+    setSearchButtons(searchResult);
   }
-    
+}
+function setSearchButtons(searchResult){
+  let searchButtons = document.getElementsByClassName("search-result");
+  for(i = 0; i < searchButtons.length; i++){
+    let city = searchResult[i];
+    searchButtons[i].addEventListener("click", function(){searchCityFromButton(city);});
+  }
 }
 
+function setWheaterBackground(forecast){
+  console.log("SET WHEATER BACKGROUND")
+  // console.log(forecast);
+  let background = "";
+  let date = new Date(forecast.searched);
+  let currentHour = date.getHours();
 
+  let downfall = forecast.wheater.hours[currentHour].precipitation.smhi;
+  let cloudCover = forecast.wheater.hours[currentHour].cloudCover.smhi;
+  let airTemperature = forecast.wheater.hours[currentHour].airTemperature.smhi;
+
+  if(downfall == 0 && cloudCover <= 25) return background = "day-clear";
+  if(downfall > 0) return background = "day-cloudy-rainy";
+  if(downfall > 0 && airTemperature < 0) return background = "day-cloudy-snowy";
+  if(downfall == 0 && cloudCover > 25) return background = "day-cloudy";
+
+}
+
+function capitaliseString(str) {
+  let big = str[0]
+  for (let i = 1; i < str.length; i++) {
+    big += str[i].toLowerCase();
+  }
+  return big ;
+}
 
 
