@@ -1,49 +1,100 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>NMHI</title>
-        <link rel="stylesheet" href="styles/style.css">
-        <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script defer src="js/scripts.js"></script>
-        <!-- <script defer src="js/animations.js"></script> -->
-    </head>
-    <body>
-        <div class="container">
-            <div class="nav-bar">
-                <h1>NMHI</h1>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NMHI</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <script
+      defer
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    ></script>
+    <script defer src="js/scripts.js"></script>
+    <!-- <script defer src="js/animations.js"></script> -->
+  </head>
+  <body>
+    <div class="container">
+      <div class="nav-bar">
+        <h1>NMHI</h1>
+      </div>
+      <div class="jumbotron">
+        <div class="jumbotron-day">
+          <div class="jumbotron-item">
+            <div class="item-day">
+              <h2>Today</h2>
             </div>
-            <div class="jumbotron">
-                <div class="jumbotron-item">
-
-                </div>
+            <div class="item-temp">
+              <h3>800&deg;</h3>
             </div>
-            <div id="widget-container" class="widget-container">
-                
+            <div class="item-cloud">
+              <h5>Cloud %</h5>
+              <p>35</p>
             </div>
-            <div class="search-container">
-                <div class="search-input-container">
-                    <input id="search" class="search-input" type="text">
-                    <button id="searchBtn" class="search-button"></button>
-                </div>
-                <!-- <h3>Förslag:</h3> -->
-                <div id="searchArea" class="search-result-container">
-                </div>
+            <div class="item-percipitation">
+              <h5>Rain mm</h5>
+              <p>32,2</p>
             </div>
-            <div class="footer">
-                <div class="footer-column">
-                    <p>Rasmus</p>
-                </div>
-                <div class="footer-column">
-                    <p>Copyright &copy;</p>
-                </div>
-                <div class="footer-column">
-                    <p>Björn</p>
-                </div>
+            <div class="item-wind">
+              <h5>Wind m/s</h5>
+              <p>12,1</p>
             </div>
+            <div class="item-gust">
+              <h5>Gust m/s</h5>
+              <p>22,2</p>
+            </div>
+            <div class="item-humidity">
+              <h5>Humidity %</h5>
+              <p>716</p>
+            </div>
+          </div>
+          <div class="jumbotron-item-days">
+            <div class="jumbotron-content">
+              <div class="c-hour">
+                <h3>00.00</h3>
+              </div>
+              <div class="c-temp">
+                <h4>801&deg;</h4>
+              </div>
+              <div class="c-cloud">
+                <p>36</p>
+              </div>
+              <div class="item-percipitation">
+                <p>32,2</p>
+              </div>
+              <div class="item-wind">
+                <p>12,1</p>
+              </div>
+              <div class="c-gust">
+                <p>22,2</p>
+              </div>
+              <div class="c-humidity">
+                <p>716</p>
+              </div>
+            </div>
+          </div>
         </div>
-
-    </body>
+      </div>
+      <div id="widget-container" class="widget-container"></div>
+      <div class="search-container">
+        <div class="search-input-container">
+          <input id="search" class="search-input" type="text" />
+          <button id="searchBtn" class="search-button"></button>
+        </div>
+        <!-- <h3>Förslag:</h3> -->
+        <div id="searchArea" class="search-result-container"></div>
+      </div>
+      <div class="footer">
+        <div class="footer-column">
+          <p>Rasmus</p>
+        </div>
+        <div class="footer-column">
+          <p>Copyright &copy;</p>
+        </div>
+        <div class="footer-column">
+          <p>Björn</p>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

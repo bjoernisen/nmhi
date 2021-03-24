@@ -13,10 +13,11 @@ $smallShadow: 0px 3px 8px -4px rgba(0, 0, 0, 0.5);
   font-family: "Roboto Mono", monospace;
 }
 body {
-  background-image: url("/images/bg.png"), linear-gradient(200deg, #ffefe983 15%, #fcfcfce1);
+  background-image: linear-gradient(to bottom, #008cff, #ffffff);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
+  background-size: cover;
 }
 .container {
   position: absolute;
@@ -36,11 +37,166 @@ body {
   padding: 1rem;
   color: white;
 }
+
 .jumbotron {
-  min-height: 15rem;
+  /* border-radius: 1rem; */
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.555);
+  margin: 5rem auto 2rem auto;
+  min-height: 15rem; /*fixa media query som passaw widthen på alla widgets, mobil-versionen täcker hela sidan utan border på left right*/
+  display: flex;
+  flex-direction: column;
+  border-left: 1px white solid;
+  border-right: 1px white solid;
+  border-bottom: 1px white solid;
   .jumbotron-item {
+    display: flex;
+    flex-direction: row;
+    /* border-radius: 1rem; */
+    align-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.377);
+    border-top: 1px white solid;
+    /* border-bottom: 1px rgba(255, 255, 255, 0.5) solid; */
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+    .item-temp {
+      margin-top: 0.1rem;
+    }
+    h5 {
+      margin-top: 1rem;
+    }
+    * {
+      flex: 1;
+    }
+    @media (min-width: 910px) {
+      p {
+        padding-bottom: 0.1rem;
+      }
+    }
+    @media (max-width: 590px) {
+      p,
+      h5 {
+        font-size: 75%;
+      }
+      h3,
+      h2 {
+        font-size: 85%;
+      }
+    }
+    @media (max-width: 910px) {
+      p,
+      h5 {
+        font-size: 85%;
+      }
+      p {
+        margin-top: -0.2rem;
+        padding-bottom: 0.1rem;
+      }
+    }
+    @media (max-width: 590px) {
+      h5 {
+        font-size: 55%;
+      }
+      p {
+        font-size: 70%;
+      }
+      h5 {
+        margin-top: 0.6rem;
+        padding-bottom: 0.2rem;
+      }
+    }
+    @media (max-width: 390px) {
+      h5 {
+        font-size: 45%;
+        margin-top: 0.6rem;
+        padding-bottom: 0.2rem;
+      }
+    }
+  }
+  .jumbotron-item-days {
+    display: none;
+    // opacity: 0;
+    // height: 0px;
+  }
+  .jumbotron-content {
+    display: flex;
+    flex-direction: row;
+    /* border-radius: 1rem; */
+    align-content: center;
+    align-items: center;
+    border-top: 1px rgba(255, 255, 255, 0.5) solid;
+    /*border-bottom: 1px rgba(255, 255, 255, 0.5) solid;*/
+    background-color: rgba(255, 255, 255, 0.253);
+    width: 100%;
+    text-align: center;
+    * {
+      flex: 1;
+    }
+    @media (min-width: 910px) {
+      p {
+        padding-bottom: 0.1rem;
+      }
+    }
+    @media (max-width: 590px) {
+      p {
+        font-size: 75%;
+      }
+      h3,
+      h4 {
+        font-size: 85%;
+      }
+    }
+    @media (max-width: 910px) {
+      p,
+      h5 {
+        font-size: 85%;
+      }
+      p {
+      }
+    }
+    @media (max-width: 590px) {
+      h5 {
+        font-size: 55%;
+      }
+      p {
+        font-size: 70%;
+      }
+      h5 {
+        margin-top: 0.6rem;
+        padding-bottom: 0.2rem;
+      }
+    }
+    @media (max-width: 390px) {
+      h5 {
+        font-size: 45%;
+        margin-top: 0.6rem;
+        padding-bottom: 0.2rem;
+      }
+    }
   }
 }
+
+@media (min-width: 1552px) {
+  .jumbotron {
+    width: 94rem;
+  }
+}
+@media (max-width: 1552px) {
+  .jumbotron {
+    width: 70rem;
+  }
+}
+@media (max-width: 1168px) {
+  .jumbotron {
+    width: 100%;
+    border: 0;
+    /*border-top: 1px white solid;*/
+    border-bottom: 1px white solid;
+  }
+}
+
 .widget-container {
   display: flex;
   justify-content: center;
@@ -108,10 +264,10 @@ body {
       display: flex;
       * {
         margin-left: auto;
+        margin-top: 1.5rem;
       }
-      margin-top: -0.5rem;
       margin-left: -5.5rem;
-      height: 4rem;
+      height: 2.5rem;
       width: 5rem;
     }
     @media (max-width: 510px) {
@@ -146,10 +302,10 @@ body {
         display: flex;
         * {
           margin-left: auto;
+          margin-top: 1.5rem;
         }
-        margin-top: -0.5rem;
         margin-left: -5.5rem;
-        height: 4rem;
+        height: 2.5rem;
         width: 5rem;
       }
     }
@@ -164,7 +320,7 @@ body {
     margin-top: -0.1rem;
     p {
       padding-top: 0.5rem;
-      border-top: white 1px solid;
+      border-top: rgba(255, 255, 255, 0.603) 1px solid;
     }
     * {
       opacity: 85%;
