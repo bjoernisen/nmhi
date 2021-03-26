@@ -62,6 +62,7 @@ body {
 }
 .jumbotron-container {
   width: 100%;
+  min-height: 286.48px;
   .city-and-close-button {
     color: white;
     padding: 0 0 1rem 0.5rem;
@@ -75,33 +76,34 @@ body {
 }
 
 .jumbotron {
-  /* border-radius: 1rem; */
   color: white;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.555);
   margin: 2rem auto 5rem auto;
-  /*fixa media query som passaw widthen på alla widgets, mobil-versionen täcker hela sidan utan border på left right*/
   display: flex;
   flex-direction: column;
-
   border-bottom: 1px white solid;
   .jumbotron-item {
     display: flex;
     flex-direction: row;
-    /* border-radius: 1rem; */
     align-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.377);
     border-top: 1px white solid;
-
-    /* border-bottom: 1px rgba(255, 255, 255, 0.5) solid; */
     width: 100%;
     cursor: pointer;
     text-align: center;
     .item-temp {
       margin-top: 0.1rem;
     }
+
+    h2 {
+      font-size: 96%;
+    }
     h5 {
       margin-top: 1rem;
+    }
+    h3 {
+      font-size: 80%;
     }
     * {
       flex: 1;
@@ -130,6 +132,9 @@ body {
         margin-top: -0.2rem;
         padding-bottom: 0.1rem;
       }
+      h2 {
+        font-size: 95%;
+      }
     }
     @media (max-width: 590px) {
       h5 {
@@ -142,6 +147,12 @@ body {
         margin-top: 0.6rem;
         padding-bottom: 0.2rem;
       }
+      h2 {
+        font-size: 70%;
+      }
+      h3 {
+        font-size: 65%;
+      }
     }
     @media (max-width: 390px) {
       h5 {
@@ -149,10 +160,20 @@ body {
         margin-top: 0.6rem;
         padding-bottom: 0.2rem;
       }
+      h2 {
+        font-size: 60%;
+      }
+      h3 {
+        font-size: 50%;
+      }
+      .item-day {
+        max-width: 40px;
+      }
     }
   }
   .jumbotron-item-days {
     display: none;
+
     // opacity: 0;
     // height: 0px;
   }
@@ -163,12 +184,20 @@ body {
     align-content: center;
     align-items: center;
     border-top: 1px rgba(255, 255, 255, 0.5) solid;
-    /*border-bottom: 1px rgba(255, 255, 255, 0.5) solid;*/
-    background-color: rgba(0, 0, 0, 0.253);
+    // /*border-bottom: 1px rgba(255, 255, 255, 0.5) solid;*/
+    // background-color: rgba(0, 0, 0, 0.253);
     width: 100%;
+    max-height: 1.6rem;
     text-align: center;
     * {
       flex: 1;
+    }
+
+    h3 {
+      font-size: 96%;
+    }
+    p {
+      font-size: 95%;
     }
     @media (min-width: 910px) {
       p {
@@ -179,29 +208,38 @@ body {
       p {
         font-size: 75%;
       }
-      h3,
+      h3 {
+        font-size: 60%;
+      }
       h4 {
-        font-size: 85%;
+        font-size: 70%;
       }
     }
     @media (max-width: 910px) {
-      p,
       h5 {
         font-size: 85%;
       }
       p {
+        font-size: 80%;
+      }
+      h4 {
+        font-size: 80%;
+      }
+      h3 {
+        font-size: 80%;
       }
     }
     @media (max-width: 590px) {
-      h5 {
-        font-size: 55%;
-      }
       p {
         font-size: 70%;
       }
       h5 {
         margin-top: 0.6rem;
         padding-bottom: 0.2rem;
+        font-size: 55%;
+      }
+      h3 {
+        font-size: 66%;
       }
     }
     @media (max-width: 390px) {
@@ -216,7 +254,8 @@ body {
 
 @media (min-width: 1552px) {
   .jumbotron {
-    width: 94rem;
+    width: 70rem;
+    // width: 94rem;
   }
 }
 @media (max-width: 1552px) {
@@ -232,7 +271,6 @@ body {
     border-bottom: 1px white solid;
   }
 }
-
 .widget-container {
   display: flex;
   justify-content: center;
@@ -527,14 +565,17 @@ body {
   }
 }
 .footer {
-  padding-top: 2rem;
   display: flex;
   flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
   .footer-column {
     display: flex;
+    align-content: center;
+    align-items: center;
     justify-content: center;
     flex: 1;
     min-width: 20rem;
-    height: 5rem;
+    height: 10rem;
   }
 }
