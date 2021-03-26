@@ -26,6 +26,16 @@ body {
           align-items: center;
 }
 
+.jumbotron-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 227.45px;
+}
+
 @media (max-width: 760px) {
   .nav-bar {
     -webkit-box-align: center;
@@ -35,7 +45,7 @@ body {
 }
 
 .nav-bar {
-  font-size: 110%;
+  font-size: 90%;
   font-style: italic;
   background: rgba(255, 255, 255, 0);
   color: white;
@@ -43,22 +53,47 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-line-pack: start;
-      align-content: flex-start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.nav-bar img {
+  max-height: 4.5rem;
+  margin: 3rem 1.5rem 3.5rem 3rem;
 }
 
 .nav-bar h1 {
-  text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.26);
+  color: white;
+  margin: 3.5rem 0 3rem 0;
   font-size: 250%;
-  padding: 2rem;
+  padding-left: 1rem;
+  padding-right: 0.8rem;
+  height: 1.6rem;
+  border: 5px #feac43 solid;
+  border-top: 0;
+}
+
+@media (max-width: 1168px) {
+  .nav-bar img {
+    margin: 3rem 1rem 3rem auto;
+  }
+  .nav-bar h1 {
+    margin: 1rem auto 0 0.5rem;
+  }
 }
 
 .jumbotron {
   /* border-radius: 1rem; */
   color: white;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.555);
-  margin: 3rem auto 5rem auto;
-  min-height: 15rem;
+  margin: 0 auto 3rem auto;
   /*fixa media query som passaw widthen på alla widgets, mobil-versionen täcker hela sidan utan border på left right*/
   display: -webkit-box;
   display: -ms-flexbox;
@@ -86,7 +121,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: rgba(255, 255, 255, 0.377);
+  background-color: rgba(0, 0, 0, 0.377);
   border-top: 1px white solid;
   /* border-bottom: 1px rgba(255, 255, 255, 0.5) solid; */
   width: 100%;
@@ -177,7 +212,7 @@ body {
           align-items: center;
   border-top: 1px rgba(255, 255, 255, 0.5) solid;
   /*border-bottom: 1px rgba(255, 255, 255, 0.5) solid;*/
-  background-color: rgba(255, 255, 255, 0.253);
+  background-color: rgba(0, 0, 0, 0.253);
   width: 100%;
   text-align: center;
 }
