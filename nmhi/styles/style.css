@@ -341,6 +341,7 @@ body {
   font-size: 125%;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  min-height: 122px;
 }
 
 .widget {
