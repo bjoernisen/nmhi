@@ -92,14 +92,16 @@ function renderData(forecast) {
 
   let date = new Date(forecast.searched);
   let currentHour = date.getHours();
+  let name = forecast.city.split(" ");
+  
 
   $(".widget-container").prepend(`
-    <div id="${forecast.name}-upper" class="widget ${setWheaterBackground(
+    <div id="${name[0]}-upper" class="widget ${setWheaterBackground(
     forecast
   )}">
                     <div class="upper-wideget">
                         <div class="city">
-                            <h5>${forecast.city}</h5>
+                            <h5>${name[0]}</h5>
                         </div>
                         <div class="cloud">
                             <p>${
@@ -134,7 +136,7 @@ function renderData(forecast) {
                             )}&deg;</h3>
                         </div>
                     </div> 
-                    <div id="${forecast.name}" class="lower-widget">
+                    <div id="${name[0]}" class="lower-widget">
                         <div class="t1">
                             <p>${currentHour + 2}.00</p> 
                             <h4>${
@@ -174,9 +176,9 @@ function renderData(forecast) {
                 </div>
                 `);
 
-  $(`#${forecast.name}`).children().fadeToggle(0);
-  let boxHeight = $(`#${forecast.name}-upper`).height();
-  $(`#${forecast.name}-upper`)
+  $(`#${name[0]}`).children().fadeToggle(0);
+  let boxHeight = $(`#${name[0]}-upper`).height();
+  $(`#${name[0]}-upper`)
     .mouseenter(function () {
       $(this)
         .stop(true, false)
@@ -187,7 +189,7 @@ function renderData(forecast) {
           },
           120
         )
-        .find(`#${forecast.name}`)
+        .find(`#${name[0]}`)
         .children()
         .stop(true)
         .fadeToggle(200);
@@ -202,7 +204,7 @@ function renderData(forecast) {
           },
           180
         )
-        .find(`#${forecast.name}`)
+        .find(`#${name[0]}`)
         .children()
         .stop(true)
         .fadeToggle(160);
@@ -225,7 +227,6 @@ function searchCity() {
 
 function searchCityFromButton(cityName) {
   console.log("SÖKER PÅ STAD FRÅN FÖRSLAG PÅ SÖKNING");
-  console.log(cityName);
   document.getElementById("searchArea").innerHTML = "";
 
   fetch(
@@ -236,7 +237,6 @@ function searchCityFromButton(cityName) {
 }
 
 function getCityOnSearch(location) {
-  console.log(location);
   let forecast = new Forecast();
 
   forecast.city = location.results[0].locations[0].adminArea5;
@@ -265,14 +265,15 @@ function renderSearchData(wheater, forecast) {
   forecast.wheater = wheater;
   let date = new Date(forecast.searched);
   let currentHour = date.getHours();
+  let name = forecast.name.split(" ");
 
   $(".widget-container").append(`
-        <div id="${forecast.name}-upper" class="widget ${setWheaterBackground(
+        <div id="${name[0]}-upper" class="widget ${setWheaterBackground(
     forecast
   )}">
                         <div class="upper-wideget">
                             <div class="city">
-                                <h5>${forecast.city}</h5>
+                                <h5>${name[0]}</h5>
                             </div>
                             <div class="cloud">
                                 <p>${
@@ -309,7 +310,7 @@ function renderSearchData(wheater, forecast) {
                                 )}&deg;</h3>
                             </div>
                         </div> 
-                        <div id="${forecast.name}" class="lower-widget">
+                        <div id="${name[0]}" class="lower-widget">
                             <div class="t1">
                                 <p>${currentHour + 2}.00</p> 
                                 <h4>${
@@ -349,9 +350,9 @@ function renderSearchData(wheater, forecast) {
                     </div>
                     `);
 
-  $(`#${forecast.name}`).children().fadeToggle(0);
-  let boxHeight = $(`#${forecast.name}-upper`).height();
-  $(`#${forecast.name}-upper`)
+  $(`#${name[0]}`).children().fadeToggle(0);
+  let boxHeight = $(`#${name[0]}-upper`).height();
+  $(`#${name[0]}-upper`)
     .mouseenter(function () {
       $(this)
         .stop(true, false)
@@ -362,7 +363,7 @@ function renderSearchData(wheater, forecast) {
           },
           120
         )
-        .find(`#${forecast.name}`)
+        .find(`#${name[0]}`)
         .children()
         .stop(true)
         .fadeToggle(200);
@@ -377,7 +378,7 @@ function renderSearchData(wheater, forecast) {
           },
           180
         )
-        .find(`#${forecast.name}`)
+        .find(`#${name[0]}`)
         .children()
         .stop(true)
         .fadeToggle(160);
@@ -399,15 +400,19 @@ function loadInForecasts() {
   let forecasts = JSON.parse(localStorage.getItem("searchedForecasts"));
   if (forecasts != null) {
     forecasts.forEach((forecast) => {
+      let name = forecast.name.split(" ");
       let date = new Date(forecast.searched);
       let currentHour = date.getHours();
-      $(".widget-container").append(`
-      <div id="${forecast.name}-upper" class="widget ${setWheaterBackground(
+
+
+      $(".widget-container")
+      .append(`
+      <div id="${name[0]}-upper" class="widget ${setWheaterBackground(
         forecast
       )}">
       <div class="upper-wideget">
       <div class="city">
-      <h5>${forecast.city}</h5>
+      <h5>${name[0]}</h5>
       </div>
       <div class="cloud">
       <p>${forecast.wheater.hours[currentHour].cloudCover.smhi}</p>
@@ -431,7 +436,7 @@ function loadInForecasts() {
       )}&deg;</h3>
       </div>
       </div> 
-      <div id="${forecast.name}" class="lower-widget">
+      <div id="${name[0]}" class="lower-widget">
       <div class="t1">
       <p>${currentHour + 2}.00</p> 
       <h4>${
@@ -466,9 +471,9 @@ function loadInForecasts() {
       </div>
       `);
 
-      $(`#${forecast.name}`).children().fadeToggle(0);
-      let boxHeight = $(`#${forecast.name}-upper`).height();
-      $(`#${forecast.name}-upper`)
+      $(`#${name[0]}`).children().fadeToggle(0);
+      let boxHeight = $(`#${name[0]}-upper`).height();
+      $(`#${name[0]}-upper`)
         .mouseenter(function () {
           $(this)
             .stop(true, false)
@@ -479,7 +484,7 @@ function loadInForecasts() {
               },
               120
             )
-            .find(`#${forecast.name}`)
+            .find(`#${name[0]}`)
             .children()
             .stop(true)
             .fadeToggle(200);
@@ -494,7 +499,7 @@ function loadInForecasts() {
               },
               180
             )
-            .find(`#${forecast.name}`)
+            .find(`#${name[0]}`)
             .children()
             .stop(true)
             .fadeToggle(160);
@@ -507,50 +512,273 @@ function loadInForecasts() {
 }
 
 function showBigForecast(forecast) {
-  console.log(forecast.city);
-  forecast.wheater.hours.forEach((hour, index) => {
-    let date2 = new Date(hour.time);
-    let day = getDayOfTheWeek(date2);
-    // console.log("<-->")
-    // console.log(`Dag:${day}`);
-    // console.log(`Timme:${date2.getHours()}`);
-    // console.log(`Temperatur:${hour.airTemperature.smhi}`);
-    // console.log(hour.time);
-    // console.log(`Index:${index}`);
-    // console.log(">--<");
-    if (
-      (index > date2.getHours() && index == 0) ||
-      index == 6 ||
-      index == 12 ||
-      index == 18
-    ) {
-      console.log(`Dag:${day}`);
-      console.log(`Index:${index}`);
-      console.log(`Temperatur:${hour.airTemperature.smhi}`);
-    }
+  document.getElementById("jumbotron").innerHTML = "";
+  renderTodaysForecast(forecast);
+  renderTomorrowsForecast(forecast);
+  renderDayAfterTomorrowForecast(forecast);
+}
+
+function renderDayAfterTomorrowForecast(forecast){
+  let afterTomorrow = "";
+  let now = new Date();
+  let ms = now.getTime();
+  let msDayAfterTommorow = ms + 172800000;
+  let dateDayAfterTomorrow = new Date(msDayAfterTommorow);
+  console.log(dateDayAfterTomorrow);
+
+  let day = getDayOfTheWeek(dateDayAfterTomorrow);
+  let name = forecast.name.split(" ");
+  afterTomorrow += `
+  <div class="jumbotron-day">
+  <div id="${name[0]}-jumbotron-afttmrw" class="jumbotron-item">
+  <div class="item-day">
+    <h2>${day}</h2>
+  </div>
+  <div class="item-temp">
+    <h5>Temp C</h5>
+    <h3>${forecast.wheater.hours[61].airTemperature.smhi}&deg;</h3>
+  </div>
+  <div class="item-cloud">
+    <h5>Cloud %</h5>
+    <p>${forecast.wheater.hours[61].cloudCover.smhi}</p>
+  </div>
+  <div class="item-percipitation">
+    <h5>Rain mm</h5>
+    <p>${forecast.wheater.hours[61].precipitation.smhi}</p>
+  </div>
+  <div class="item-wind">
+    <h5>Wind m/s</h5>
+    <p>${forecast.wheater.hours[61].windSpeed.smhi}</p>
+  </div>
+  <div class="item-gust">
+    <h5>Gust m/s</h5>
+    <p>${forecast.wheater.hours[61].gust.smhi}</p>
+  </div>
+  <div class="item-humidity">
+    <h5>Humidity %</h5>
+    <p>${forecast.wheater.hours[61].humidity.smhi}</p>
+  </div>
+</div>`;
+
+   for(i = 48; i < 72; i++){
+    afterTomorrow +=`
+    <div id="${name[0]}-jumbotron-inner-afttmrw" class="jumbotron-item-days">
+      <div class="jumbotron-content">
+        <div class="c-hour">
+          <h3>${i-48}.00</h3>
+        </div>
+        <div class="c-temp">
+          <h4>${forecast.wheater.hours[i].airTemperature.smhi}&deg;</h4>
+        </div>
+        <div class="c-cloud">
+          <p>${forecast.wheater.hours[i].cloudCover.smhi}</p>
+        </div>
+        <div class="item-percipitation">
+          <p>${forecast.wheater.hours[i].precipitation.smhi}</p>
+        </div>
+        <div class="item-wind">
+          <p>${forecast.wheater.hours[i].windSpeed.smhi}</p>
+        </div>
+        <div class="c-gust">
+          <p>${forecast.wheater.hours[i].gust.smhi}</p>
+        </div>
+        <div class="c-humidity">
+          <p>${forecast.wheater.hours[i].humidity.smhi}</p>
+        </div>
+      </div>
+    </div>
+  `;
+  }
+  afterTomorrow += "</div>";
+  
+  $("#jumbotron")
+  .append(afterTomorrow);
+
+  $(`#${name[0]}-jumbotron-afttmrw`)
+  .click(function () {
+      console.log("a")
+      $(`#${name[0]}-jumbotron-inner-afttmrw`)
+      .stop(true)
+      .slideToggle(350);
   });
+}
+
+function renderTomorrowsForecast(forecast){
+
+  let tomorrow = "";
+  let name = forecast.name.split(" ");
+  tomorrow += `
+  <div class="jumbotron-day">
+  <div id="${name[0]}-jumbotron-tmrw" class="jumbotron-item">
+  <div class="item-day">
+    <h2>Tomorrow</h2>
+  </div>
+  <div class="item-temp">
+    <h5>Temp C</h5>
+    <h3>${forecast.wheater.hours[37].airTemperature.smhi}&deg;</h3>
+  </div>
+  <div class="item-cloud">
+    <h5>Cloud %</h5>
+    <p>${forecast.wheater.hours[37].cloudCover.smhi}</p>
+  </div>
+  <div class="item-percipitation">
+    <h5>Rain mm</h5>
+    <p>${forecast.wheater.hours[37].precipitation.smhi}</p>
+  </div>
+  <div class="item-wind">
+    <h5>Wind m/s</h5>
+    <p>${forecast.wheater.hours[37].windSpeed.smhi}</p>
+  </div>
+  <div class="item-gust">
+    <h5>Gust m/s</h5>
+    <p>${forecast.wheater.hours[37].gust.smhi}</p>
+  </div>
+  <div class="item-humidity">
+    <h5>Humidity %</h5>
+    <p>${forecast.wheater.hours[37].humidity.smhi}</p>
+  </div>
+</div>`;
+
+   for(i = 24; i < 48; i++){
+    tomorrow +=`
+    <div id="${name[0]}-jumbotron-inner-tmrw" class="jumbotron-item-days">
+      <div class="jumbotron-content">
+        <div class="c-hour">
+          <h3>${i-24}.00</h3>
+        </div>
+        <div class="c-temp">
+          <h4>${forecast.wheater.hours[i].airTemperature.smhi}&deg;</h4>
+        </div>
+        <div class="c-cloud">
+          <p>${forecast.wheater.hours[i].cloudCover.smhi}</p>
+        </div>
+        <div class="item-percipitation">
+          <p>${forecast.wheater.hours[i].precipitation.smhi}</p>
+        </div>
+        <div class="item-wind">
+          <p>${forecast.wheater.hours[i].windSpeed.smhi}</p>
+        </div>
+        <div class="c-gust">
+          <p>${forecast.wheater.hours[i].gust.smhi}</p>
+        </div>
+        <div class="c-humidity">
+          <p>${forecast.wheater.hours[i].humidity.smhi}</p>
+        </div>
+      </div>
+    </div>
+  `;
+  }
+  tomorrow += "</div>";
+  
+  $("#jumbotron")
+  .append(tomorrow);
+
+  $(`#${name[0]}-jumbotron-tmrw`)
+  .click(function () {
+      console.log("a")
+      $(`#${name[0]}-jumbotron-inner-tmrw`)
+      .stop(true)
+      .slideToggle(350);
+  });
+
+}
+
+function renderTodaysForecast(forecast){
+  let date = new Date(forecast.searched);
+  let name = forecast.name.split(" ");
+
+  let currentHour = date.getHours();
+  let jumbotron = `
+  <div class="jumbotron-day">
+  <div id="${name[0]}-jumbotron-tdy" class="jumbotron-item">
+  <div class="item-day">
+    <h2>Today</h2>
+  </div>
+  <div class="item-temp">
+    <h5>Temp C</h5>
+    <h3>${forecast.wheater.hours[currentHour].airTemperature.smhi}&deg;</h3>
+  </div>
+  <div class="item-cloud">
+    <h5>Cloud %</h5>
+    <p>${forecast.wheater.hours[currentHour].cloudCover.smhi}</p>
+  </div>
+  <div class="item-percipitation">
+    <h5>Rain mm</h5>
+    <p>${forecast.wheater.hours[currentHour].precipitation.smhi}</p>
+  </div>
+  <div class="item-wind">
+    <h5>Wind m/s</h5>
+    <p>${forecast.wheater.hours[currentHour].windSpeed.smhi}</p>
+  </div>
+  <div class="item-gust">
+    <h5>Gust m/s</h5>
+    <p>${forecast.wheater.hours[currentHour].gust.smhi}</p>
+  </div>
+  <div class="item-humidity">
+    <h5>Humidity %</h5>
+    <p>${forecast.wheater.hours[currentHour].humidity.smhi}</p>
+  </div>
+</div>`;
+
+   for(i = currentHour + 1; i < 24; i++){
+    jumbotron +=`
+    <div id="${name[0]}-jumbotron-inner-tdy" class="jumbotron-item-days">
+      <div class="jumbotron-content">
+        <div class="c-hour">
+          <h3>${i}.00</h3>
+        </div>
+        <div class="c-temp">
+          <h4>${forecast.wheater.hours[i].airTemperature.smhi}&deg;</h4>
+        </div>
+        <div class="c-cloud">
+          <p>${forecast.wheater.hours[i].cloudCover.smhi}</p>
+        </div>
+        <div class="item-percipitation">
+          <p>${forecast.wheater.hours[i].precipitation.smhi}</p>
+        </div>
+        <div class="item-wind">
+          <p>${forecast.wheater.hours[i].windSpeed.smhi}</p>
+        </div>
+        <div class="c-gust">
+          <p>${forecast.wheater.hours[i].gust.smhi}</p>
+        </div>
+        <div class="c-humidity">
+          <p>${forecast.wheater.hours[i].humidity.smhi}</p>
+        </div>
+      </div>
+    </div>
+  `;
+  }
+  jumbotron += "</div>";
+  
+  $("#jumbotron").append(jumbotron);
+
+  $(`#${name[0]}-jumbotron-tdy`)
+    .click(function () {
+        console.log("a")
+        $(`#${name[0]}-jumbotron-inner-tdy`)
+        .stop(true)
+        .slideToggle(350);
+    });
 }
 
 function getDayOfTheWeek(date) {
   let day = "";
   switch (date.getDay()) {
     case 0:
-      return (day = "Söndag");
+      return (day = "Sunday");
     case 1:
-      return (day = "Måndag");
+      return (day = "Monday");
     case 2:
-      return (day = "Tisdag");
+      return (day = "Tuesday");
     case 3:
-      return (day = "Onsdag");
+      return (day = "Wednesday");
     case 4:
-      return (day = "Torsdag");
+      return (day = "Thursday");
     case 5:
-      return (day = "Fredag");
+      return (day = "Friday");
     case 6:
-      return (day = "Lördag");
-
-    default:
-      return (day = "Vet inte");
+      return (day = "Saturday");
   }
 }
 
@@ -576,33 +804,31 @@ function loadCities() {
 }
 
 // DENNA FUNKTION RENSAR ALLA STÄDER SOM BÖRJAR PÅ SMÅ BOKSTÄVER I VÅR JSON FIL. ALLA STÄDER STÅR DUBBELT I DEN...
+// DEN GÖR ÄVEN ALLA STÄDER TILL UPPERCASE SÅ ATT DET GÅR ATT SÖKA MED INCLUDES();
 function reduceCities() {
   let check = "";
-  for (i = 0; i < cities.length; i++) {
-    check = cities[i];
-    if (/[A-ZÅÄÖ]/.test(check[0]) == false) cities.splice(i, 1);
-  }
+  if(cities != null){
 
-  for (i = 0; i < cities.length; i++) {
-    check = cities[i];
-    let c = check.toUpperCase();
-    console.log(c);
-    cities[i] = c;
+    for (i = 0; i < cities.length; i++) {
+      check = cities[i];
+      if (/[A-ZÅÄÖ]/.test(check[0]) == false) cities.splice(i, 1);
+    }
+    
+    for (i = 0; i < cities.length; i++) {
+      check = cities[i];
+      let c = check.toUpperCase();
+      cities[i] = c;
+    }
+    
+    localStorage.setItem("cities", JSON.stringify(cities));
   }
-
-  localStorage.setItem("cities", JSON.stringify(cities));
 }
 
 function searchInCities(event) {
-  console.log(event);
-
   if (event.key == "Enter") {
     let value = document.getElementById("search").value;
     let search = value.toUpperCase();
-    console.log(search);
     let searchArea = document.getElementById("searchArea");
-    console.log(cities);
-    console.log(search);
     searchArea.innerHTML = "";
     let searchResult = cities.filter((city) => city.includes(search));
 
@@ -651,6 +877,4 @@ function capitaliseString(str) {
   return big;
 }
 
-$(".jumbotron-item").click(function () {
-  $(".jumbotron-item-days").stop(true).slideToggle(200);
-});
+
