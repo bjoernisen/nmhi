@@ -530,7 +530,7 @@ function renderDayAfterTomorrowForecast(forecast) {
   </div>
   <div class="item-temp">
     <h5>Temp C</h5>
-    <h3>${forecast.wheater.hours[61].airTemperature.smhi}&deg;</h3>
+    <p>${forecast.wheater.hours[61].airTemperature.smhi}&deg;</p>
   </div>
   <div class="item-cloud">
     <h5>Cloud %</h5>

@@ -87,7 +87,7 @@ body {
     flex-direction: row;
     align-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.377);
+    background-color: rgba(0, 0, 0, 0.26);
     border-top: 1px white solid;
     width: 100%;
     cursor: pointer;
@@ -185,7 +185,7 @@ body {
     align-items: center;
     border-top: 1px rgba(255, 255, 255, 0.5) solid;
     // /*border-bottom: 1px rgba(255, 255, 255, 0.5) solid;*/
-    // background-color: rgba(0, 0, 0, 0.253);
+    background-color: rgba(0, 0, 0, 0.185);
     width: 100%;
     max-height: 1.6rem;
     text-align: center;
@@ -476,9 +476,10 @@ body {
   padding-bottom: 4rem;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   flex-direction: column;
+  min-height: 16.8rem;
   .search-input-container {
     display: flex;
     justify-content: center;
