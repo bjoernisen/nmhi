@@ -372,6 +372,31 @@ body {
   text-align: center;
 }
 
+.widget .upper-wideget .close {
+  background-color: transparent;
+  border: none;
+  margin-top: -0.85rem;
+  margin-left: -0.75rem;
+  height: 0px;
+  width: 0px;
+  display: none;
+  color: rgba(0, 0, 0, 0.336);
+}
+
+.widget .upper-wideget .close h5 {
+  margin-left: 0.2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.widget .upper-wideget .close:focus {
+  outline: none;
+}
+
+.widget .upper-wideget .close:hover {
+  color: rgba(0, 0, 0, 0.473);
+}
+
 .widget .upper-wideget .city {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.432);
   -ms-flex-item-align: end;
