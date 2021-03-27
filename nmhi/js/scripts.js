@@ -233,17 +233,17 @@ function searchCity() {
   let allowedSearch = true;
 
   cityNameToSearch = cityNameToSearch.toUpperCase();
-  if(searchedCities != null){
+  if (searchedCities != null) {
     searchedCities.forEach((city) => {
       let cityUpperCase = city.name.toUpperCase();
       cityUpperCase = cityUpperCase.split(" ");
-      if(cityUpperCase[0] === cityNameToSearch){
+      if (cityUpperCase[0] === cityNameToSearch) {
         allowedSearch = false;
         alert("Widget for city already exists");
       }
-    })
+    });
   }
-  if(allowedSearch){
+  if (allowedSearch) {
     fetch(
       `http://www.mapquestapi.com/geocoding/v1/address?key=${geocodeKey}&location=${cityNameToSearch}`
     )
@@ -261,18 +261,18 @@ function searchCityFromButton(cityName) {
 
   cityName = cityName.toUpperCase();
 
-  if(searchedCities != null){
+  if (searchedCities != null) {
     searchedCities.forEach((city) => {
       let cityUpperCase = city.name.toUpperCase();
       cityUpperCase = cityUpperCase.split(" ");
-      if(cityUpperCase[0] === cityName){
+      if (cityUpperCase[0] === cityName) {
         allowedSearch = false;
         alert("Widget for city already exists");
       }
-    })
+    });
   }
 
-  if(allowedSearch){
+  if (allowedSearch) {
     fetch(
       `http://www.mapquestapi.com/geocoding/v1/address?key=${geocodeKey}&location=${cityName}`
     )
@@ -291,10 +291,9 @@ function getCityOnSearch(location) {
   forecast.name = location.results[0].locations[0].adminArea5;
   forecast.searched = new Date();
   console.log(forecast);
-  if(forecast.city == ""){
+  if (forecast.city == "") {
     alert("City was not found");
-  }
-  else generateWheaterForSearchedPos(forecast);
+  } else generateWheaterForSearchedPos(forecast);
 }
 
 function generateWheaterForSearchedPos(forecast) {
@@ -312,15 +311,14 @@ function generateWheaterForSearchedPos(forecast) {
 }
 
 function renderSearchData(wheater, forecast) {
-
-  if(wheater.hours[0].airTemperature.smhi == null){
+  if (wheater.hours[0].airTemperature.smhi == null) {
     alert("Kunde inte hämta vädret för staden");
-  }else{
+  } else {
     forecast.wheater = wheater;
     let date = new Date(forecast.searched);
     let currentHour = date.getHours();
     let name = forecast.name.split(" ");
-    
+
     $(".widget-container").append(`
     <div id="${name[0]}-upper" class="widget ${setWheaterBackground(forecast)}">
     <div class="upper-wideget">
@@ -331,109 +329,90 @@ function renderSearchData(wheater, forecast) {
     <h5>${name[0]}</h5>
     </div>
     <div class="cloud">
-    <p>${
-      forecast.wheater.hours[currentHour].cloudCover
-      .smhi
-    }</p>
+    <p>${forecast.wheater.hours[currentHour].cloudCover.smhi}</p>
     <p>CLD</p> 
     </div>
     <div class="rain">
-    <p>${
-      forecast.wheater.hours[currentHour]
-      .precipitation.smhi
-    }</p>
+    <p>${forecast.wheater.hours[currentHour].precipitation.smhi}</p>
     <p>PPI</p> 
     </div>
     <div class="humidity">
-    <p>${
-      forecast.wheater.hours[currentHour].humidity
-      .smhi
-    }</p> 
+    <p>${forecast.wheater.hours[currentHour].humidity.smhi}</p> 
     <p>HUM</p>
     </div>
     <div class="wind-speed">
-    <p>${
-      forecast.wheater.hours[currentHour].windSpeed
-      .smhi
-    }</p> 
+    <p>${forecast.wheater.hours[currentHour].windSpeed.smhi}</p> 
     <p>WND</p> 
     </div>
     <div class="temp">
     <h3>${Math.round(
-      forecast.wheater.hours[currentHour]
-      .airTemperature.smhi
-      )}&deg;</h3>
+      forecast.wheater.hours[currentHour].airTemperature.smhi
+    )}&deg;</h3>
       </div>
       </div> 
       <div id="${name[0]}" class="lower-widget">
       <div class="t1">
       <p>${convertHours(currentHour + 2)}.00</p> 
       <h4>${
-        forecast.wheater.hours[currentHour + 2]
-        .airTemperature.smhi
+        forecast.wheater.hours[currentHour + 2].airTemperature.smhi
       }&deg;</h4> 
       </div>
       <div class="t2">
       <p>${convertHours(currentHour + 4)}.00</p> 
       <h4>${
-        forecast.wheater.hours[currentHour + 4]
-        .airTemperature.smhi
+        forecast.wheater.hours[currentHour + 4].airTemperature.smhi
       }&deg;</h4>  
       </div>
       <div class="t3">
       <p>${convertHours(currentHour + 6)}.00</p> 
       <h4>${
-        forecast.wheater.hours[currentHour + 6]
-        .airTemperature.smhi
+        forecast.wheater.hours[currentHour + 6].airTemperature.smhi
       }&deg;</h4> 
       </div>
       <div class="t4">
       <p>${convertHours(currentHour + 8)}.00</p> 
       <h4>${
-        forecast.wheater.hours[currentHour + 8]
-        .airTemperature.smhi
+        forecast.wheater.hours[currentHour + 8].airTemperature.smhi
       }&deg;</h4> 
       </div>
       <div class="t5">
       <p>${convertHours(currentHour + 10)}.00</p> 
       <h4>${
-        forecast.wheater.hours[currentHour + 10]
-        .airTemperature.smhi
+        forecast.wheater.hours[currentHour + 10].airTemperature.smhi
       }&deg;</h4>  
       </div>
       </div>
       </div>
       `);
-      
-      $(`#${name[0]}`).children().fadeToggle(0);
-      let boxHeight = $(`#${name[0]}-upper`).height();
-      $(`#${name[0]}-upper`)
+
+    $(`#${name[0]}`).children().fadeToggle(0);
+    let boxHeight = $(`#${name[0]}-upper`).height();
+    $(`#${name[0]}-upper`)
       .mouseenter(function () {
         $(this)
-        .stop(true, false)
-        .animate(
-          {
-            height: "122",
-            margin: "0 16 0 16",
-          },
-          120
+          .stop(true, false)
+          .animate(
+            {
+              height: "122",
+              margin: "0 16 0 16",
+            },
+            120
           )
           .find(`#${name[0]}`)
           .children()
           .stop(true)
-          .fadeToggle(120,
-            function () {
-              $(this)
-                .find(".close")
-                .fadeToggle(125, function () {
-                  $(this).click(function () {
-                    console.log("hej");
-                  });
+          .fadeToggle(120, function () {
+            $(this)
+              .find(".close")
+              .fadeToggle(125, function () {
+                $(this).click(function () {
+                  console.log("hej");
                 });
-            });
-        })
-        .mouseleave(function () {
-          $(this)
+              });
+          });
+      })
+      .mouseleave(function () {
+        $(this)
           .stop(true, false)
           .animate(
             {
@@ -441,28 +420,29 @@ function renderSearchData(wheater, forecast) {
               margin: "16 16 16 16",
             },
             180
-            )
-            .find(`#${name[0]}`)
-            .children()
-            .stop(true)
-            .fadeToggle(110,
-              function () {
-                $(this).find(".close").fadeToggle(75);
-              });
-          })
-          .click(function () {
-            showBigForecast(forecast);
+          )
+          .find(`#${name[0]}`)
+          .children()
+          .stop(true)
+          .fadeToggle(110, function () {
+            $(this).find(".close").fadeToggle(75);
           });
-          
-          let searchedForecast = JSON.parse(localStorage.getItem("searchedForecasts"));
-          if (searchedForecast == null) {
-            console.log("TOMT i sök, skapar ny array");
-            searchedForecast = [forecast];
-          } else searchedForecast.push(forecast);
-          localStorage.setItem("searchedForecasts", JSON.stringify(searchedForecast));
-        }
-      }
-        
+      })
+      .click(function () {
+        showBigForecast(forecast);
+      });
+
+    let searchedForecast = JSON.parse(
+      localStorage.getItem("searchedForecasts")
+    );
+    if (searchedForecast == null) {
+      console.log("TOMT i sök, skapar ny array");
+      searchedForecast = [forecast];
+    } else searchedForecast.push(forecast);
+    localStorage.setItem("searchedForecasts", JSON.stringify(searchedForecast));
+  }
+}
+
 function loadInForecasts() {
   let forecasts = JSON.parse(localStorage.getItem("searchedForecasts"));
   if (forecasts != null) {
@@ -556,16 +536,15 @@ function loadInForecasts() {
             .find(`#${name[0]}`)
             .children()
             .stop(true)
-            .fadeToggle(120,
-              function () {
-                $(this)
-                  .find(".close")
-                  .fadeToggle(125, function () {
-                    $(this).click(function () {
-                      console.log("hej");
-                    });
+            .fadeToggle(120, function () {
+              $(this)
+                .find(".close")
+                .fadeToggle(125, function () {
+                  $(this).click(function () {
+                    console.log("hej");
                   });
-              });
+                });
+            });
         })
         .mouseleave(function () {
           $(this)
@@ -580,10 +559,9 @@ function loadInForecasts() {
             .find(`#${name[0]}`)
             .children()
             .stop(true)
-            .fadeToggle(110,
-              function () {
-                $(this).find(".close").fadeToggle(75);
-              });
+            .fadeToggle(110, function () {
+              $(this).find(".close").fadeToggle(75);
+            });
         })
         .click(function () {
           showBigForecast(forecast);
@@ -595,8 +573,7 @@ function loadInForecasts() {
 function showBigForecast(forecast) {
   document.getElementById("jumbotron").innerHTML = "";
   let name = forecast.city.split(" ");
-  $("#jumbotron")
-  .prepend(`
+  $("#jumbotron").prepend(`
   <div class="city-and-close-button">
   <h1>${name[0]}</h1>
   </div>`);
@@ -676,15 +653,11 @@ function renderDayAfterTomorrowForecast(forecast) {
   `;
   }
   afterTomorrow += "</div>";
-  
-  $("#jumbotron")
-  .append(afterTomorrow);
 
-  $(`#${name[0]}-jumbotron-afttmrw`)
-  .click(function () {
-      $(`.${name[0]}-jumbotron-inner-afttmrw`)
-      .stop(true)
-      .slideToggle(350);
+  $("#jumbotron").append(afterTomorrow);
+
+  $(`#${name[0]}-jumbotron-afttmrw`).click(function () {
+    $(`.${name[0]}-jumbotron-inner-afttmrw`).stop(true).slideToggle(350);
   });
 }
 
@@ -753,15 +726,11 @@ function renderTomorrowsForecast(forecast) {
   `;
   }
   tomorrow += "</div>";
-  
-  $("#jumbotron")
-  .append(tomorrow);
 
-  $(`#${name[0]}-jumbotron-tmrw`)
-  .click(function () {
-      $(`.${name[0]}-jumbotron-inner-tmrw`)
-      .stop(true)
-      .slideToggle(350);
+  $("#jumbotron").append(tomorrow);
+
+  $(`#${name[0]}-jumbotron-tmrw`).click(function () {
+    $(`.${name[0]}-jumbotron-inner-tmrw`).stop(true).slideToggle(350);
   });
 }
 
@@ -835,12 +804,9 @@ function renderTodaysForecast(forecast) {
 
   $("#jumbotron").append(jumbotron);
 
-  $(`#${name[0]}-jumbotron-tdy`)
-    .click(function () {
-        $(`.${name[0]}-jumbotron-inner-tdy`)
-        .stop(true)
-        .slideToggle(350);
-    });
+  $(`#${name[0]}-jumbotron-tdy`).click(function () {
+    $(`.${name[0]}-jumbotron-inner-tdy`).stop(true).slideToggle(350);
+  });
 }
 
 function getDayOfTheWeek(date) {
@@ -942,10 +908,37 @@ function setWheaterBackground(forecast) {
   let cloudCover = forecast.wheater.hours[currentHour].cloudCover.smhi;
   let airTemperature = forecast.wheater.hours[currentHour].airTemperature.smhi;
 
-  if (downfall == 0 && cloudCover <= 25) return (background = "day-clear");
-  if (downfall > 0) return (background = "day-cloudy-rainy");
-  if (downfall > 0 && airTemperature < 0) return (background = "day-cloudy-snowy");
-  if (downfall == 0 && cloudCover > 25) return (background = "day-cloudy");
+  if (downfall == 0 && cloudCover < 5) return (background = "day-clear");
+  else if (downfall == 0 && cloudCover < 15)
+    return (background = "day-cloudy-1");
+  else if (downfall == 0 && cloudCover < 25)
+    return (background = "day-cloudy-2");
+  else if (downfall == 0 && cloudCover < 50)
+    return (background = "day-cloudy-3");
+  else if (downfall == 0 && cloudCover < 75)
+    return (background = "day-cloudy-4");
+  else if (downfall == 0 && cloudCover <= 100)
+    return (background = "day-cloudy-5");
+  else if (downfall > 0 && cloudCover < 15 && airTemperature > 0)
+    return (background = "day-cloudy-1-rainy");
+  else if (downfall > 0 && cloudCover < 25 && airTemperature > 0)
+    return (background = "day-cloudy-2-rainy");
+  else if (downfall > 0 && cloudCover < 50 && airTemperature > 0)
+    return (background = "day-cloudy-3-rainy");
+  else if (downfall > 0 && cloudCover < 75 && airTemperature > 0)
+    return (background = "day-cloudy-4-rainy");
+  else if (downfall > 0 && cloudCover <= 100 && airTemperature > 0)
+    return (background = "day-cloudy-5-rainy");
+  else if (downfall > 0 && cloudCover < 15)
+    return (background = "day-cloudy-1-snowy");
+  else if (downfall > 0 && cloudCover < 25)
+    return (background = "day-cloudy-2-snowy");
+  else if (downfall > 0 && cloudCover < 50)
+    return (background = "day-cloudy-3-snowy");
+  else if (downfall > 0 && cloudCover < 75)
+    return (background = "day-cloudy-4-snowy");
+  else if (downfall > 0 && cloudCover <= 100)
+    return (background = "day-cloudy-5-snowy");
 }
 
 function capitaliseString(str) {
@@ -956,52 +949,47 @@ function capitaliseString(str) {
   return big;
 }
 
-function convertHours(hour){
+function convertHours(hour) {
   let newHour = hour;
-  if (newHour < 10){
-      return "0"+newHour
-  }
-  else if(newHour > 23) {
-
-      return newHour % 24
-  }
-  else return newHour
+  if (newHour < 10) {
+    return "0" + newHour;
+  } else if (newHour > 23) {
+    return newHour % 24;
+  } else return newHour;
 }
 
-function removeFromCart(id){ 
+function removeFromCart(id) {
   for (let i = 0; i < shoppingCart.length; i++) {
-      if (shoppingCart.length == 1) {
-          shoppingCart.pop();
-          localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
-          cart.innerHTML = "";
-          renderCartItemsCount();
-          return;
-      }
-      else if (shoppingCart[i].id == id) {
-          
-          shoppingCart.splice(i, 1);
-          localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
-          renderCart();
-          renderCartItemsCount();
-          return;
-      }  
-  };
+    if (shoppingCart.length == 1) {
+      shoppingCart.pop();
+      localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
+      cart.innerHTML = "";
+      renderCartItemsCount();
+      return;
+    } else if (shoppingCart[i].id == id) {
+      shoppingCart.splice(i, 1);
+      localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
+      renderCart();
+      renderCartItemsCount();
+      return;
+    }
+  }
 }
 
-function closeWidget(forecast){
+function closeWidget(forecast) {
   let forecasts = JSON.parse(localStorage.getItem("searchedForecasts"));
   console.log(forecasts);
 
   forecasts.forEach((f, index) => {
-    if(f.name == forecast.name){
-      if(forecasts.length == 1){
+    if (f.name == forecast.name) {
+      if (forecasts.length == 1) {
         forecasts.pop();
         localStorage.setItem("searchedForecasts", JSON.stringify(forecasts));
-      }else{
+      } else {
         forecasts.splice(index, 1);
         localStorage.setItem("searchedForecasts", JSON.stringify(forecasts));
       }
     }
-  })
+  });
   loadInForecasts();
 }
