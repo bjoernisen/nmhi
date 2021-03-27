@@ -53,7 +53,7 @@ function showForecast(position) {
       `https://api.stormglass.io/v2/weather/point?lat=${forecast.lat}&lng=${forecast.lng}&params=${wheaterParams}`,
       {
         headers: {
-          Authorization: wheatherKey1,
+          Authorization: wheatherKey2,
         },
       }
     )
@@ -93,12 +93,9 @@ function renderData(forecast) {
   let date = new Date(forecast.searched);
   let currentHour = date.getHours();
   let name = forecast.city.split(" ");
-  
 
   $(".widget-container").prepend(`
-    <div id="${name[0]}-upper" class="widget ${setWheaterBackground(
-    forecast
-  )}">
+    <div id="${name[0]}-upper" class="widget ${setWheaterBackground(forecast)}">
                     <div class="upper-wideget">
                         <div class="city">
                             <h5>${name[0]}</h5>
@@ -253,7 +250,7 @@ function generateWheaterForSearchedPos(forecast) {
     `https://api.stormglass.io/v2/weather/point?lat=${forecast.lat}&lng=${forecast.lng}&params=${wheaterParams}`,
     {
       headers: {
-        Authorization: wheatherKey1,
+        Authorization: wheatherKey2,
       },
     }
   )
@@ -387,13 +384,12 @@ function renderSearchData(wheater, forecast) {
       showBigForecast(forecast);
     });
 
-    let searchedForecast = JSON.parse(localStorage.getItem("searchedForecasts"));
-    if(searchedForecast == null) {
-      console.log("TOMT i sök, skapar ny array")
-      searchedForecast = [forecast];
-    }
-    else searchedForecast.push(forecast);
-    localStorage.setItem("searchedForecasts", JSON.stringify(searchedForecast));
+  let searchedForecast = JSON.parse(localStorage.getItem("searchedForecasts"));
+  if (searchedForecast == null) {
+    console.log("TOMT i sök, skapar ny array");
+    searchedForecast = [forecast];
+  } else searchedForecast.push(forecast);
+  localStorage.setItem("searchedForecasts", JSON.stringify(searchedForecast));
 }
 
 function loadInForecasts() {
@@ -404,9 +400,7 @@ function loadInForecasts() {
       let date = new Date(forecast.searched);
       let currentHour = date.getHours();
 
-
-      $(".widget-container")
-      .append(`
+      $(".widget-container").append(`
       <div id="${name[0]}-upper" class="widget ${setWheaterBackground(
         forecast
       )}">
@@ -524,7 +518,7 @@ function showBigForecast(forecast) {
   renderDayAfterTomorrowForecast(forecast);
 }
 
-function renderDayAfterTomorrowForecast(forecast){
+function renderDayAfterTomorrowForecast(forecast) {
   let afterTomorrow = "";
   let now = new Date();
   let ms = now.getTime();
@@ -541,7 +535,7 @@ function renderDayAfterTomorrowForecast(forecast){
   </div>
   <div class="item-temp">
     <h5>Temp C</h5>
-    <h3>${forecast.wheater.hours[61].airTemperature.smhi}&deg;</h3>
+    <p>${forecast.wheater.hours[61].airTemperature.smhi}&deg;</p>
   </div>
   <div class="item-cloud">
     <h5>Cloud %</h5>
@@ -565,15 +559,15 @@ function renderDayAfterTomorrowForecast(forecast){
   </div>
 </div>`;
 
-   for(i = 48; i < 72; i++){
-    afterTomorrow +=`
+  for (i = 48; i < 72; i++) {
+    afterTomorrow += `
     <div id="${name[0]}-jumbotron-inner-afttmrw" class="jumbotron-item-days">
       <div class="jumbotron-content">
         <div class="c-hour">
-          <h3>${i-48}.00</h3>
+          <h3>${i - 48}.00</h3>
         </div>
         <div class="c-temp">
-          <h4>${forecast.wheater.hours[i].airTemperature.smhi}&deg;</h4>
+          <p>${forecast.wheater.hours[i].airTemperature.smhi}&deg;</p>
         </div>
         <div class="c-cloud">
           <p>${forecast.wheater.hours[i].cloudCover.smhi}</p>
@@ -607,8 +601,7 @@ function renderDayAfterTomorrowForecast(forecast){
   });
 }
 
-function renderTomorrowsForecast(forecast){
-
+function renderTomorrowsForecast(forecast) {
   let tomorrow = "";
   let name = forecast.name.split(" ");
   tomorrow += `
@@ -619,7 +612,7 @@ function renderTomorrowsForecast(forecast){
   </div>
   <div class="item-temp">
     <h5>Temp C</h5>
-    <h3>${forecast.wheater.hours[37].airTemperature.smhi}&deg;</h3>
+    <p>${forecast.wheater.hours[37].airTemperature.smhi}&deg;</p>
   </div>
   <div class="item-cloud">
     <h5>Cloud %</h5>
@@ -643,15 +636,15 @@ function renderTomorrowsForecast(forecast){
   </div>
 </div>`;
 
-   for(i = 24; i < 48; i++){
-    tomorrow +=`
+  for (i = 24; i < 48; i++) {
+    tomorrow += `
     <div id="${name[0]}-jumbotron-inner-tmrw" class="jumbotron-item-days">
       <div class="jumbotron-content">
         <div class="c-hour">
-          <h3>${i-24}.00</h3>
+          <h3>${i - 24}.00</h3>
         </div>
         <div class="c-temp">
-          <h4>${forecast.wheater.hours[i].airTemperature.smhi}&deg;</h4>
+          <p>${forecast.wheater.hours[i].airTemperature.smhi}&deg;</p>
         </div>
         <div class="c-cloud">
           <p>${forecast.wheater.hours[i].cloudCover.smhi}</p>
@@ -684,9 +677,15 @@ function renderTomorrowsForecast(forecast){
       .slideToggle(350);
   });
 
+  $("#jumbotron").append(tomorrow);
+
+  $(`#${name[0]}-jumbotron-tmrw`).click(function () {
+    console.log("a");
+    $(`#${name[0]}-jumbotron-inner-tmrw`).stop(true).slideToggle(350);
+  });
 }
 
-function renderTodaysForecast(forecast){
+function renderTodaysForecast(forecast) {
   let date = new Date(forecast.searched);
   let name = forecast.name.split(" ");
 
@@ -699,7 +698,7 @@ function renderTodaysForecast(forecast){
   </div>
   <div class="item-temp">
     <h5>Temp C</h5>
-    <h3>${forecast.wheater.hours[currentHour].airTemperature.smhi}&deg;</h3>
+    <p>${forecast.wheater.hours[currentHour].airTemperature.smhi}&deg;</p>
   </div>
   <div class="item-cloud">
     <h5>Cloud %</h5>
@@ -723,15 +722,15 @@ function renderTodaysForecast(forecast){
   </div>
 </div>`;
 
-   for(i = currentHour + 1; i < 24; i++){
-    jumbotron +=`
+  for (i = currentHour + 1; i < 24; i++) {
+    jumbotron += `
     <div id="${name[0]}-jumbotron-inner-tdy" class="jumbotron-item-days">
       <div class="jumbotron-content">
         <div class="c-hour">
           <h3>${i}.00</h3>
         </div>
         <div class="c-temp">
-          <h4>${forecast.wheater.hours[i].airTemperature.smhi}&deg;</h4>
+          <p>${forecast.wheater.hours[i].airTemperature.smhi}&deg;</p>
         </div>
         <div class="c-cloud">
           <p>${forecast.wheater.hours[i].cloudCover.smhi}</p>
@@ -753,7 +752,7 @@ function renderTodaysForecast(forecast){
   `;
   }
   jumbotron += "</div>";
-  
+
   $("#jumbotron").append(jumbotron);
 
   $(`#${name[0]}-jumbotron-tdy`)
@@ -809,19 +808,18 @@ function loadCities() {
 // DEN GÖR ÄVEN ALLA STÄDER TILL UPPERCASE SÅ ATT DET GÅR ATT SÖKA MED INCLUDES();
 function reduceCities() {
   let check = "";
-  if(cities != null){
-
+  if (cities != null) {
     for (i = 0; i < cities.length; i++) {
       check = cities[i];
       if (/[A-ZÅÄÖ]/.test(check[0]) == false) cities.splice(i, 1);
     }
-    
+
     for (i = 0; i < cities.length; i++) {
       check = cities[i];
       let c = check.toUpperCase();
       cities[i] = c;
     }
-    
+
     localStorage.setItem("cities", JSON.stringify(cities));
   }
 }
@@ -878,5 +876,3 @@ function capitaliseString(str) {
   }
   return big;
 }
-
-
