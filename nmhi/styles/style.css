@@ -111,7 +111,7 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  min-height: 370.64px;
+  min-height: 259px;
 }
 
 .jumbotron .jumbotron-item {
