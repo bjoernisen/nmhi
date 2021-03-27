@@ -513,6 +513,12 @@ function loadInForecasts() {
 
 function showBigForecast(forecast) {
   document.getElementById("jumbotron").innerHTML = "";
+  console.log(forecast);
+  $("#jumbotron")
+  .prepend(`
+  <div class="city-and-close-button">
+  <h1>${forecast.name}</h1>
+  </div>`)
   renderTodaysForecast(forecast);
   renderTomorrowsForecast(forecast);
   renderDayAfterTomorrowForecast(forecast);
@@ -524,7 +530,6 @@ function renderDayAfterTomorrowForecast(forecast){
   let ms = now.getTime();
   let msDayAfterTommorow = ms + 172800000;
   let dateDayAfterTomorrow = new Date(msDayAfterTommorow);
-  console.log(dateDayAfterTomorrow);
 
   let day = getDayOfTheWeek(dateDayAfterTomorrow);
   let name = forecast.name.split(" ");
@@ -596,7 +601,6 @@ function renderDayAfterTomorrowForecast(forecast){
 
   $(`#${name[0]}-jumbotron-afttmrw`)
   .click(function () {
-      console.log("a")
       $(`#${name[0]}-jumbotron-inner-afttmrw`)
       .stop(true)
       .slideToggle(350);
@@ -675,7 +679,6 @@ function renderTomorrowsForecast(forecast){
 
   $(`#${name[0]}-jumbotron-tmrw`)
   .click(function () {
-      console.log("a")
       $(`#${name[0]}-jumbotron-inner-tmrw`)
       .stop(true)
       .slideToggle(350);
@@ -755,7 +758,6 @@ function renderTodaysForecast(forecast){
 
   $(`#${name[0]}-jumbotron-tdy`)
     .click(function () {
-        console.log("a")
         $(`#${name[0]}-jumbotron-inner-tdy`)
         .stop(true)
         .slideToggle(350);
