@@ -96,7 +96,7 @@ function renderData(forecast) {
   $(".widget-container").prepend(`
     <div id="${name[0]}-upper" class="widget ${setWheaterBackground(forecast)}">
                     <div class="upper-wideget">
-                        <button class="close">
+                        <button class="close close-${name[0]}">
                           <h5>&times;</h5>
                         </button>
                         <div class="city">
@@ -188,8 +188,8 @@ function renderData(forecast) {
           },
           120,
           function () {
-            $(this)
-              .find(".close")
+            $(".close-" + name[0])
+              .stop(true, false)
               .fadeToggle(125, function () {
                 $(this).click(function () {
                   console.log("hej");
@@ -212,7 +212,9 @@ function renderData(forecast) {
           },
           110,
           function () {
-            $(this).find(".close").fadeToggle(75);
+            $(".close-" + name[0])
+              .stop(true, false)
+              .fadeToggle(75);
           }
         )
         .find(`#${name[0]}`)
@@ -322,7 +324,7 @@ function renderSearchData(wheater, forecast) {
     $(".widget-container").append(`
     <div id="${name[0]}-upper" class="widget ${setWheaterBackground(forecast)}">
     <div class="upper-wideget">
-    <button class="close">
+    <button class="close close-${name[0]}">
     <h5>&times;</h5>
     </button>
     <div class="city">
@@ -402,8 +404,8 @@ function renderSearchData(wheater, forecast) {
           .children()
           .stop(true)
           .fadeToggle(120, function () {
-            $(this)
-              .find(".close")
+            $(".close-" + name[0])
+              .stop(true, false)
               .fadeToggle(125, function () {
                 $(this).click(function () {
                   console.log("hej");
@@ -425,7 +427,9 @@ function renderSearchData(wheater, forecast) {
           .children()
           .stop(true)
           .fadeToggle(110, function () {
-            $(this).find(".close").fadeToggle(75);
+            $(".close-" + name[0])
+              .stop(true, false)
+              .fadeToggle(75);
           });
       })
       .click(function () {
@@ -457,7 +461,7 @@ function loadInForecasts() {
         forecast
       )}">
       <div class="upper-wideget">
-      <button class="close">
+      <button class="close close-${name[0]}">
       <h5>&times;</h5>
       </button>
       <div class="city">
@@ -537,8 +541,8 @@ function loadInForecasts() {
             .children()
             .stop(true)
             .fadeToggle(120, function () {
-              $(this)
-                .find(".close")
+              $(".close-" + name[0])
+                .stop(true, false)
                 .fadeToggle(125, function () {
                   $(this).click(function () {
                     console.log("hej");
@@ -560,7 +564,9 @@ function loadInForecasts() {
             .children()
             .stop(true)
             .fadeToggle(110, function () {
-              $(this).find(".close").fadeToggle(75);
+              $(".close-" + name[0])
+                .stop(true, false)
+                .fadeToggle(75);
             });
         })
         .click(function () {
@@ -908,7 +914,7 @@ function setWheaterBackground(forecast) {
   let cloudCover = forecast.wheater.hours[currentHour].cloudCover.smhi;
   let airTemperature = forecast.wheater.hours[currentHour].airTemperature.smhi;
 
-  if (downfall == 0 && cloudCover < 5) return (background = "day-clear");
+  if (downfall == 0 && cloudCover < 3) return (background = "day-clear");
   else if (downfall == 0 && cloudCover < 15)
     return (background = "day-cloudy-1");
   else if (downfall == 0 && cloudCover < 25)
