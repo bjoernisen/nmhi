@@ -135,7 +135,7 @@ function renderData(forecast) {
                             )}&deg;</h3>
                         </div>
                     </div> 
-                    <div id="${name[0]}" class="lower-widget">
+                    <div id="${name[0]}-lower" class="lower-widget">
                         <div class="t1">
                             <p>${currentHour + 2}.00</p> 
                             <h4>${
@@ -174,8 +174,24 @@ function renderData(forecast) {
                     </div>
                 </div>
                 `);
-
-  $(`#${name[0]}`).children().fadeToggle(0);
+  // där vi console loggar hej är det bara att lägga till ta bort funktionen
+  $(`#${name[0]}-upper`)
+    .find(".close-" + name[0])
+    .click(function () {
+      console.log("hej");
+    });
+  $(`#${name[0]}-upper`)
+    .mouseenter(function () {
+      $(this)
+        .find(".close-" + name[0])
+        .fadeToggle(0);
+    })
+    .mouseleave(function () {
+      $(this)
+        .find(".close-" + name[0])
+        .fadeToggle(0);
+    });
+  $(`#${name[0]}-lower`).children().fadeToggle(0);
   let boxHeight = $(`#${name[0]}-upper`).height();
   $(`#${name[0]}-upper`)
     .mouseenter(function () {
@@ -186,18 +202,9 @@ function renderData(forecast) {
             height: "122",
             margin: "0 16 0 16",
           },
-          120,
-          function () {
-            $(".close-" + name[0])
-              .stop(true, false)
-              .fadeToggle(125, function () {
-                $(this).click(function () {
-                  console.log("hej");
-                });
-              });
-          }
+          120
         )
-        .find(`#${name[0]}`)
+        .find(`#${name[0]}-lower`)
         .children()
         .stop(true)
         .fadeToggle(200);
@@ -210,14 +217,9 @@ function renderData(forecast) {
             height: boxHeight,
             margin: "16 16 16 16",
           },
-          110,
-          function () {
-            $(".close-" + name[0])
-              .stop(true, false)
-              .fadeToggle(75);
-          }
+          110
         )
-        .find(`#${name[0]}`)
+        .find(`#${name[0]}-lower`)
         .children()
         .stop(true)
         .fadeToggle(160);
@@ -352,7 +354,7 @@ function renderSearchData(wheater, forecast) {
     )}&deg;</h3>
       </div>
       </div> 
-      <div id="${name[0]}" class="lower-widget">
+      <div id="${name[0]}-lower" class="lower-widget">
       <div class="t1">
       <p>${convertHours(currentHour + 2)}.00</p> 
       <h4>${
@@ -400,18 +402,10 @@ function renderSearchData(wheater, forecast) {
             },
             120
           )
-          .find(`#${name[0]}`)
+          .find(`#${name[0]}-lower`)
           .children()
           .stop(true)
-          .fadeToggle(120, function () {
-            $(".close-" + name[0])
-              .stop(true, false)
-              .fadeToggle(125, function () {
-                $(this).click(function () {
-                  console.log("hej");
-                });
-              });
-          });
+          .fadeToggle(120);
       })
       .mouseleave(function () {
         $(this)
@@ -426,11 +420,7 @@ function renderSearchData(wheater, forecast) {
           .find(`#${name[0]}`)
           .children()
           .stop(true)
-          .fadeToggle(110, function () {
-            $(".close-" + name[0])
-              .stop(true, false)
-              .fadeToggle(75);
-          });
+          .fadeToggle(110);
       })
       .click(function () {
         showBigForecast(forecast);
@@ -489,7 +479,7 @@ function loadInForecasts() {
       )}&deg;</h3>
       </div>
       </div> 
-      <div id="${name[0]}" class="lower-widget">
+      <div id="${name[0]}-lower" class="lower-widget">
       <div class="t1">
       <p>${convertHours(currentHour + 2)}.00</p> 
       <h4>${
@@ -523,9 +513,26 @@ function loadInForecasts() {
       </div>
       </div>
       `);
-
-      $(`#${name[0]}`).children().fadeToggle(0);
+      // där vi console loggar hej är det bara att lägga till ta bort funktionen
+      $(`#${name[0]}-lower`).children().fadeToggle(0);
       let boxHeight = $(`#${name[0]}-upper`).height();
+      $(`#${name[0]}-upper`)
+        .find(".close-" + name[0])
+        .click(function () {
+          console.log("hej");
+        });
+      $(`#${name[0]}-upper`)
+        .mouseenter(function () {
+          $(this)
+            .find(".close-" + name[0])
+            .fadeToggle(0);
+        })
+        .mouseleave(function () {
+          $(this)
+            .find(".close-" + name[0])
+            .fadeToggle(0);
+        });
+
       $(`#${name[0]}-upper`)
         .mouseenter(function () {
           $(this)
@@ -537,18 +544,10 @@ function loadInForecasts() {
               },
               120
             )
-            .find(`#${name[0]}`)
+            .find(`#${name[0]}-lower`)
             .children()
             .stop(true)
-            .fadeToggle(120, function () {
-              $(".close-" + name[0])
-                .stop(true, false)
-                .fadeToggle(125, function () {
-                  $(this).click(function () {
-                    console.log("hej");
-                  });
-                });
-            });
+            .fadeToggle(120);
         })
         .mouseleave(function () {
           $(this)
@@ -560,14 +559,10 @@ function loadInForecasts() {
               },
               180
             )
-            .find(`#${name[0]}`)
+            .find(`#${name[0]}-lower`)
             .children()
             .stop(true)
-            .fadeToggle(110, function () {
-              $(".close-" + name[0])
-                .stop(true, false)
-                .fadeToggle(75);
-            });
+            .fadeToggle(110);
         })
         .click(function () {
           showBigForecast(forecast);
