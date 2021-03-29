@@ -30,6 +30,8 @@ let geocodeKey = "aAUORVN56nmMcGN5QmVuHjmELGIstOil";
 function getLocation() {
   loadInForecasts();
   loadCities();
+  let forecast = JSON.parse(localStorage.getItem("yourPos"));
+  showBigForecast(forecast);
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showForecast);
   } else {
@@ -235,7 +237,6 @@ function renderData(forecast) {
         closeWidget(forecast, close);
       }, 300);
     });
-    showBigForecast(forecast);
 }
 
 function searchCity() {
@@ -268,6 +269,8 @@ function searchCity() {
 function searchCityFromButton(cityName) {
   console.log("SÖKER PÅ STAD FRÅN FÖRSLAG PÅ SÖKNING");
   document.getElementById("searchArea").innerHTML = "";
+  document.getElementById("search").value = "";
+
 
   let searchedCities = JSON.parse(localStorage.getItem("searchedForecasts"));
   let allowedSearch = true;
@@ -915,7 +918,7 @@ function reduceCities() {
 }
 
 function searchInCities(event) {
-  if (event.key == "Enter") {
+ // if (event.key == "Enter") {
     let value = document.getElementById("search").value;
     let search = value.toUpperCase();
     let searchArea = document.getElementById("searchArea");
@@ -923,15 +926,14 @@ function searchInCities(event) {
     let searchResult = cities.filter((city) => city.includes(search));
 
     searchResult.forEach((city, index) => {
-      if(index < 5){
+      if(index < 3){
         searchArea.innerHTML += `<button id="${index}-button" href="#" class="search-result">
-        <h3>${capitaliseString(city)}</h3>
+        <p>${capitaliseString(city)}</p>
         </button>`;
       }
     });
-    document.getElementById("search").value = "";
     setSearchButtons(searchResult);
-  }
+  //}
 }
 function setSearchButtons(searchResult) {
   let searchButtons = document.getElementsByClassName("search-result");

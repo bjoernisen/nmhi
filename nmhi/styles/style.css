@@ -752,12 +752,13 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  justify-items: center;
   border-radius: 0.9rem;
   border: none;
   background: linear-gradient(15deg, #d4d4d4 30%, #bebebe);
 }
 
-.search-container .search-result-container .search-result h3 {
+.search-container .search-result-container .search-result p {
   font-size: 125%;
   margin-top: 1.5rem;
 }
