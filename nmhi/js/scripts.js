@@ -606,6 +606,8 @@ function renderDayAfterTomorrowForecast(forecast) {
 
   let day = getDayOfTheWeek(dateDayAfterTomorrow);
   let name = forecast.name.split(" ");
+
+  // Forecast hour 61 always shows the wheather for hour 13, 2 days ahead
   afterTomorrow += `
   <div class="jumbotron-day">
   <div id="${name[0]}-jumbotron-afttmrw" class="jumbotron-item">
@@ -679,6 +681,7 @@ function renderDayAfterTomorrowForecast(forecast) {
 function renderTomorrowsForecast(forecast) {
   let tomorrow = "";
   let name = forecast.name.split(" ");
+  // Forecast hour 37 always shows the wheather for hour 13, 1 day ahead
   tomorrow += `
   <div class="jumbotron-day">
   <div id="${name[0]}-jumbotron-tmrw" class="jumbotron-item">
@@ -752,8 +755,8 @@ function renderTomorrowsForecast(forecast) {
 function renderTodaysForecast(forecast) {
   let date = new Date();
   let name = forecast.name.split(" ");
-
   let currentHour = date.getHours();
+
   let jumbotron = `
   <div class="jumbotron-day">
   <div id="${name[0]}-jumbotron-tdy" class="jumbotron-item">
@@ -919,9 +922,12 @@ function setWheaterBackground(forecast) {
   let date = new Date(forecast.searched);
   let currentHour = date.getHours();
 
-  let downfall = forecast.wheater.hours[currentHour].precipitation.smhi;
-  let cloudCover = forecast.wheater.hours[currentHour].cloudCover.smhi;
-  let airTemperature = forecast.wheater.hours[currentHour].airTemperature.smhi;
+  let downfall = 1;
+  let cloudCover = 75;
+  let airTemperature = 10;
+  // let downfall = forecast.wheater.hours[currentHour].precipitation.smhi;
+  // let cloudCover = forecast.wheater.hours[currentHour].cloudCover.smhi;
+  // let airTemperature = forecast.wheater.hours[currentHour].airTemperature.smhi;
 
   if (downfall == 0 && cloudCover < 3) return (background = "day-clear");
   else if (downfall == 0 && cloudCover < 15)
