@@ -1,16 +1,17 @@
 class Forecast {
-  constructor(city, name, searched, wheater, lat, lng) {
+  constructor(city, name, searched, weather, lat, lng) {
     this.city = city;
     this.name = name;
     this.searched = searched;
-    this.wheater = wheater;
+    this.weather = weather;
     this.lat = lat;
     this.lng = lng;
   }
 }
 
 // håller koll på vilekn forecast som ska renderas efter man tagit bort en widget
-let latestForecast = "";
+let clickedForecasts = [];
+let close = true;
 
 window.addEventListener("load", getLocation);
 document.getElementById("search").addEventListener("keypress", searchInCities);
@@ -18,11 +19,11 @@ document.getElementById("searchBtn").addEventListener("click", searchCity);
 
 let cities = [];
 
-let wheatherKey1 =
+let weatherKey1 =
   "7ed18cf6-8726-11eb-9f69-0242ac130002-7ed18d64-8726-11eb-9f69-0242ac130002";
-let wheatherKey2 =
+let weatherKey2 =
   "c211895a-871f-11eb-8ad5-0242ac130002-c2118a86-871f-11eb-8ad5-0242ac130002";
-let wheaterParams =
+let weatherParams =
   "airTemperature,cloudCover,gust,humidity,precipitation,windSpeed";
 let geocodeKey = "aAUORVN56nmMcGN5QmVuHjmELGIstOil";
 
@@ -47,15 +48,14 @@ function showForecast(position) {
   if (yourForecast == null) {
     console.log("<---- CALLING API STORM GLASS ---->");
     let forecast = new Forecast();
-    console.log(forecast);
     forecast.lat = position.coords.latitude;
     forecast.lng = position.coords.longitude;
 
     fetch(
-      `https://api.stormglass.io/v2/weather/point?lat=${forecast.lat}&lng=${forecast.lng}&params=${wheaterParams}`,
+      `https://api.stormglass.io/v2/weather/point?lat=${forecast.lat}&lng=${forecast.lng}&params=${weatherParams}`,
       {
         headers: {
-          Authorization: wheatherKey2,
+          Authorization: weatherKey2,
         },
       }
     )
@@ -66,9 +66,8 @@ function showForecast(position) {
   }
 }
 
-function generateForecast(wheater, forecast) {
-  console.log(wheater);
-  forecast.wheater = wheater;
+function generateForecast(weather, forecast) {
+  forecast.weather = weather;
   forecast.name = "YourPos";
   forecast.searched = new Date();
   getCityFromYourPosition(forecast);
@@ -90,14 +89,12 @@ function setCityOnYourPosition(location, forecast) {
 }
 
 function renderData(forecast) {
-  // console.log(forecast);
-
   let date = new Date();
   let currentHour = date.getHours();
   let name = forecast.city.split(" ");
 
   $(".widget-container").prepend(`
-    <div id="${name[0]}-upper" class="widget ${setWheaterBackground(forecast)}">
+    <div id="${name[0]}-upper" class="widget ${setWeatherBackground(forecast)}">
                     <div class="upper-wideget">
                         <button class="close close-${name[0]}">
                           <h5>&times;</h5>
@@ -107,33 +104,33 @@ function renderData(forecast) {
                         </div>
                         <div class="cloud">
                             <p>${
-                              forecast.wheater.hours[currentHour].cloudCover
+                              forecast.weather.hours[currentHour].cloudCover
                                 .smhi
                             }</p>
                             <p>CLD</p> 
                         </div>
                         <div class="rain">
                             <p>${
-                              forecast.wheater.hours[currentHour].precipitation
+                              forecast.weather.hours[currentHour].precipitation
                                 .smhi
                             }</p>
                             <p>PPI</p> 
                         </div>
                         <div class="humidity">
                             <p>${
-                              forecast.wheater.hours[currentHour].humidity.smhi
+                              forecast.weather.hours[currentHour].humidity.smhi
                             }</p> 
                             <p>HUM</p>
                         </div>
                         <div class="wind-speed">
                             <p>${
-                              forecast.wheater.hours[currentHour].windSpeed.smhi
+                              forecast.weather.hours[currentHour].windSpeed.smhi
                             }</p> 
                             <p>WND</p> 
                         </div>
                         <div class="temp">
                             <h3>${Math.round(
-                              forecast.wheater.hours[currentHour].airTemperature
+                              forecast.weather.hours[currentHour].airTemperature
                                 .smhi
                             )}&deg;</h3>
                         </div>
@@ -142,50 +139,50 @@ function renderData(forecast) {
                         <div class="t1">
                             <p>${currentHour + 2}.00</p> 
                             <h4>${
-                              forecast.wheater.hours[currentHour + 2]
+                              forecast.weather.hours[currentHour + 2]
                                 .airTemperature.smhi
                             }&deg;</h4> 
                         </div>
                         <div class="t2">
                             <p>${currentHour + 4}.00</p> 
                             <h4>${
-                              forecast.wheater.hours[currentHour + 4]
+                              forecast.weather.hours[currentHour + 4]
                                 .airTemperature.smhi
                             }&deg;</h4>  
                         </div>
                         <div class="t3">
                             <p>${currentHour + 6}.00</p> 
                             <h4>${
-                              forecast.wheater.hours[currentHour + 6]
+                              forecast.weather.hours[currentHour + 6]
                                 .airTemperature.smhi
                             }&deg;</h4> 
                         </div>
                         <div class="t4">
                             <p>${currentHour + 8}.00</p> 
                             <h4>${
-                              forecast.wheater.hours[currentHour + 8]
+                              forecast.weather.hours[currentHour + 8]
                                 .airTemperature.smhi
                             }&deg;</h4> 
                         </div>
                         <div class="t5">
                             <p>${currentHour + 10}.00</p> 
                             <h4>${
-                              forecast.wheater.hours[currentHour + 10]
+                              forecast.weather.hours[currentHour + 10]
                                 .airTemperature.smhi
                             }&deg;</h4>  
                         </div>
                     </div>
                 </div>
                 `);
-  // där vi console loggar hej är det bara att lägga till ta bort funktionen
+  close = true;
   $(`#${name[0]}-upper`)
+    .stop(true)
     .find(".close-" + name[0])
     .click(function () {
       setTimeout(function () {
-        document.getElementById("jumbotron").innerHTML = latestForecast;
+        if (clickedForecasts.length > 0) clickedForecasts.pop();
+        closeWidget(forecast, close);
       }, 300);
-
-      console.log("hej");
     });
   $(`#${name[0]}-upper`)
     .mouseenter(function () {
@@ -232,9 +229,13 @@ function renderData(forecast) {
         .fadeToggle(160);
     })
     .click(function () {
-      latestForecast = document.getElementById("jumbotron").innerHTML;
-      showBigForecast(forecast);
+      clickedForecasts.push(forecast);
+      close = false;
+      setTimeout(function () {
+        closeWidget(forecast, close);
+      }, 300);
     });
+    showBigForecast(forecast);
 }
 
 function searchCity() {
@@ -295,44 +296,42 @@ function searchCityFromButton(cityName) {
 
 function getCityOnSearch(location) {
   let forecast = new Forecast();
-  console.log(location);
 
   forecast.city = location.results[0].locations[0].adminArea5;
   forecast.lat = location.results[0].locations[0].latLng.lat;
   forecast.lng = location.results[0].locations[0].latLng.lng;
   forecast.name = location.results[0].locations[0].adminArea5;
   forecast.searched = new Date();
-  console.log(forecast);
   if (forecast.city == "") {
     alert("City was not found");
-  } else generateWheaterForSearchedPos(forecast);
+  } else generateWeatherForSearchedPos(forecast);
 }
 
-function generateWheaterForSearchedPos(forecast) {
+function generateWeatherForSearchedPos(forecast) {
   console.log("Calling API for searched city STORM GLASS");
   fetch(
-    `https://api.stormglass.io/v2/weather/point?lat=${forecast.lat}&lng=${forecast.lng}&params=${wheaterParams}`,
+    `https://api.stormglass.io/v2/weather/point?lat=${forecast.lat}&lng=${forecast.lng}&params=${weatherParams}`,
     {
       headers: {
-        Authorization: wheatherKey1,
+        Authorization: weatherKey2,
       },
     }
   )
     .then((response) => response.json())
-    .then((wheater) => renderSearchData(wheater, forecast));
+    .then((weather) => renderSearchData(weather, forecast));
 }
 
-function renderSearchData(wheater, forecast) {
-  if (wheater.hours[0].airTemperature.smhi == null) {
+function renderSearchData(weather, forecast) {
+  if (weather.hours[0].airTemperature.smhi == null) {
     alert("Kunde inte hämta vädret för staden");
   } else {
-    forecast.wheater = wheater;
+    forecast.weather = weather;
     let date = new Date();
     let currentHour = date.getHours();
     let name = forecast.name.split(" ");
 
     $(".widget-container").append(`
-      <div id="${name[0]}-upper" class="widget ${setWheaterBackground(
+      <div id="${name[0]}-upper" class="widget ${setWeatherBackground(
         forecast
       )}">
       <div class="upper-wideget">
@@ -343,24 +342,24 @@ function renderSearchData(wheater, forecast) {
       <h5>${name[0]}</h5>
       </div>
       <div class="cloud">
-      <p>${forecast.wheater.hours[currentHour].cloudCover.smhi}</p>
+      <p>${forecast.weather.hours[currentHour].cloudCover.smhi}</p>
       <p>CLD</p> 
       </div>
       <div class="rain">
-      <p>${forecast.wheater.hours[currentHour].precipitation.smhi}</p>
+      <p>${forecast.weather.hours[currentHour].precipitation.smhi}</p>
       <p>PPI</p> 
       </div>
       <div class="humidity">
-      <p>${forecast.wheater.hours[currentHour].humidity.smhi}</p> 
+      <p>${forecast.weather.hours[currentHour].humidity.smhi}</p> 
       <p>HUM</p>
       </div>
       <div class="wind-speed">
-      <p>${forecast.wheater.hours[currentHour].windSpeed.smhi}</p> 
+      <p>${forecast.weather.hours[currentHour].windSpeed.smhi}</p> 
       <p>WND</p> 
       </div>
       <div class="temp">
       <h3>${Math.round(
-        forecast.wheater.hours[currentHour].airTemperature.smhi
+        forecast.weather.hours[currentHour].airTemperature.smhi
       )}&deg;</h3>
       </div>
       </div> 
@@ -368,37 +367,36 @@ function renderSearchData(wheater, forecast) {
       <div class="t1">
       <p>${convertHours(currentHour + 2)}.00</p> 
       <h4>${
-        forecast.wheater.hours[currentHour + 2].airTemperature.smhi
+        forecast.weather.hours[currentHour + 2].airTemperature.smhi
       }&deg;</h4> 
       </div>
       <div class="t2">
       <p>${convertHours(currentHour + 4)}.00</p> 
       <h4>${
-        forecast.wheater.hours[currentHour + 4].airTemperature.smhi
+        forecast.weather.hours[currentHour + 4].airTemperature.smhi
       }&deg;</h4>  
       </div>
       <div class="t3">
       <p>${convertHours(currentHour + 6)}.00</p> 
       <h4>${
-        forecast.wheater.hours[currentHour + 6].airTemperature.smhi
+        forecast.weather.hours[currentHour + 6].airTemperature.smhi
       }&deg;</h4> 
       </div>
       <div class="t4">
       <p>${convertHours(currentHour + 8)}.00</p> 
       <h4>${
-        forecast.wheater.hours[currentHour + 8].airTemperature.smhi
+        forecast.weather.hours[currentHour + 8].airTemperature.smhi
       }&deg;</h4> 
       </div>
       <div class="t5">
       <p>${convertHours(currentHour + 10)}.00</p> 
       <h4>${
-        forecast.wheater.hours[currentHour + 10].airTemperature.smhi
+        forecast.weather.hours[currentHour + 10].airTemperature.smhi
       }&deg;</h4>  
       </div>
       </div>
       </div>
       `);
-      // där vi console loggar hej är det bara att lägga till ta bort funktionen
       $(`#${name[0]}-lower`).children().fadeToggle(0);
       let boxHeight = $(`#${name[0]}-upper`).height();
       $(`#${name[0]}-upper`)
@@ -406,9 +404,10 @@ function renderSearchData(wheater, forecast) {
         .find(".close-" + name[0])
         .click(function () {
           setTimeout(function () {
-            //document.getElementById("jumbotron").innerHTML = latestForecast;
+            close = true;
+            if (clickedForecasts.length > 0) clickedForecasts.pop();
+            closeWidget(forecast, close);
           }, 300);
-          console.log("hej");
         });
       $(`#${name[0]}-upper`)
         .mouseenter(function () {
@@ -454,8 +453,11 @@ function renderSearchData(wheater, forecast) {
             .fadeToggle(110);
         })
         .click(function () {
-          // latestForecast = document.getElementById("jumbotron").innerHTML;
-          showBigForecast(forecast);
+          clickedForecasts.push(forecast);
+          close = false;
+          setTimeout(function () {
+            closeWidget(forecast, close);
+          }, 300);
         });
 
     let searchedForecast = JSON.parse(
@@ -477,12 +479,9 @@ function loadInForecasts() {
       let name = forecast.name.split(" ");
       let date = new Date();
       let currentHour = date.getHours();
-      console.log(currentHour);
 
       $(".widget-container").append(`
-      <div id="${name[0]}-upper" class="widget ${setWheaterBackground(
-        forecast
-      )}">
+      <div id="${name[0]}-upper" class="widget ${setWeatherBackground(forecast)}">
       <div class="upper-wideget">
       <button z-index class="close close-${name[0]}">
       <h5>&times;</h5>
@@ -491,24 +490,24 @@ function loadInForecasts() {
       <h5>${name[0]}</h5>
       </div>
       <div class="cloud">
-      <p>${forecast.wheater.hours[currentHour].cloudCover.smhi}</p>
+      <p>${forecast.weather.hours[currentHour].cloudCover.smhi}</p>
       <p>CLD</p> 
       </div>
       <div class="rain">
-      <p>${forecast.wheater.hours[currentHour].precipitation.smhi}</p>
+      <p>${forecast.weather.hours[currentHour].precipitation.smhi}</p>
       <p>PPI</p> 
       </div>
       <div class="humidity">
-      <p>${forecast.wheater.hours[currentHour].humidity.smhi}</p> 
+      <p>${forecast.weather.hours[currentHour].humidity.smhi}</p> 
       <p>HUM</p>
       </div>
       <div class="wind-speed">
-      <p>${forecast.wheater.hours[currentHour].windSpeed.smhi}</p> 
+      <p>${forecast.weather.hours[currentHour].windSpeed.smhi}</p> 
       <p>WND</p> 
       </div>
       <div class="temp">
       <h3>${Math.round(
-        forecast.wheater.hours[currentHour].airTemperature.smhi
+        forecast.weather.hours[currentHour].airTemperature.smhi
       )}&deg;</h3>
       </div>
       </div> 
@@ -516,37 +515,36 @@ function loadInForecasts() {
       <div class="t1">
       <p>${convertHours(currentHour + 2)}.00</p> 
       <h4>${
-        forecast.wheater.hours[currentHour + 2].airTemperature.smhi
+        forecast.weather.hours[currentHour + 2].airTemperature.smhi
       }&deg;</h4> 
       </div>
       <div class="t2">
       <p>${convertHours(currentHour + 4)}.00</p> 
       <h4>${
-        forecast.wheater.hours[currentHour + 4].airTemperature.smhi
+        forecast.weather.hours[currentHour + 4].airTemperature.smhi
       }&deg;</h4>  
       </div>
       <div class="t3">
       <p>${convertHours(currentHour + 6)}.00</p> 
       <h4>${
-        forecast.wheater.hours[currentHour + 6].airTemperature.smhi
+        forecast.weather.hours[currentHour + 6].airTemperature.smhi
       }&deg;</h4> 
       </div>
       <div class="t4">
       <p>${convertHours(currentHour + 8)}.00</p> 
       <h4>${
-        forecast.wheater.hours[currentHour + 8].airTemperature.smhi
+        forecast.weather.hours[currentHour + 8].airTemperature.smhi
       }&deg;</h4> 
       </div>
       <div class="t5">
       <p>${convertHours(currentHour + 10)}.00</p> 
       <h4>${
-        forecast.wheater.hours[currentHour + 10].airTemperature.smhi
+        forecast.weather.hours[currentHour + 10].airTemperature.smhi
       }&deg;</h4>  
       </div>
       </div>
       </div>
       `);
-      // där vi console loggar hej är det bara att lägga till ta bort funktionen
       $(`#${name[0]}-lower`).children().fadeToggle(0);
       let boxHeight = $(`#${name[0]}-upper`).height();
       $(`#${name[0]}-upper`)
@@ -554,9 +552,10 @@ function loadInForecasts() {
         .find(".close-" + name[0])
         .click(function () {
           setTimeout(function () {
-            //document.getElementById("jumbotron").innerHTML = latestForecast;
+            close = true;
+            if (clickedForecasts.length > 0) clickedForecasts.pop();
+            closeWidget(forecast, close);
           }, 300);
-          console.log("hej");
         });
       $(`#${name[0]}-upper`)
         .mouseenter(function () {
@@ -569,7 +568,6 @@ function loadInForecasts() {
             .find(".close-" + name[0])
             .fadeToggle(0);
         });
-
       $(`#${name[0]}-upper`)
         .mouseenter(function () {
           $(this)
@@ -602,13 +600,18 @@ function loadInForecasts() {
             .fadeToggle(110);
         })
         .click(function () {
-          // latestForecast = document.getElementById("jumbotron").innerHTML;
-          showBigForecast(forecast);
+          clickedForecasts.push(forecast);
+          close = false;
+          setTimeout(function () {
+            closeWidget(forecast, close);
+          }, 300);
         });
     });
   }
 }
+
 function showBigForecast(forecast) {
+  if (forecast == undefined) return;
   document.getElementById("jumbotron").innerHTML = "";
   let name = forecast.city.split(" ");
   $("#jumbotron").prepend(`
@@ -630,7 +633,7 @@ function renderDayAfterTomorrowForecast(forecast) {
   let day = getDayOfTheWeek(dateDayAfterTomorrow);
   let name = forecast.name.split(" ");
 
-  // Forecast hour 61 always shows the wheather for hour 13, 2 days ahead
+  // Forecast hour 61 always shows the weather for hour 13, 2 days ahead
   afterTomorrow += `
   <div class="jumbotron-day">
   <div id="${name[0]}-jumbotron-afttmrw" class="jumbotron-item">
@@ -639,31 +642,31 @@ function renderDayAfterTomorrowForecast(forecast) {
   </div>
   <div class="item-temp">
     <h5>Temp C</h5>
-    <p>${forecast.wheater.hours[61].airTemperature.smhi}&deg;</p>
+    <p>${forecast.weather.hours[61].airTemperature.smhi}&deg;</p>
   </div>
   <div class="item-cloud">
     <h5>Cloud %</h5>
-    <p>${forecast.wheater.hours[61].cloudCover.smhi}</p>
+    <p>${forecast.weather.hours[61].cloudCover.smhi}</p>
   </div>
   <div class="item-percipitation">
     <h5>Rain mm</h5>
-    <p>${forecast.wheater.hours[61].precipitation.smhi}</p>
+    <p>${forecast.weather.hours[61].precipitation.smhi}</p>
   </div>
   <div class="item-wind">
     <h5>Wind m/s</h5>
-    <p>${forecast.wheater.hours[61].windSpeed.smhi}</p>
+    <p>${forecast.weather.hours[61].windSpeed.smhi}</p>
   </div>
   <div class="item-gust">
     <h5>Gust m/s</h5>
-    <p>${forecast.wheater.hours[61].gust.smhi}</p>
+    <p>${forecast.weather.hours[61].gust.smhi}</p>
   </div>
   <div class="item-humidity">
     <h5>Humidity %</h5>
-    <p>${forecast.wheater.hours[61].humidity.smhi}</p>
+    <p>${forecast.weather.hours[61].humidity.smhi}</p>
   </div>
 </div>`;
 
-  for (i = 48; i < 72; i++) {
+  for (i = 48; i < 73; i+= 3) {
     afterTomorrow += `
     <div class="${name[0]}-jumbotron-inner-afttmrw jumbotron-item-days">
       <div class="jumbotron-content">
@@ -671,22 +674,22 @@ function renderDayAfterTomorrowForecast(forecast) {
           <h3>${i - 48}.00</h3>
         </div>
         <div class="c-temp">
-          <p>${forecast.wheater.hours[i].airTemperature.smhi}&deg;</p>
+          <p>${forecast.weather.hours[i].airTemperature.smhi}&deg;</p>
         </div>
         <div class="c-cloud">
-          <p>${forecast.wheater.hours[i].cloudCover.smhi}</p>
+          <p>${forecast.weather.hours[i].cloudCover.smhi}</p>
         </div>
         <div class="item-percipitation">
-          <p>${forecast.wheater.hours[i].precipitation.smhi}</p>
+          <p>${forecast.weather.hours[i].precipitation.smhi}</p>
         </div>
         <div class="item-wind">
-          <p>${forecast.wheater.hours[i].windSpeed.smhi}</p>
+          <p>${forecast.weather.hours[i].windSpeed.smhi}</p>
         </div>
         <div class="c-gust">
-          <p>${forecast.wheater.hours[i].gust.smhi}</p>
+          <p>${forecast.weather.hours[i].gust.smhi}</p>
         </div>
         <div class="c-humidity">
-          <p>${forecast.wheater.hours[i].humidity.smhi}</p>
+          <p>${forecast.weather.hours[i].humidity.smhi}</p>
         </div>
       </div>
     </div>
@@ -704,7 +707,7 @@ function renderDayAfterTomorrowForecast(forecast) {
 function renderTomorrowsForecast(forecast) {
   let tomorrow = "";
   let name = forecast.name.split(" ");
-  // Forecast hour 37 always shows the wheather for hour 13, 1 day ahead
+  // Forecast hour 37 always shows the weather for hour 13, 1 day ahead
   tomorrow += `
   <div class="jumbotron-day">
   <div id="${name[0]}-jumbotron-tmrw" class="jumbotron-item">
@@ -713,27 +716,27 @@ function renderTomorrowsForecast(forecast) {
   </div>
   <div class="item-temp">
     <h5>Temp C</h5>
-    <p>${forecast.wheater.hours[37].airTemperature.smhi}&deg;</p>
+    <p>${forecast.weather.hours[37].airTemperature.smhi}&deg;</p>
   </div>
   <div class="item-cloud">
     <h5>Cloud %</h5>
-    <p>${forecast.wheater.hours[37].cloudCover.smhi}</p>
+    <p>${forecast.weather.hours[37].cloudCover.smhi}</p>
   </div>
   <div class="item-percipitation">
     <h5>Rain mm</h5>
-    <p>${forecast.wheater.hours[37].precipitation.smhi}</p>
+    <p>${forecast.weather.hours[37].precipitation.smhi}</p>
   </div>
   <div class="item-wind">
     <h5>Wind m/s</h5>
-    <p>${forecast.wheater.hours[37].windSpeed.smhi}</p>
+    <p>${forecast.weather.hours[37].windSpeed.smhi}</p>
   </div>
   <div class="item-gust">
     <h5>Gust m/s</h5>
-    <p>${forecast.wheater.hours[37].gust.smhi}</p>
+    <p>${forecast.weather.hours[37].gust.smhi}</p>
   </div>
   <div class="item-humidity">
     <h5>Humidity %</h5>
-    <p>${forecast.wheater.hours[37].humidity.smhi}</p>
+    <p>${forecast.weather.hours[37].humidity.smhi}</p>
   </div>
 </div>`;
 
@@ -745,22 +748,22 @@ function renderTomorrowsForecast(forecast) {
           <h3>${i - 24}.00</h3>
         </div>
         <div class="c-temp">
-          <p>${forecast.wheater.hours[i].airTemperature.smhi}&deg;</p>
+          <p>${forecast.weather.hours[i].airTemperature.smhi}&deg;</p>
         </div>
         <div class="c-cloud">
-          <p>${forecast.wheater.hours[i].cloudCover.smhi}</p>
+          <p>${forecast.weather.hours[i].cloudCover.smhi}</p>
         </div>
         <div class="item-percipitation">
-          <p>${forecast.wheater.hours[i].precipitation.smhi}</p>
+          <p>${forecast.weather.hours[i].precipitation.smhi}</p>
         </div>
         <div class="item-wind">
-          <p>${forecast.wheater.hours[i].windSpeed.smhi}</p>
+          <p>${forecast.weather.hours[i].windSpeed.smhi}</p>
         </div>
         <div class="c-gust">
-          <p>${forecast.wheater.hours[i].gust.smhi}</p>
+          <p>${forecast.weather.hours[i].gust.smhi}</p>
         </div>
         <div class="c-humidity">
-          <p>${forecast.wheater.hours[i].humidity.smhi}</p>
+          <p>${forecast.weather.hours[i].humidity.smhi}</p>
         </div>
       </div>
     </div>
@@ -788,27 +791,27 @@ function renderTodaysForecast(forecast) {
   </div>
   <div class="item-temp">
     <h5>Temp C</h5>
-    <p>${forecast.wheater.hours[currentHour].airTemperature.smhi}&deg;</p>
+    <p>${forecast.weather.hours[currentHour].airTemperature.smhi}&deg;</p>
   </div>
   <div class="item-cloud">
     <h5>Cloud %</h5>
-    <p>${forecast.wheater.hours[currentHour].cloudCover.smhi}</p>
+    <p>${forecast.weather.hours[currentHour].cloudCover.smhi}</p>
   </div>
   <div class="item-percipitation">
     <h5>Rain mm</h5>
-    <p>${forecast.wheater.hours[currentHour].precipitation.smhi}</p>
+    <p>${forecast.weather.hours[currentHour].precipitation.smhi}</p>
   </div>
   <div class="item-wind">
     <h5>Wind m/s</h5>
-    <p>${forecast.wheater.hours[currentHour].windSpeed.smhi}</p>
+    <p>${forecast.weather.hours[currentHour].windSpeed.smhi}</p>
   </div>
   <div class="item-gust">
     <h5>Gust m/s</h5>
-    <p>${forecast.wheater.hours[currentHour].gust.smhi}</p>
+    <p>${forecast.weather.hours[currentHour].gust.smhi}</p>
   </div>
   <div class="item-humidity">
     <h5>Humidity %</h5>
-    <p>${forecast.wheater.hours[currentHour].humidity.smhi}</p>
+    <p>${forecast.weather.hours[currentHour].humidity.smhi}</p>
   </div>
 </div>`;
 
@@ -820,22 +823,22 @@ function renderTodaysForecast(forecast) {
           <h3>${i}.00</h3>
         </div>
         <div class="c-temp">
-          <p>${forecast.wheater.hours[i].airTemperature.smhi}&deg;</p>
+          <p>${forecast.weather.hours[i].airTemperature.smhi}&deg;</p>
         </div>
         <div class="c-cloud">
-          <p>${forecast.wheater.hours[i].cloudCover.smhi}</p>
+          <p>${forecast.weather.hours[i].cloudCover.smhi}</p>
         </div>
         <div class="item-percipitation">
-          <p>${forecast.wheater.hours[i].precipitation.smhi}</p>
+          <p>${forecast.weather.hours[i].precipitation.smhi}</p>
         </div>
         <div class="item-wind">
-          <p>${forecast.wheater.hours[i].windSpeed.smhi}</p>
+          <p>${forecast.weather.hours[i].windSpeed.smhi}</p>
         </div>
         <div class="c-gust">
-          <p>${forecast.wheater.hours[i].gust.smhi}</p>
+          <p>${forecast.weather.hours[i].gust.smhi}</p>
         </div>
         <div class="c-humidity">
-          <p>${forecast.wheater.hours[i].humidity.smhi}</p>
+          <p>${forecast.weather.hours[i].humidity.smhi}</p>
         </div>
       </div>
     </div>
@@ -920,11 +923,13 @@ function searchInCities(event) {
     let searchResult = cities.filter((city) => city.includes(search));
 
     searchResult.forEach((city, index) => {
-      searchArea.innerHTML += `<button id="${index}-button" href="#" class="search-result">
-      <h3>${capitaliseString(city)}</h3>
-      </button>`;
-      document.getElementById("search").value = "";
+      if(index < 5){
+        searchArea.innerHTML += `<button id="${index}-button" href="#" class="search-result">
+        <h3>${capitaliseString(city)}</h3>
+        </button>`;
+      }
     });
+    document.getElementById("search").value = "";
     setSearchButtons(searchResult);
   }
 }
@@ -938,19 +943,18 @@ function setSearchButtons(searchResult) {
   }
 }
 
-function setWheaterBackground(forecast) {
-  console.log("SET WHEATER BACKGROUND");
-  // console.log(forecast);
+function setWeatherBackground(forecast) {
+  console.log("SET WEATHER BACKGROUND");
   let background = "";
   let date = new Date(forecast.searched);
   let currentHour = date.getHours();
 
-  let downfall = 1;
-  let cloudCover = 75;
-  let airTemperature = 10;
-  // let downfall = forecast.wheater.hours[currentHour].precipitation.smhi;
-  // let cloudCover = forecast.wheater.hours[currentHour].cloudCover.smhi;
-  // let airTemperature = forecast.wheater.hours[currentHour].airTemperature.smhi;
+  // let downfall = 1;
+  // let cloudCover = 75;
+  // let airTemperature = 10;
+  let downfall = forecast.weather.hours[currentHour].precipitation.smhi;
+  let cloudCover = forecast.weather.hours[currentHour].cloudCover.smhi;
+  let airTemperature = forecast.weather.hours[currentHour].airTemperature.smhi;
 
   if (downfall == 0 && cloudCover < 3) return (background = "day-clear");
   else if (downfall == 0 && cloudCover < 15)
@@ -1001,23 +1005,30 @@ function convertHours(hour) {
     return newHour % 24;
   } else return newHour;
 }
-
-function closeWidget(forecast) {
+function closeWidget(forecast, removeForecast) {
   let forecasts = JSON.parse(localStorage.getItem("searchedForecasts"));
-  console.log(forecasts);
-
-  forecasts.forEach((f, index) => {
-    if (f.name == forecast.name) {
-      if (forecasts.length == 1) {
-        forecasts.pop();
-        localStorage.setItem("searchedForecasts", JSON.stringify(forecasts));
-      } else {
-        forecasts.splice(index, 1);
-        localStorage.setItem("searchedForecasts", JSON.stringify(forecasts));
+  if (removeForecast == true) {
+    console.log("removing");
+    forecasts.forEach((f, index) => {
+      if (f.name == forecast.name) {
+        if (forecasts.length == 1) {
+          forecasts.pop();
+          localStorage.setItem("searchedForecasts", JSON.stringify(forecasts));
+        } else {
+          forecasts.splice(index, 1);
+          localStorage.setItem("searchedForecasts", JSON.stringify(forecasts));
+        }
       }
-    }
-  });
-  loadInForecasts();
-  let yourForecast = JSON.parse(localStorage.getItem("yourPos"));
-  renderData(yourForecast);
+    });
+    loadInForecasts();
+    localStorage.setItem("searchedForecasts", JSON.stringify(forecasts)); // HÄR UPPE
+    let yourForecast = JSON.parse(localStorage.getItem("yourPos"));
+    renderData(yourForecast);
+    showBigForecast(clickedForecasts[clickedForecasts.length]);
+  } else {
+    console.log("not removing");
+    setTimeout(function () {
+      showBigForecast(clickedForecasts[clickedForecasts.length - 1]);
+    }, 0);
+  }
 }
