@@ -646,7 +646,7 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  min-height: 16.8rem;
+  min-height: 308px;
 }
 
 .search-container .search-input-container {
