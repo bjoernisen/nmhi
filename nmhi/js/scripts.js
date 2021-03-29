@@ -912,7 +912,6 @@ function reduceCities() {
       let c = check.toUpperCase();
       cities[i] = c;
     }
-
     localStorage.setItem("cities", JSON.stringify(cities));
   }
 }
