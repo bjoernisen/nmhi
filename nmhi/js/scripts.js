@@ -9,6 +9,9 @@ class Forecast {
   }
 }
 
+// håller koll på vilekn forecast som ska renderas efter man tagit bort en widget
+let latestForecast = "";
+
 window.addEventListener("load", getLocation);
 document.getElementById("search").addEventListener("keypress", searchInCities);
 document.getElementById("searchBtn").addEventListener("click", searchCity);
@@ -178,6 +181,10 @@ function renderData(forecast) {
   $(`#${name[0]}-upper`)
     .find(".close-" + name[0])
     .click(function () {
+      setTimeout(function () {
+        document.getElementById("jumbotron").innerHTML = latestForecast;
+      }, 300);
+
       console.log("hej");
     });
   $(`#${name[0]}-upper`)
@@ -225,6 +232,7 @@ function renderData(forecast) {
         .fadeToggle(160);
     })
     .click(function () {
+      latestForecast = document.getElementById("jumbotron").innerHTML;
       showBigForecast(forecast);
     });
 }
@@ -423,6 +431,7 @@ function renderSearchData(wheater, forecast) {
           .fadeToggle(110);
       })
       .click(function () {
+        latestForecast = document.getElementById("jumbotron").innerHTML;
         showBigForecast(forecast);
       });
 
@@ -452,7 +461,7 @@ function loadInForecasts() {
         forecast
       )}">
       <div class="upper-wideget">
-      <button class="close close-${name[0]}">
+      <button z-index class="close close-${name[0]}">
       <h5>&times;</h5>
       </button>
       <div class="city">
@@ -518,10 +527,13 @@ function loadInForecasts() {
       $(`#${name[0]}-lower`).children().fadeToggle(0);
       let boxHeight = $(`#${name[0]}-upper`).height();
       $(`#${name[0]}-upper`)
+        .stop(true)
         .find(".close-" + name[0])
         .click(function () {
-          console.log("hej")
-          closeWidget(forecast); //DENNA E KEFF
+          setTimeout(function () {
+            //document.getElementById("jumbotron").innerHTML = latestForecast;
+          }, 300);
+          console.log("hej");
         });
       $(`#${name[0]}-upper`)
         .mouseenter(function () {
@@ -567,12 +579,12 @@ function loadInForecasts() {
             .fadeToggle(110);
         })
         .click(function () {
+          // latestForecast = document.getElementById("jumbotron").innerHTML;
           showBigForecast(forecast);
         });
     });
   }
 }
-
 function showBigForecast(forecast) {
   document.getElementById("jumbotron").innerHTML = "";
   let name = forecast.city.split(" ");
@@ -959,24 +971,6 @@ function convertHours(hour) {
   } else if (newHour > 23) {
     return newHour % 24;
   } else return newHour;
-}
-
-function removeFromCart(id) {
-  for (let i = 0; i < shoppingCart.length; i++) {
-    if (shoppingCart.length == 1) {
-      shoppingCart.pop();
-      localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
-      cart.innerHTML = "";
-      renderCartItemsCount();
-      return;
-    } else if (shoppingCart[i].id == id) {
-      shoppingCart.splice(i, 1);
-      localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
-      renderCart();
-      renderCartItemsCount();
-      return;
-    }
-  }
 }
 
 function closeWidget(forecast) {
