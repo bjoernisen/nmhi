@@ -13,12 +13,13 @@ class Forecast {
 let clickedForecasts = [];
 let close = true;
 
+let cities = [];
+
 window.addEventListener("load", getLocation);
 document.getElementById("search").addEventListener("keypress", searchInCities);
 document.getElementById("searchBtn").addEventListener("click", searchCity);
 
-let cities = [];
-
+// API keys
 let weatherKey1 =
   "7ed18cf6-8726-11eb-9f69-0242ac130002-7ed18d64-8726-11eb-9f69-0242ac130002";
 let weatherKey2 =
@@ -30,8 +31,8 @@ let geocodeKey = "aAUORVN56nmMcGN5QmVuHjmELGIstOil";
 function getLocation() {
   loadInForecasts();
   loadCities();
-  let forecast = JSON.parse(localStorage.getItem("yourPos"));
-  showBigForecast(forecast);
+  // let forecast = JSON.parse(localStorage.getItem("yourPos"));
+  // showBigForecast(forecast);
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showForecast);
   } else {
@@ -86,6 +87,11 @@ function getCityFromYourPosition(forecast) {
 
 function setCityOnYourPosition(location, forecast) {
   forecast.city = location.results[0].locations[0].adminArea5;
+  let searchedForecasts = JSON.parse(localStorage.getItem("searchedForecasts"));
+    if(searchedForecasts == null){
+      console.log("HEJ OCH HÅ")
+      showBigForecast(forecast);
+    } 
   localStorage.setItem("yourPos", JSON.stringify(forecast));
   renderData(forecast);
 }
@@ -888,11 +894,10 @@ function loadCities() {
         let resp = xhr.response;
         cities = JSON.parse(resp);
         localStorage.setItem("cities", JSON.stringify(cities));
-        console.log(cities); // array
+        //reduceCities();
       }
     };
   }
-
   console.log("Returning cities from localstorage");
   reduceCities();
 }
@@ -906,7 +911,7 @@ function reduceCities() {
       check = cities[i];
       if (/[A-ZÅÄÖ]/.test(check[0]) == false) cities.splice(i, 1);
     }
-
+    
     for (i = 0; i < cities.length; i++) {
       check = cities[i];
       let c = check.toUpperCase();
