@@ -332,34 +332,36 @@ function renderSearchData(wheater, forecast) {
     let name = forecast.name.split(" ");
 
     $(".widget-container").append(`
-    <div id="${name[0]}-upper" class="widget ${setWheaterBackground(forecast)}">
-    <div class="upper-wideget">
-    <button class="close close-${name[0]}">
-    <h5>&times;</h5>
-    </button>
-    <div class="city">
-    <h5>${name[0]}</h5>
-    </div>
-    <div class="cloud">
-    <p>${forecast.wheater.hours[currentHour].cloudCover.smhi}</p>
-    <p>CLD</p> 
-    </div>
-    <div class="rain">
-    <p>${forecast.wheater.hours[currentHour].precipitation.smhi}</p>
-    <p>PPI</p> 
-    </div>
-    <div class="humidity">
-    <p>${forecast.wheater.hours[currentHour].humidity.smhi}</p> 
-    <p>HUM</p>
-    </div>
-    <div class="wind-speed">
-    <p>${forecast.wheater.hours[currentHour].windSpeed.smhi}</p> 
-    <p>WND</p> 
-    </div>
-    <div class="temp">
-    <h3>${Math.round(
-      forecast.wheater.hours[currentHour].airTemperature.smhi
-    )}&deg;</h3>
+      <div id="${name[0]}-upper" class="widget ${setWheaterBackground(
+        forecast
+      )}">
+      <div class="upper-wideget">
+      <button z-index class="close close-${name[0]}">
+      <h5>&times;</h5>
+      </button>
+      <div class="city">
+      <h5>${name[0]}</h5>
+      </div>
+      <div class="cloud">
+      <p>${forecast.wheater.hours[currentHour].cloudCover.smhi}</p>
+      <p>CLD</p> 
+      </div>
+      <div class="rain">
+      <p>${forecast.wheater.hours[currentHour].precipitation.smhi}</p>
+      <p>PPI</p> 
+      </div>
+      <div class="humidity">
+      <p>${forecast.wheater.hours[currentHour].humidity.smhi}</p> 
+      <p>HUM</p>
+      </div>
+      <div class="wind-speed">
+      <p>${forecast.wheater.hours[currentHour].windSpeed.smhi}</p> 
+      <p>WND</p> 
+      </div>
+      <div class="temp">
+      <h3>${Math.round(
+        forecast.wheater.hours[currentHour].airTemperature.smhi
+      )}&deg;</h3>
       </div>
       </div> 
       <div id="${name[0]}-lower" class="lower-widget">
@@ -396,44 +398,65 @@ function renderSearchData(wheater, forecast) {
       </div>
       </div>
       `);
+      // där vi console loggar hej är det bara att lägga till ta bort funktionen
+      $(`#${name[0]}-lower`).children().fadeToggle(0);
+      let boxHeight = $(`#${name[0]}-upper`).height();
+      $(`#${name[0]}-upper`)
+        .stop(true)
+        .find(".close-" + name[0])
+        .click(function () {
+          setTimeout(function () {
+            //document.getElementById("jumbotron").innerHTML = latestForecast;
+          }, 300);
+          console.log("hej");
+        });
+      $(`#${name[0]}-upper`)
+        .mouseenter(function () {
+          $(this)
+            .find(".close-" + name[0])
+            .fadeToggle(0);
+        })
+        .mouseleave(function () {
+          $(this)
+            .find(".close-" + name[0])
+            .fadeToggle(0);
+        });
 
-    $(`#${name[0]}`).children().fadeToggle(0);
-    let boxHeight = $(`#${name[0]}-upper`).height();
-    $(`#${name[0]}-upper`)
-      .mouseenter(function () {
-        $(this)
-          .stop(true, false)
-          .animate(
-            {
-              height: "122",
-              margin: "0 16 0 16",
-            },
-            120
-          )
-          .find(`#${name[0]}-lower`)
-          .children()
-          .stop(true)
-          .fadeToggle(120);
-      })
-      .mouseleave(function () {
-        $(this)
-          .stop(true, false)
-          .animate(
-            {
-              height: boxHeight,
-              margin: "16 16 16 16",
-            },
-            180
-          )
-          .find(`#${name[0]}`)
-          .children()
-          .stop(true)
-          .fadeToggle(110);
-      })
-      .click(function () {
-        latestForecast = document.getElementById("jumbotron").innerHTML;
-        showBigForecast(forecast);
-      });
+      $(`#${name[0]}-upper`)
+        .mouseenter(function () {
+          $(this)
+            .stop(true, false)
+            .animate(
+              {
+                height: "122",
+                margin: "0 16 0 16",
+              },
+              120
+            )
+            .find(`#${name[0]}-lower`)
+            .children()
+            .stop(true)
+            .fadeToggle(120);
+        })
+        .mouseleave(function () {
+          $(this)
+            .stop(true, false)
+            .animate(
+              {
+                height: boxHeight,
+                margin: "16 16 16 16",
+              },
+              180
+            )
+            .find(`#${name[0]}-lower`)
+            .children()
+            .stop(true)
+            .fadeToggle(110);
+        })
+        .click(function () {
+          // latestForecast = document.getElementById("jumbotron").innerHTML;
+          showBigForecast(forecast);
+        });
 
     let searchedForecast = JSON.parse(
       localStorage.getItem("searchedForecasts")
