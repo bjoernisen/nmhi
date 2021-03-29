@@ -92,7 +92,7 @@ function setCityOnYourPosition(location, forecast) {
 function renderData(forecast) {
   // console.log(forecast);
 
-  let date = new Date(forecast.searched);
+  let date = new Date();
   let currentHour = date.getHours();
   let name = forecast.city.split(" ");
 
@@ -327,7 +327,7 @@ function renderSearchData(wheater, forecast) {
     alert("Kunde inte hämta vädret för staden");
   } else {
     forecast.wheater = wheater;
-    let date = new Date(forecast.searched);
+    let date = new Date();
     let currentHour = date.getHours();
     let name = forecast.name.split(" ");
 
@@ -452,7 +452,7 @@ function loadInForecasts() {
   if (forecasts != null) {
     forecasts.forEach((forecast) => {
       let name = forecast.name.split(" ");
-      let date = new Date(forecast.searched);
+      let date = new Date();
       let currentHour = date.getHours();
       console.log(currentHour);
 
@@ -750,7 +750,7 @@ function renderTomorrowsForecast(forecast) {
 }
 
 function renderTodaysForecast(forecast) {
-  let date = new Date(forecast.searched);
+  let date = new Date();
   let name = forecast.name.split(" ");
 
   let currentHour = date.getHours();
