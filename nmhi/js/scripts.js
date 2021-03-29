@@ -439,6 +439,7 @@ function renderSearchData(wheater, forecast) {
 
 function loadInForecasts() {
   let forecasts = JSON.parse(localStorage.getItem("searchedForecasts"));
+  document.getElementById("widget-container").innerHTML = "";
   if (forecasts != null) {
     forecasts.forEach((forecast) => {
       let name = forecast.name.split(" ");
@@ -519,7 +520,8 @@ function loadInForecasts() {
       $(`#${name[0]}-upper`)
         .find(".close-" + name[0])
         .click(function () {
-          console.log("hej");
+          console.log("hej")
+          closeWidget(forecast); //DENNA E KEFF
         });
       $(`#${name[0]}-upper`)
         .mouseenter(function () {
@@ -993,4 +995,6 @@ function closeWidget(forecast) {
     }
   });
   loadInForecasts();
+  let yourForecast = JSON.parse(localStorage.getItem("yourPos"));
+  renderData(yourForecast);
 }
