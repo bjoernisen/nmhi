@@ -31,8 +31,8 @@ let geocodeKey = "aAUORVN56nmMcGN5QmVuHjmELGIstOil";
 function getLocation() {
   loadInForecasts();
   loadCities();
-  // let forecast = JSON.parse(localStorage.getItem("yourPos"));
-  // showBigForecast(forecast);
+  let forecast = JSON.parse(localStorage.getItem("yourPos"));
+  showBigForecast(forecast);
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showForecast);
   } else {
@@ -894,7 +894,7 @@ function loadCities() {
         let resp = xhr.response;
         cities = JSON.parse(resp);
         localStorage.setItem("cities", JSON.stringify(cities));
-        //reduceCities();
+        reduceCities();
       }
     };
   }
