@@ -9,7 +9,7 @@ class Forecast {
   }
 }
 
-// håller koll på vilekn forecast som ska renderas efter man tagit bort en widget
+// håller koll på vilken forecast som ska renderas efter man tagit bort en widget
 let clickedForecasts = [];
 let close = true;
 
@@ -44,9 +44,9 @@ function getLocation() {
 function showForecast(position) {
   let yourForecast = JSON.parse(localStorage.getItem("yourPos"));
 
-  if (yourForecast == null) {
-    date = new Date();
-  } else date = new Date(yourForecast.searched);
+  // if (yourForecast == null) {
+  //   date = new Date();
+  // } else date = new Date(yourForecast.searched);
 
   if (yourForecast == null) {
     console.log("<---- CALLING API STORM GLASS ---->");
