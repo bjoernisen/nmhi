@@ -79,7 +79,7 @@ function generateForecast(weather, forecast) {
 function getCityFromYourPosition(forecast) {
   console.log("<---- CALLING API MAPQUEST ON YOUR POSITION ---->");
   fetch(
-    `http://www.mapquestapi.com/geocoding/v1/reverse?key=${geocodeKey}&location=${forecast.lat},${forecast.lng}&includeRoadMetadata=true&includeNearestIntersection=true`
+    `https://www.mapquestapi.com/geocoding/v1/reverse?key=${geocodeKey}&location=${forecast.lat},${forecast.lng}&includeRoadMetadata=true&includeNearestIntersection=true`
   )
     .then((response) => response.json())
     .then((location) => setCityOnYourPosition(location, forecast));
@@ -265,7 +265,7 @@ function searchCity() {
   }
   if (allowedSearch) {
     fetch(
-      `http://www.mapquestapi.com/geocoding/v1/address?key=${geocodeKey}&location=${cityNameToSearch}`
+      `https://www.mapquestapi.com/geocoding/v1/address?key=${geocodeKey}&location=${cityNameToSearch}`
     )
       .then((response) => response.json())
       .then((location) => getCityOnSearch(location));
@@ -296,7 +296,7 @@ function searchCityFromButton(cityName) {
 
   if (allowedSearch) {
     fetch(
-      `http://www.mapquestapi.com/geocoding/v1/address?key=${geocodeKey}&location=${cityName}`
+      `https://www.mapquestapi.com/geocoding/v1/address?key=${geocodeKey}&location=${cityName}`
     )
       .then((response) => response.json())
       .then((location) => getCityOnSearch(location));
