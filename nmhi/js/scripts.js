@@ -58,12 +58,13 @@ function showForecast(position) {
       `https://api.stormglass.io/v2/weather/point?lat=${forecast.lat}&lng=${forecast.lng}&params=${weatherParams}`,
       {
         headers: {
-          Authorization: weatherKey2,
+          Authorization: weatherKey1,
         },
       }
     )
       .then((response) => response.json())
       .then((jsonData) => generateForecast(jsonData, forecast));
+      console.log(forecast);
   } else {
     renderData(yourForecast);
   }
@@ -113,33 +114,33 @@ function renderData(forecast) {
                         <div class="cloud">
                             <p>${
                               forecast.weather.hours[currentHour].cloudCover
-                                .smhi
+                                .noaa
                             }</p>
                             <p>CLD</p> 
                         </div>
                         <div class="rain">
                             <p>${
                               forecast.weather.hours[currentHour].precipitation
-                                .smhi
+                                .noaa
                             }</p>
                             <p>PPI</p> 
                         </div>
                         <div class="humidity">
                             <p>${
-                              forecast.weather.hours[currentHour].humidity.smhi
+                              forecast.weather.hours[currentHour].humidity.noaa
                             }</p> 
                             <p>HUM</p>
                         </div>
                         <div class="wind-speed">
                             <p>${
-                              forecast.weather.hours[currentHour].windSpeed.smhi
+                              forecast.weather.hours[currentHour].windSpeed.noaa
                             }</p> 
                             <p>WND</p> 
                         </div>
                         <div class="temp">
                             <h3>${Math.round(
                               forecast.weather.hours[currentHour].airTemperature
-                                .smhi
+                                .noaa
                             )}&deg;</h3>
                         </div>
                     </div> 
@@ -148,35 +149,35 @@ function renderData(forecast) {
                             <p>${currentHour + 2}.00</p> 
                             <h4>${
                               forecast.weather.hours[currentHour + 2]
-                                .airTemperature.smhi
+                                .airTemperature.noaa
                             }&deg;</h4> 
                         </div>
                         <div class="t2">
                             <p>${currentHour + 4}.00</p> 
                             <h4>${
                               forecast.weather.hours[currentHour + 4]
-                                .airTemperature.smhi
+                                .airTemperature.noaa
                             }&deg;</h4>  
                         </div>
                         <div class="t3">
                             <p>${currentHour + 6}.00</p> 
                             <h4>${
                               forecast.weather.hours[currentHour + 6]
-                                .airTemperature.smhi
+                                .airTemperature.noaa
                             }&deg;</h4> 
                         </div>
                         <div class="t4">
                             <p>${currentHour + 8}.00</p> 
                             <h4>${
                               forecast.weather.hours[currentHour + 8]
-                                .airTemperature.smhi
+                                .airTemperature.noaa
                             }&deg;</h4> 
                         </div>
                         <div class="t5">
                             <p>${currentHour + 10}.00</p> 
                             <h4>${
                               forecast.weather.hours[currentHour + 10]
-                                .airTemperature.smhi
+                                .airTemperature.noaa
                             }&deg;</h4>  
                         </div>
                     </div>
@@ -331,7 +332,7 @@ function generateWeatherForSearchedPos(forecast) {
 }
 
 function renderSearchData(weather, forecast) {
-  if (weather.hours[0].airTemperature.smhi == null) {
+  if (weather.hours[0].airTemperature.noaa == null) {
     alert("Kunde inte hämta vädret för staden");
   } else {
     forecast.weather = weather;
@@ -351,24 +352,24 @@ function renderSearchData(weather, forecast) {
       <h5>${name[0]}</h5>
       </div>
       <div class="cloud">
-      <p>${forecast.weather.hours[currentHour].cloudCover.smhi}</p>
+      <p>${forecast.weather.hours[currentHour].cloudCover.noaa}</p>
       <p>CLD</p> 
       </div>
       <div class="rain">
-      <p>${forecast.weather.hours[currentHour].precipitation.smhi}</p>
+      <p>${forecast.weather.hours[currentHour].precipitation.noaa}</p>
       <p>PPI</p> 
       </div>
       <div class="humidity">
-      <p>${forecast.weather.hours[currentHour].humidity.smhi}</p> 
+      <p>${forecast.weather.hours[currentHour].humidity.noaa}</p> 
       <p>HUM</p>
       </div>
       <div class="wind-speed">
-      <p>${forecast.weather.hours[currentHour].windSpeed.smhi}</p> 
+      <p>${forecast.weather.hours[currentHour].windSpeed.noaa}</p> 
       <p>WND</p> 
       </div>
       <div class="temp">
       <h3>${Math.round(
-        forecast.weather.hours[currentHour].airTemperature.smhi
+        forecast.weather.hours[currentHour].airTemperature.noaa
       )}&deg;</h3>
       </div>
       </div> 
@@ -376,31 +377,31 @@ function renderSearchData(weather, forecast) {
       <div class="t1">
       <p>${convertHours(currentHour + 2)}.00</p> 
       <h4>${
-        forecast.weather.hours[currentHour + 2].airTemperature.smhi
+        forecast.weather.hours[currentHour + 2].airTemperature.noaa
       }&deg;</h4> 
       </div>
       <div class="t2">
       <p>${convertHours(currentHour + 4)}.00</p> 
       <h4>${
-        forecast.weather.hours[currentHour + 4].airTemperature.smhi
+        forecast.weather.hours[currentHour + 4].airTemperature.noaa
       }&deg;</h4>  
       </div>
       <div class="t3">
       <p>${convertHours(currentHour + 6)}.00</p> 
       <h4>${
-        forecast.weather.hours[currentHour + 6].airTemperature.smhi
+        forecast.weather.hours[currentHour + 6].airTemperature.noaa
       }&deg;</h4> 
       </div>
       <div class="t4">
       <p>${convertHours(currentHour + 8)}.00</p> 
       <h4>${
-        forecast.weather.hours[currentHour + 8].airTemperature.smhi
+        forecast.weather.hours[currentHour + 8].airTemperature.noaa
       }&deg;</h4> 
       </div>
       <div class="t5">
       <p>${convertHours(currentHour + 10)}.00</p> 
       <h4>${
-        forecast.weather.hours[currentHour + 10].airTemperature.smhi
+        forecast.weather.hours[currentHour + 10].airTemperature.noaa
       }&deg;</h4>  
       </div>
       </div>
@@ -499,24 +500,24 @@ function loadInForecasts() {
       <h5>${name[0]}</h5>
       </div>
       <div class="cloud">
-      <p>${forecast.weather.hours[currentHour].cloudCover.smhi}</p>
+      <p>${forecast.weather.hours[currentHour].cloudCover.noaa}</p>
       <p>CLD</p> 
       </div>
       <div class="rain">
-      <p>${forecast.weather.hours[currentHour].precipitation.smhi}</p>
+      <p>${forecast.weather.hours[currentHour].precipitation.noaa}</p>
       <p>PPI</p> 
       </div>
       <div class="humidity">
-      <p>${forecast.weather.hours[currentHour].humidity.smhi}</p> 
+      <p>${forecast.weather.hours[currentHour].humidity.noaa}</p> 
       <p>HUM</p>
       </div>
       <div class="wind-speed">
-      <p>${forecast.weather.hours[currentHour].windSpeed.smhi}</p> 
+      <p>${forecast.weather.hours[currentHour].windSpeed.noaa}</p> 
       <p>WND</p> 
       </div>
       <div class="temp">
       <h3>${Math.round(
-        forecast.weather.hours[currentHour].airTemperature.smhi
+        forecast.weather.hours[currentHour].airTemperature.noaa
       )}&deg;</h3>
       </div>
       </div> 
@@ -524,31 +525,31 @@ function loadInForecasts() {
       <div class="t1">
       <p>${convertHours(currentHour + 2)}.00</p> 
       <h4>${
-        forecast.weather.hours[currentHour + 2].airTemperature.smhi
+        forecast.weather.hours[currentHour + 2].airTemperature.noaa
       }&deg;</h4> 
       </div>
       <div class="t2">
       <p>${convertHours(currentHour + 4)}.00</p> 
       <h4>${
-        forecast.weather.hours[currentHour + 4].airTemperature.smhi
+        forecast.weather.hours[currentHour + 4].airTemperature.noaa
       }&deg;</h4>  
       </div>
       <div class="t3">
       <p>${convertHours(currentHour + 6)}.00</p> 
       <h4>${
-        forecast.weather.hours[currentHour + 6].airTemperature.smhi
+        forecast.weather.hours[currentHour + 6].airTemperature.noaa
       }&deg;</h4> 
       </div>
       <div class="t4">
       <p>${convertHours(currentHour + 8)}.00</p> 
       <h4>${
-        forecast.weather.hours[currentHour + 8].airTemperature.smhi
+        forecast.weather.hours[currentHour + 8].airTemperature.noaa
       }&deg;</h4> 
       </div>
       <div class="t5">
       <p>${convertHours(currentHour + 10)}.00</p> 
       <h4>${
-        forecast.weather.hours[currentHour + 10].airTemperature.smhi
+        forecast.weather.hours[currentHour + 10].airTemperature.noaa
       }&deg;</h4>  
       </div>
       </div>
@@ -651,27 +652,27 @@ function renderDayAfterTomorrowForecast(forecast) {
   </div>
   <div class="item-temp">
     <h5>Temp C</h5>
-    <p>${forecast.weather.hours[61].airTemperature.smhi}&deg;</p>
+    <p>${forecast.weather.hours[61].airTemperature.noaa}&deg;</p>
   </div>
   <div class="item-cloud">
     <h5>Cloud %</h5>
-    <p>${forecast.weather.hours[61].cloudCover.smhi}</p>
+    <p>${forecast.weather.hours[61].cloudCover.noaa}</p>
   </div>
   <div class="item-percipitation">
     <h5>Rain mm</h5>
-    <p>${forecast.weather.hours[61].precipitation.smhi}</p>
+    <p>${forecast.weather.hours[61].precipitation.noaa}</p>
   </div>
   <div class="item-wind">
     <h5>Wind m/s</h5>
-    <p>${forecast.weather.hours[61].windSpeed.smhi}</p>
+    <p>${forecast.weather.hours[61].windSpeed.noaa}</p>
   </div>
   <div class="item-gust">
     <h5>Gust m/s</h5>
-    <p>${forecast.weather.hours[61].gust.smhi}</p>
+    <p>${forecast.weather.hours[61].gust.noaa}</p>
   </div>
   <div class="item-humidity">
     <h5>Humidity %</h5>
-    <p>${forecast.weather.hours[61].humidity.smhi}</p>
+    <p>${forecast.weather.hours[61].humidity.noaa}</p>
   </div>
 </div>`;
 
@@ -683,22 +684,22 @@ function renderDayAfterTomorrowForecast(forecast) {
           <h3>${i - 48}.00</h3>
         </div>
         <div class="c-temp">
-          <p>${forecast.weather.hours[i].airTemperature.smhi}&deg;</p>
+          <p>${forecast.weather.hours[i].airTemperature.noaa}&deg;</p>
         </div>
         <div class="c-cloud">
-          <p>${forecast.weather.hours[i].cloudCover.smhi}</p>
+          <p>${forecast.weather.hours[i].cloudCover.noaa}</p>
         </div>
         <div class="item-percipitation">
-          <p>${forecast.weather.hours[i].precipitation.smhi}</p>
+          <p>${forecast.weather.hours[i].precipitation.noaa}</p>
         </div>
         <div class="item-wind">
-          <p>${forecast.weather.hours[i].windSpeed.smhi}</p>
+          <p>${forecast.weather.hours[i].windSpeed.noaa}</p>
         </div>
         <div class="c-gust">
-          <p>${forecast.weather.hours[i].gust.smhi}</p>
+          <p>${forecast.weather.hours[i].gust.noaa}</p>
         </div>
         <div class="c-humidity">
-          <p>${forecast.weather.hours[i].humidity.smhi}</p>
+          <p>${forecast.weather.hours[i].humidity.noaa}</p>
         </div>
       </div>
     </div>
@@ -725,27 +726,27 @@ function renderTomorrowsForecast(forecast) {
   </div>
   <div class="item-temp">
     <h5>Temp C</h5>
-    <p>${forecast.weather.hours[37].airTemperature.smhi}&deg;</p>
+    <p>${forecast.weather.hours[37].airTemperature.noaa}&deg;</p>
   </div>
   <div class="item-cloud">
     <h5>Cloud %</h5>
-    <p>${forecast.weather.hours[37].cloudCover.smhi}</p>
+    <p>${forecast.weather.hours[37].cloudCover.noaa}</p>
   </div>
   <div class="item-percipitation">
     <h5>Rain mm</h5>
-    <p>${forecast.weather.hours[37].precipitation.smhi}</p>
+    <p>${forecast.weather.hours[37].precipitation.noaa}</p>
   </div>
   <div class="item-wind">
     <h5>Wind m/s</h5>
-    <p>${forecast.weather.hours[37].windSpeed.smhi}</p>
+    <p>${forecast.weather.hours[37].windSpeed.noaa}</p>
   </div>
   <div class="item-gust">
     <h5>Gust m/s</h5>
-    <p>${forecast.weather.hours[37].gust.smhi}</p>
+    <p>${forecast.weather.hours[37].gust.noaa}</p>
   </div>
   <div class="item-humidity">
     <h5>Humidity %</h5>
-    <p>${forecast.weather.hours[37].humidity.smhi}</p>
+    <p>${forecast.weather.hours[37].humidity.noaa}</p>
   </div>
 </div>`;
 
@@ -757,22 +758,22 @@ function renderTomorrowsForecast(forecast) {
           <h3>${i - 24}.00</h3>
         </div>
         <div class="c-temp">
-          <p>${forecast.weather.hours[i].airTemperature.smhi}&deg;</p>
+          <p>${forecast.weather.hours[i].airTemperature.noaa}&deg;</p>
         </div>
         <div class="c-cloud">
-          <p>${forecast.weather.hours[i].cloudCover.smhi}</p>
+          <p>${forecast.weather.hours[i].cloudCover.noaa}</p>
         </div>
         <div class="item-percipitation">
-          <p>${forecast.weather.hours[i].precipitation.smhi}</p>
+          <p>${forecast.weather.hours[i].precipitation.noaa}</p>
         </div>
         <div class="item-wind">
-          <p>${forecast.weather.hours[i].windSpeed.smhi}</p>
+          <p>${forecast.weather.hours[i].windSpeed.noaa}</p>
         </div>
         <div class="c-gust">
-          <p>${forecast.weather.hours[i].gust.smhi}</p>
+          <p>${forecast.weather.hours[i].gust.noaa}</p>
         </div>
         <div class="c-humidity">
-          <p>${forecast.weather.hours[i].humidity.smhi}</p>
+          <p>${forecast.weather.hours[i].humidity.noaa}</p>
         </div>
       </div>
     </div>
@@ -800,27 +801,27 @@ function renderTodaysForecast(forecast) {
   </div>
   <div class="item-temp">
     <h5>Temp C</h5>
-    <p>${forecast.weather.hours[currentHour].airTemperature.smhi}&deg;</p>
+    <p>${forecast.weather.hours[currentHour].airTemperature.noaa}&deg;</p>
   </div>
   <div class="item-cloud">
     <h5>Cloud %</h5>
-    <p>${forecast.weather.hours[currentHour].cloudCover.smhi}</p>
+    <p>${forecast.weather.hours[currentHour].cloudCover.noaa}</p>
   </div>
   <div class="item-percipitation">
     <h5>Rain mm</h5>
-    <p>${forecast.weather.hours[currentHour].precipitation.smhi}</p>
+    <p>${forecast.weather.hours[currentHour].precipitation.noaa}</p>
   </div>
   <div class="item-wind">
     <h5>Wind m/s</h5>
-    <p>${forecast.weather.hours[currentHour].windSpeed.smhi}</p>
+    <p>${forecast.weather.hours[currentHour].windSpeed.noaa}</p>
   </div>
   <div class="item-gust">
     <h5>Gust m/s</h5>
-    <p>${forecast.weather.hours[currentHour].gust.smhi}</p>
+    <p>${forecast.weather.hours[currentHour].gust.noaa}</p>
   </div>
   <div class="item-humidity">
     <h5>Humidity %</h5>
-    <p>${forecast.weather.hours[currentHour].humidity.smhi}</p>
+    <p>${forecast.weather.hours[currentHour].humidity.noaa}</p>
   </div>
 </div>`;
 
@@ -832,22 +833,22 @@ function renderTodaysForecast(forecast) {
           <h3>${i}.00</h3>
         </div>
         <div class="c-temp">
-          <p>${forecast.weather.hours[i].airTemperature.smhi}&deg;</p>
+          <p>${forecast.weather.hours[i].airTemperature.noaa}&deg;</p>
         </div>
         <div class="c-cloud">
-          <p>${forecast.weather.hours[i].cloudCover.smhi}</p>
+          <p>${forecast.weather.hours[i].cloudCover.noaa}</p>
         </div>
         <div class="item-percipitation">
-          <p>${forecast.weather.hours[i].precipitation.smhi}</p>
+          <p>${forecast.weather.hours[i].precipitation.noaa}</p>
         </div>
         <div class="item-wind">
-          <p>${forecast.weather.hours[i].windSpeed.smhi}</p>
+          <p>${forecast.weather.hours[i].windSpeed.noaa}</p>
         </div>
         <div class="c-gust">
-          <p>${forecast.weather.hours[i].gust.smhi}</p>
+          <p>${forecast.weather.hours[i].gust.noaa}</p>
         </div>
         <div class="c-humidity">
-          <p>${forecast.weather.hours[i].humidity.smhi}</p>
+          <p>${forecast.weather.hours[i].humidity.noaa}</p>
         </div>
       </div>
     </div>
@@ -958,9 +959,9 @@ function setWeatherBackground(forecast) {
   // let downfall = 1;
   // let cloudCover = 75;
   // let airTemperature = 10;
-  let downfall = forecast.weather.hours[currentHour].precipitation.smhi;
-  let cloudCover = forecast.weather.hours[currentHour].cloudCover.smhi;
-  let airTemperature = forecast.weather.hours[currentHour].airTemperature.smhi;
+  let downfall = forecast.weather.hours[currentHour].precipitation.noaa;
+  let cloudCover = forecast.weather.hours[currentHour].cloudCover.noaa;
+  let airTemperature = forecast.weather.hours[currentHour].airTemperature.noaa;
 
   if (downfall == 0 && cloudCover < 3) return (background = "day-clear");
   else if (downfall == 0 && cloudCover < 15)
